@@ -70,16 +70,16 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-[#2F2F2F]">
+    <footer className="bg-gradient-to-b from-slate-900 to-slate-950">
       {/* Newsletter Section */}
-      <div className="border-b border-white/10">
+      <div className="border-b border-slate-700/50">
         <div className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
           <div className="flex flex-col items-center justify-between gap-6 lg:flex-row">
             <div className="text-center lg:text-left">
-              <h3 className="text-xl font-semibold text-white">
+              <h3 className="text-xl font-bold text-white">
                 Subscribe to Our Newsletter
               </h3>
-              <p className="mt-1 text-white/70">
+              <p className="mt-1 text-slate-300">
                 Get the latest deals, new inventory alerts, and industry tips.
               </p>
             </div>
@@ -87,11 +87,11 @@ export default function Footer() {
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 rounded-lg border border-white/20 bg-white/10 px-4 py-2.5 text-white placeholder:text-white/50 focus:border-[#D6452F] focus:outline-none focus:ring-1 focus:ring-[#D6452F]"
+                className="flex-1 rounded-lg border border-slate-700 bg-slate-800/50 px-4 py-2.5 text-white placeholder:text-slate-400 focus:border-red-600 focus:outline-none focus:ring-2 focus:ring-red-600/20"
               />
               <button
                 type="submit"
-                className="rounded-lg bg-[#D6452F] px-6 py-2.5 font-semibold text-white transition-colors hover:bg-[#D6452F]/90"
+                className="rounded-lg bg-red-600 px-6 py-2.5 font-semibold text-white shadow-lg shadow-red-600/30 transition-all hover:bg-red-700 hover:shadow-xl hover:shadow-red-600/40"
               >
                 Subscribe
               </button>
@@ -106,27 +106,27 @@ export default function Footer() {
           {/* Brand & Contact Info */}
           <div className="lg:col-span-2">
             <Link href="/" className="text-2xl font-bold text-white">
-              {brandName.split("_").map((item, i) => (i===0 ? <span key={i}>{item}</span> : <span key={i} className="text-[#D6452F]"> {item}</span>))}
+              {brandName.split("_").map((item, i) => (i===0 ? <span key={i}>{item}</span> : <span key={i} className="text-red-500"> {item}</span>))}
             </Link>
-            <p className="mt-4 text-sm text-white/70">
+            <p className="mt-4 text-sm text-slate-300">
               Custom food truck builders since 1999. From concept to the street, we bring your mobile kitchen vision to life.
             </p>
-            <div className="mt-6 space-y-3 text-sm text-white/70">
+            <div className="mt-6 space-y-3 text-sm text-slate-300">
               <p className="flex items-start gap-2">
-                <svg className="mt-0.5 h-4 w-4 shrink-0 text-[#F5A623]" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                <svg className="mt-0.5 h-4 w-4 shrink-0 text-red-500" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
                 </svg>
                 123 Industrial Parkway, Suite 100<br />Houston, TX 77001
               </p>
               <p className="flex items-center gap-2">
-                <svg className="h-4 w-4 shrink-0 text-[#F5A623]" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                <svg className="h-4 w-4 shrink-0 text-red-500" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
                 </svg>
                 (800) 555-0123
               </p>
               <p className="flex items-center gap-2">
-                <svg className="h-4 w-4 shrink-0 text-[#F5A623]" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                <svg className="h-4 w-4 shrink-0 text-red-500" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
                 </svg>
                 sales@foodtruckparts.com
@@ -144,7 +144,7 @@ export default function Footer() {
                 <li key={item.name}>
                   <Link
                     href={item.href}
-                    className="text-sm text-white/70 transition-colors hover:text-white"
+                    className="text-sm text-slate-300 transition-colors hover:text-red-400"
                   >
                     {item.name}
                   </Link>
@@ -163,7 +163,7 @@ export default function Footer() {
                 <li key={item.name}>
                   <Link
                     href={item.href}
-                    className="text-sm text-white/70 transition-colors hover:text-white"
+                    className="text-sm text-slate-300 transition-colors hover:text-red-400"
                   >
                     {item.name}
                   </Link>
@@ -182,7 +182,7 @@ export default function Footer() {
                 <li key={item.name}>
                   <Link
                     href={item.href}
-                    className="text-sm text-white/70 transition-colors hover:text-white"
+                    className="text-sm text-slate-300 transition-colors hover:text-red-400"
                   >
                     {item.name}
                   </Link>
@@ -201,7 +201,7 @@ export default function Footer() {
                 <li key={item.name}>
                   <Link
                     href={item.href}
-                    className="text-sm text-white/70 transition-colors hover:text-white"
+                    className="text-sm text-slate-300 transition-colors hover:text-red-400"
                   >
                     {item.name}
                   </Link>
@@ -213,16 +213,16 @@ export default function Footer() {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-white/10">
+      <div className="border-t border-slate-700/50">
         <div className="mx-auto max-w-7xl px-6 py-6 lg:px-8">
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
             {/* Copyright & Legal */}
-            <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm text-white/50">
+            <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm text-slate-400">
               <span>&copy; {new Date().getFullYear()} {brandNameLegal}. All rights reserved.</span>
-              <Link href="/privacy" className="hover:text-white">
+              <Link href="/privacy" className="hover:text-red-400 transition-colors">
                 Privacy Policy
               </Link>
-              <Link href="/terms" className="hover:text-white">
+              <Link href="/terms" className="hover:text-red-400 transition-colors">
                 Terms of Service
               </Link>
             </div>
@@ -233,7 +233,7 @@ export default function Footer() {
                 <a
                   key={social.name}
                   href={social.href}
-                  className="text-white/50 transition-colors hover:text-[#F5A623]"
+                  className="text-slate-400 transition-colors hover:text-red-400"
                   aria-label={social.name}
                 >
                   {social.icon}

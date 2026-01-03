@@ -109,10 +109,10 @@ export default function Products() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Section Header */}
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-[#2F2F2F] sm:text-4xl">
+          <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
             Parts & Equipment
           </h2>
-          <p className="mt-4 text-lg text-[#8A8A8A]">
+          <p className="mt-4 text-lg text-slate-600">
             Browse our complete inventory of food truck parts, equipment, and accessories
           </p>
         </div>
@@ -123,15 +123,15 @@ export default function Products() {
             <Link
               key={category.name}
               href={category.href}
-              className="group flex flex-col items-center rounded-xl bg-[#EDEDED] p-6 text-center transition-all hover:bg-[#D6452F] hover:shadow-lg"
+              className="group flex flex-col items-center rounded-xl bg-gradient-to-br from-white to-slate-50 border border-slate-200 p-6 text-center transition-all hover:bg-red-600 hover:border-red-600 hover:shadow-2xl hover:shadow-red-600/20"
             >
-              <div className="mb-3 text-[#D6452F] transition-colors group-hover:text-white">
+              <div className="mb-3 text-red-600 transition-colors group-hover:text-white">
                 {category.icon}
               </div>
-              <h3 className="text-lg font-semibold text-[#2F2F2F] transition-colors group-hover:text-white">
+              <h3 className="text-lg font-bold text-slate-900 transition-colors group-hover:text-white">
                 {category.name}
               </h3>
-              <p className="mt-1 text-sm text-[#8A8A8A] transition-colors group-hover:text-white/80">
+              <p className="mt-1 text-sm text-slate-600 transition-colors group-hover:text-white/90">
                 {category.description}
               </p>
             </Link>
@@ -141,12 +141,12 @@ export default function Products() {
         {/* Featured Products Grid */}
         <div className="mt-16">
           <div className="flex items-center justify-between">
-            <h3 className="text-2xl font-bold text-[#2F2F2F]">
+            <h3 className="text-2xl font-bold text-slate-900">
               Featured Products
             </h3>
             <Link
               href="/parts"
-              className="text-sm font-medium text-[#D6452F] hover:text-[#D6452F]/80"
+              className="text-sm font-semibold text-red-600 hover:text-red-700 transition-colors"
             >
               View all products →
             </Link>
@@ -156,7 +156,7 @@ export default function Products() {
             {featuredProducts.map((product) => (
               <article
                 key={product.id}
-                className="group overflow-hidden rounded-xl border border-[#EDEDED] bg-white transition-all hover:border-[#8A8A8A]/30 hover:shadow-lg"
+                className="group overflow-hidden rounded-xl border border-slate-200 bg-white transition-all hover:border-red-200 hover:shadow-2xl hover:shadow-red-600/10"
               >
                 {/* Product Image */}
                 <div className="relative aspect-[4/3] overflow-hidden bg-[#EDEDED]">
@@ -182,19 +182,19 @@ export default function Products() {
 
                 {/* Product Info */}
                 <div className="p-5">
-                  <h4 className="text-lg font-semibold text-[#2F2F2F] group-hover:text-[#D6452F]">
+                  <h4 className="text-lg font-bold text-slate-900 transition-colors group-hover:text-red-600">
                     {product.name}
                   </h4>
-                  <p className="mt-2 line-clamp-2 text-sm text-[#8A8A8A]">
+                  <p className="mt-2 line-clamp-2 text-sm text-slate-600">
                     {product.description}
                   </p>
                   <div className="mt-4 flex items-center justify-between">
-                    <span className="text-lg font-bold text-[#D6452F]">
+                    <span className="text-lg font-bold text-red-600">
                       {product.price}
                     </span>
                     <Link
                       href={product.href}
-                      className="rounded-lg bg-[#EDEDED] px-4 py-2 text-sm font-medium text-[#2F2F2F] transition-colors hover:bg-[#D6452F] hover:text-white"
+                      className="rounded-lg bg-slate-100 px-4 py-2 text-sm font-semibold text-slate-900 transition-all hover:bg-red-600 hover:text-white"
                     >
                       More Details
                     </Link>
@@ -206,17 +206,17 @@ export default function Products() {
         </div>
 
         {/* CTA */}
-        <div className="mt-16 rounded-2xl bg-[#EDEDED] p-8 text-center sm:p-12">
-          <h3 className="text-2xl font-bold text-[#2F2F2F] sm:text-3xl">
+        <div className="mt-16 rounded-2xl bg-gradient-to-br from-slate-50 to-slate-100 border border-slate-200 p-8 text-center sm:p-12">
+          <h3 className="text-2xl font-bold text-slate-900 sm:text-3xl">
             Can't find what you're looking for?
           </h3>
-          <p className="mx-auto mt-4 max-w-xl text-[#8A8A8A]">
+          <p className="mx-auto mt-4 max-w-xl text-slate-600">
             We have access to thousands of parts and can source specialty items.
             Contact our team for custom orders and hard-to-find components.
           </p>
           <Link
             href="/quote"
-            className="mt-8 inline-block rounded-lg bg-[#D6452F] px-8 py-3.5 text-base font-semibold text-white shadow-lg transition-all hover:bg-[#D6452F]/90 hover:shadow-xl"
+            className="mt-8 inline-block rounded-lg bg-red-600 px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-red-600/30 transition-all hover:bg-red-700 hover:shadow-xl hover:shadow-red-600/40"
           >
             Request a Quote
           </Link>

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-
+import { ChevronDown, Send, User, Mail, MessageSquare, CheckCircle2, Loader2 } from 'lucide-react';
 
 interface FormData {
     name: string;
@@ -19,13 +19,24 @@ export default function ContactForm() {
     });
 
     const [isOpen, setIsOpen] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isSuccess, setIsSuccess] = useState(false);
 
     const helpOptions = ['Custom Build Quote', 'Parts & Service', 'General Inquiry'];
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        setIsSubmitting(true);
+
+        // Simulate network request
+        await new Promise(resolve => setTimeout(resolve, 1500));
+
         console.log('Form submitted:', formData);
-        // Add your form submission logic here
+        setIsSubmitting(false);
+        setIsSuccess(true);
+
+        // Reset success message after 3 seconds
+        setTimeout(() => setIsSuccess(false), 3000);
     };
 
     const handleInputChange = (
@@ -47,135 +58,149 @@ export default function ContactForm() {
     };
 
     return (
-        <div className="mx-auto bg-white rounded-2xl shadow-lg p-5 h-full md:h-1/2">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Contact Us</h2>
+        <div className="w-full">
+            <form onSubmit={handleSubmit} className="space-y-5">
 
-            <form onSubmit={handleSubmit} className="space-y-6 text-black min-w-full">
                 {/* Name Field */}
                 <div>
-                    <label
-                        htmlFor="name"
-                        className="block text-sm font-medium text-gray-600 mb-2"
-                    >
-                        NAME *
+                    <label htmlFor="name" className="mb-1.5 block text-sm font-semibold text-slate-700">
+                        Full Name
                     </label>
-                    <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        required
-                        value={formData.name}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
-                        placeholder=""
-                    />
+                    <div className="relative">
+                        <div className="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400 pointer-events-none">
+                            <User className="h-5 w-5" />
+                        </div>
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            required
+                            placeholder="John Doe"
+                            value={formData.name}
+                            onChange={handleInputChange}
+                            className="w-full rounded-lg border border-slate-200 bg-slate-50 py-3 pl-10 pr-4 text-slate-900 placeholder:text-slate-400 focus:border-orange-500 focus:bg-white focus:outline-none focus:ring-4 focus:ring-orange-500/10 transition-all duration-200"
+                        />
+                    </div>
                 </div>
 
                 {/* Email Field */}
                 <div>
-                    <label
-                        htmlFor="email"
-                        className="block text-sm font-medium text-gray-600 mb-2"
-                    >
-                        EMAIL *
+                    <label htmlFor="email" className="mb-1.5 block text-sm font-semibold text-slate-700">
+                        Email Address
                     </label>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        required
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
-                        placeholder=""
-                    />
+                    <div className="relative">
+                        <div className="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400 pointer-events-none">
+                            <Mail className="h-5 w-5" />
+                        </div>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            required
+                            placeholder="john@example.com"
+                            value={formData.email}
+                            onChange={handleInputChange}
+                            className="w-full rounded-lg border border-slate-200 bg-slate-50 py-3 pl-10 pr-4 text-slate-900 placeholder:text-slate-400 focus:border-orange-500 focus:bg-white focus:outline-none focus:ring-4 focus:ring-orange-500/10 transition-all duration-200"
+                        />
+                    </div>
                 </div>
 
                 {/* Custom Dropdown */}
-                <div>
-                    <label
-                        htmlFor="helpType"
-                        className="block text-sm font-medium text-gray-600 mb-2"
-                    >
-                        HOW CAN WE HELP YOU? *
+                <div className="relative">
+                    <label className="mb-1.5 block text-sm font-semibold text-slate-700">
+                        How can we help?
                     </label>
-                    <div className="relative">
-                        <button
-                            type="button"
-                            onClick={() => setIsOpen(!isOpen)}
-                            className="w-full px-4 py-3 border border-gray-200 rounded-lg text-left focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all flex items-center justify-between bg-white"
-                        >
-                            <span className="text-gray-900">{formData.helpType}</span>
-                            <svg
-                                className={`w-5 h-5 text-gray-400 transition-transform ${
-                                    isOpen ? 'transform rotate-180' : ''
-                                }`}
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M19 9l-7 7-7-7"
-                                />
-                            </svg>
-                        </button>
+                    <button
+                        type="button"
+                        onClick={() => setIsOpen(!isOpen)}
+                        className={`group relative w-full cursor-default rounded-lg border bg-slate-50 py-3 pl-4 pr-10 text-left text-slate-900 focus:outline-none focus:ring-4 focus:ring-orange-500/10 transition-all duration-200 ${
+                            isOpen ? 'border-orange-500 ring-4 ring-orange-500/10' : 'border-slate-200'
+                        }`}
+                    >
+                        <span className="block truncate font-medium">{formData.helpType}</span>
+                        <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+                            <ChevronDown
+                                className={`h-5 w-5 text-slate-400 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+                            />
+                        </span>
+                    </button>
 
-                        {/* Dropdown Menu */}
-                        {isOpen && (
-                            <div className="absolute z-10 w-full mt-2 bg-white border border-gray-200 rounded-lg shadow-lg animate-fade">
-                                {helpOptions.map((option) => (
-                                    <button
-                                        key={option}
-                                        type="button"
-                                        onClick={() => handleSelectChange(option)}
-                                        className="w-full px-4 py-3 text-left hover:bg-gray-50 transition-colors flex items-center justify-between group"
-                                    >
-                                        <span className="text-gray-900">{option}</span>
-                                        {formData.helpType === option && (
-                                            <svg
-                                                className="w-5 h-5 text-secondary"
-                                                fill="none"
-                                                stroke="currentColor"
-                                                viewBox="0 0 24 24"
-                                            >
-                                                <path
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                    strokeWidth={2}
-                                                    d="M5 13l4 4L19 7"
-                                                />
-                                            </svg>
-                                        )}
-                                    </button>
-                                ))}
-                            </div>
-                        )}
-                    </div>
+                    {/* Dropdown Options */}
+                    {isOpen && (
+                        <div className="absolute z-50 mt-1 max-h-60 w-full overflow-auto rounded-lg bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm animate-in fade-in zoom-in-95 duration-100">
+                            {helpOptions.map((option) => (
+                                <button
+                                    key={option}
+                                    type="button"
+                                    onClick={() => handleSelectChange(option)}
+                                    className={`relative w-full cursor-default select-none py-2.5 pl-4 pr-9 text-left hover:bg-slate-50 transition-colors ${
+                                        formData.helpType === option ? 'text-orange-600 bg-orange-50/50 font-medium' : 'text-slate-900'
+                                    }`}
+                                >
+                                    <span className="block truncate">{option}</span>
+                                    {formData.helpType === option && (
+                                        <span className="absolute inset-y-0 right-0 flex items-center pr-4 text-orange-600">
+                                            <CheckCircle2 className="h-4 w-4" />
+                                        </span>
+                                    )}
+                                </button>
+                            ))}
+                        </div>
+                    )}
                 </div>
 
-                {/* Message/Textarea Field (shown when "General Inquiry" is selected) */}
-                {formData.helpType === 'General Inquiry' && (
-                    <div>
-            <textarea
-                name="message"
-                value={formData.message}
-                onChange={handleInputChange}
-                rows={4}
-                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all resize-none"
-                placeholder="Please describe how we can help you..."
-            />
+                {/* Message Field */}
+                <div>
+                    <label htmlFor="message" className="mb-1.5 block text-sm font-semibold text-slate-700">
+                        Project Details / Message
+                    </label>
+                    <div className="relative">
+                        <div className="absolute top-3 left-3 text-slate-400 pointer-events-none">
+                            <MessageSquare className="h-5 w-5" />
+                        </div>
+                        <textarea
+                            id="message"
+                            name="message"
+                            rows={4}
+                            required
+                            value={formData.message}
+                            onChange={handleInputChange}
+                            placeholder={
+                                formData.helpType === 'Custom Build Quote'
+                                    ? "Tell us about your menu, equipment needs, and truck preference..."
+                                    : "How can we assist you today?"
+                            }
+                            className="w-full resize-none rounded-lg border border-slate-200 bg-slate-50 py-3 pl-10 pr-4 text-slate-900 placeholder:text-slate-400 focus:border-orange-500 focus:bg-white focus:outline-none focus:ring-4 focus:ring-orange-500/10 transition-all duration-200"
+                        />
                     </div>
-                )}
+                </div>
 
                 {/* Submit Button */}
                 <button
                     type="submit"
-                    className="w-full bg-accent bg-[#D6452F] hover:bg-[#952d1d] cursor-pointer text-white font-semibold py-4 px-6 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+                    disabled={isSubmitting || isSuccess}
+                    className={`flex w-full items-center justify-center rounded-lg px-8 py-3.5 text-base font-bold text-white shadow-sm transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600 ${
+                        isSuccess
+                            ? 'bg-green-600 hover:bg-green-500'
+                            : 'bg-[#D6452F] hover:bg-[#b03623] hover:shadow-lg hover:shadow-orange-900/20'
+                    }`}
                 >
-                    Submit Form
+                    {isSubmitting ? (
+                        <>
+                            <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                            Sending...
+                        </>
+                    ) : isSuccess ? (
+                        <>
+                            <CheckCircle2 className="mr-2 h-5 w-5" />
+                            Message Sent!
+                        </>
+                    ) : (
+                        <>
+                            Send Message
+                            <Send className="ml-2 h-4 w-4" />
+                        </>
+                    )}
                 </button>
             </form>
         </div>

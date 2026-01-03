@@ -79,19 +79,19 @@ export default function About() {
 
           {/* Company History */}
           <div>
-            <span className="text-sm font-semibold uppercase tracking-wider text-[#F5A623]">
+            <span className="text-sm font-bold uppercase tracking-wider text-red-600">
               Our Story
             </span>
-            <h2 className="mt-2 text-3xl font-bold tracking-tight text-[#2F2F2F] sm:text-4xl">
+            <h2 className="mt-2 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
               Building Custom Food Trucks Since 1999
             </h2>
-            <p className="mt-6 text-lg leading-8 text-[#8A8A8A]">
+            <p className="mt-6 text-lg leading-8 text-slate-600">
               What started as a passion for mobile culinary innovation has grown into one of the most trusted custom food truck builders in the industry. For over 25 years, we've been transforming visions into rolling restaurants.
             </p>
-            <p className="mt-4 text-[#8A8A8A]">
+            <p className="mt-4 text-slate-600">
               Our founder combined restaurant equipment expertise with custom fabrication skills to create something unique—a full-service shop dedicated to building dream food trucks from the ground up. Today, our team of skilled craftsmen and designers work together to create mobile kitchens that are as functional as they are impressive.
             </p>
-            <p className="mt-4 text-[#8A8A8A]">
+            <p className="mt-4 text-slate-600">
               From our 15,000 sq. ft. fabrication facility, we design and build custom trucks for entrepreneurs across the country. We also offer parts, service, and maintenance for those who need it. Whether you're launching your first truck or expanding your fleet, we bring your vision to life.
             </p>
           </div>
@@ -102,12 +102,12 @@ export default function About() {
           {stats.map((stat) => (
             <div
               key={stat.label}
-              className="rounded-xl bg-[#EDEDED] p-6 text-center"
+              className="rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 border border-slate-200 p-6 text-center transition-all hover:shadow-lg hover:border-red-200"
             >
-              <p className="text-3xl font-bold text-[#D6452F] sm:text-4xl">
+              <p className="text-3xl font-bold text-red-600 sm:text-4xl">
                 {stat.value}
               </p>
-              <p className="mt-1 text-sm text-[#8A8A8A]">{stat.label}</p>
+              <p className="mt-1 text-sm font-semibold text-slate-600">{stat.label}</p>
             </div>
           ))}
         </div>
@@ -115,10 +115,10 @@ export default function About() {
         {/* Why Choose Us / Values */}
         <div className="mt-20">
           <div className="text-center">
-            <h3 className="text-2xl font-bold text-[#2F2F2F] sm:text-3xl">
+            <h3 className="text-2xl font-bold text-slate-900 sm:text-3xl">
               Why Choose Us
             </h3>
-            <p className="mt-2 text-[#8A8A8A]">
+            <p className="mt-2 text-slate-600">
               What sets us apart from the competition
             </p>
           </div>
@@ -126,13 +126,13 @@ export default function About() {
           <div className="mt-10 grid gap-8 sm:grid-cols-3">
             {values.map((value) => (
               <div key={value.title} className="text-center">
-                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#D6452F]/10 text-[#D6452F]">
+                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-xl bg-red-50 text-red-600 shadow-lg shadow-red-600/10">
                   {value.icon}
                 </div>
-                <h4 className="mt-4 text-lg font-semibold text-[#2F2F2F]">
+                <h4 className="mt-4 text-lg font-bold text-slate-900">
                   {value.title}
                 </h4>
-                <p className="mt-2 text-sm text-[#8A8A8A]">
+                <p className="mt-2 text-sm text-slate-600">
                   {value.description}
                 </p>
               </div>
@@ -141,12 +141,12 @@ export default function About() {
         </div>
 
         {/* Our Process */}
-        <div className="mt-20 rounded-2xl bg-[#2F2F2F] p-8 sm:p-12">
+        <div className="mt-20 rounded-2xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-8 sm:p-12 border border-slate-700 shadow-2xl">
           <div className="text-center">
             <h3 className="text-2xl font-bold text-white sm:text-3xl">
               How We Work
             </h3>
-            <p className="mt-2 text-white/70">
+            <p className="mt-2 text-slate-300">
               Our simple process gets you what you need, fast
             </p>
           </div>
@@ -154,13 +154,13 @@ export default function About() {
           <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {processSteps.map((item) => (
               <div key={item.step} className="relative">
-                <span className="text-5xl font-bold text-[#D6452F]/30">
+                <span className="text-5xl font-bold text-red-600/30">
                   {item.step}
                 </span>
-                <h4 className="mt-2 text-lg font-semibold text-white">
+                <h4 className="mt-2 text-lg font-bold text-white">
                   {item.title}
                 </h4>
-                <p className="mt-2 text-sm text-white/70">{item.description}</p>
+                <p className="mt-2 text-sm text-slate-300">{item.description}</p>
               </div>
             ))}
           </div>
@@ -201,13 +201,13 @@ export default function About() {
           <div className="flex flex-col justify-center gap-4 sm:flex-row">
             <Link
               href="/about"
-              className="rounded-lg bg-[#D6452F] px-8 py-3.5 text-base font-semibold text-white shadow-lg transition-all hover:bg-[#D6452F]/90 hover:shadow-xl"
+              className="rounded-lg bg-red-600 px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-red-600/30 transition-all hover:bg-red-700 hover:shadow-xl hover:shadow-red-600/40"
             >
               Learn More About Us
             </Link>
             <Link
               href="/contact"
-              className="rounded-lg border-2 border-[#2F2F2F] px-8 py-3.5 text-base font-semibold text-[#2F2F2F] transition-all hover:bg-[#2F2F2F] hover:text-white"
+              className="rounded-lg border-2 border-slate-900 px-8 py-3.5 text-base font-semibold text-slate-900 transition-all hover:bg-slate-900 hover:text-white"
             >
               Contact Us
             </Link>

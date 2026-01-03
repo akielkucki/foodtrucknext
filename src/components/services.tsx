@@ -72,14 +72,14 @@ const featuredProjects = [
 
 export default function Services() {
   return (
-    <section className="bg-[#EDEDED] py-16 lg:py-24">
+    <section className="bg-gradient-to-b from-slate-50 to-white py-16 lg:py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Section Header */}
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-[#2F2F2F] sm:text-4xl">
+          <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
             Our Services
           </h2>
-          <p className="mt-4 text-lg text-[#8A8A8A]">
+          <p className="mt-4 text-lg text-slate-600">
             Custom food truck builds, design services, parts, and ongoing support
           </p>
         </div>
@@ -90,17 +90,17 @@ export default function Services() {
             <Link
               key={service.name}
               href={service.href}
-              className="group flex gap-6 rounded-xl bg-white p-6 shadow-sm transition-all hover:shadow-lg"
+              className="group flex gap-6 rounded-xl bg-white border border-slate-200 p-6 shadow-sm transition-all hover:shadow-2xl hover:shadow-red-600/10 hover:border-red-200"
             >
-              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-lg bg-[#EDEDED] text-[#D6452F] transition-colors group-hover:bg-[#D6452F] group-hover:text-white">
+              <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl bg-red-50 text-red-600 transition-all group-hover:bg-red-600 group-hover:text-white group-hover:scale-110 shadow-lg shadow-red-600/10">
                 {service.icon}
               </div>
               <div>
-                <h3 className="text-xl font-semibold text-[#2F2F2F] group-hover:text-[#D6452F]">
+                <h3 className="text-xl font-bold text-slate-900 transition-colors group-hover:text-red-600">
                   {service.name}
                 </h3>
-                <p className="mt-2 text-[#8A8A8A]">{service.description}</p>
-                <span className="mt-4 inline-flex items-center text-sm font-medium text-[#D6452F]">
+                <p className="mt-2 text-slate-600">{service.description}</p>
+                <span className="mt-4 inline-flex items-center text-sm font-semibold text-red-600">
                   Learn more
                   <svg className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
@@ -114,10 +114,10 @@ export default function Services() {
         {/* Featured Projects / Case Studies */}
         <div className="mt-20">
           <div className="text-center">
-            <h3 className="text-2xl font-bold text-[#2F2F2F] sm:text-3xl">
+            <h3 className="text-2xl font-bold text-slate-900 sm:text-3xl">
               Featured Projects
             </h3>
-            <p className="mt-2 text-[#8A8A8A]">
+            <p className="mt-2 text-slate-600">
               See how we've helped food truck owners transform their businesses
             </p>
           </div>
@@ -174,13 +174,13 @@ export default function Services() {
 
                 {/* Project Info */}
                 <div className="p-6">
-                  <span className="inline-block rounded-full bg-[#F5A623]/10 px-3 py-1 text-xs font-medium text-[#F5A623]">
+                  <span className="inline-block rounded-full bg-red-50 px-3 py-1 text-xs font-semibold text-red-600">
                     {project.category}
                   </span>
-                  <h4 className="mt-3 text-xl font-semibold text-[#2F2F2F]">
+                  <h4 className="mt-3 text-xl font-bold text-slate-900">
                     {project.title}
                   </h4>
-                  <p className="mt-2 text-[#8A8A8A]">{project.description}</p>
+                  <p className="mt-2 text-slate-600">{project.description}</p>
                 </div>
               </article>
             ))}
@@ -189,22 +189,22 @@ export default function Services() {
 
         {/* CTA */}
         <div className="mt-16 text-center">
-          <h3 className="text-2xl font-bold text-[#2F2F2F]">
+          <h3 className="text-2xl font-bold text-slate-900">
             Ready to get started?
           </h3>
-          <p className="mx-auto mt-2 max-w-lg text-[#8A8A8A]">
+          <p className="mx-auto mt-2 max-w-lg text-slate-600">
             Whether you need a simple repair or a complete custom build, our team is here to help.
           </p>
           <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
             <Link
               href="/services/schedule"
-              className="rounded-lg bg-[#D6452F] px-8 py-3.5 text-base font-semibold text-white shadow-lg transition-all hover:bg-[#D6452F]/90 hover:shadow-xl"
+              className="rounded-lg bg-red-600 px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-red-600/30 transition-all hover:bg-red-700 hover:shadow-xl hover:shadow-red-600/40"
             >
               Schedule a Service
             </Link>
             <Link
               href="/contact"
-              className="rounded-lg border-2 border-[#2F2F2F] bg-white px-8 py-3.5 text-base font-semibold text-[#2F2F2F] transition-all hover:bg-[#2F2F2F] hover:text-white"
+              className="rounded-lg border-2 border-slate-900 bg-white px-8 py-3.5 text-base font-semibold text-slate-900 transition-all hover:bg-slate-900 hover:text-white"
             >
               Contact Us for Details
             </Link>
