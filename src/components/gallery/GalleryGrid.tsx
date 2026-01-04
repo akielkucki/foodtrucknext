@@ -9,16 +9,17 @@ import { Spinner } from '@/components/ui/spinner';
 
 const INITIAL_LOAD = 20;
 const LOAD_MORE_COUNT = 12;
+const MAX_IMAGES = 77; // 1. HARD LIMIT SETTING
 
 export default function GalleryGrid() {
   const [images, setImages] = useState<GalleryImageData[]>([]);
-  const [isLoading, setIsLoading] = useState(true); // Start true to prevent flash
+  const [isLoading, setIsLoading] = useState(true);
   const [nextId, setNextId] = useState(INITIAL_LOAD);
+  const [hasMore, setHasMore] = useState(true);
   const observerRef = useRef<HTMLDivElement>(null);
 
   // Initial load
   useEffect(() => {
-    // Simulate initial fetch delay for smoothness
     const timer = setTimeout(() => {
       const initialImages = generateGalleryImages(INITIAL_LOAD);
       setImages(initialImages);
@@ -27,28 +28,46 @@ export default function GalleryGrid() {
     return () => clearTimeout(timer);
   }, []);
 
-  // Load more images
   const loadMoreImages = useCallback(() => {
-    if (isLoading) return;
+    // 2. Stop if loading or if we've reached the limit
+    if (isLoading || !hasMore || images.length >= MAX_IMAGES) return;
+
     setIsLoading(true);
 
     setTimeout(() => {
-      const newImages = generateGalleryImages(LOAD_MORE_COUNT, nextId);
+      // 3. Calculate exactly how many we need.
+      // If we have 70 images and want 12 more, but max is 78, we only ask for 8.
+      const remainingSlots = MAX_IMAGES - images.length;
+      const countToFetch = Math.min(LOAD_MORE_COUNT, remainingSlots);
+
+      if (countToFetch <= 0) {
+        setHasMore(false);
+        setIsLoading(false);
+        return;
+      }
+
+      const newImages = generateGalleryImages(countToFetch, nextId);
+
       setImages((prev) => [...prev, ...newImages]);
-      setNextId((prev) => prev + LOAD_MORE_COUNT);
+      setNextId((prev) => prev + countToFetch);
+
+      // If we hit the max after this batch, stop future loads
+      if (images.length + newImages.length >= MAX_IMAGES) {
+        setHasMore(false);
+      }
+
       setIsLoading(false);
     }, 800);
-  }, [isLoading, nextId]);
+  }, [isLoading, nextId, hasMore, images.length]);
 
-  // IntersectionObserver
   useEffect(() => {
     const observer = new IntersectionObserver(
         (entries) => {
-          if (entries[0].isIntersecting && !isLoading && images.length > 0) {
+          if (entries[0].isIntersecting && !isLoading && hasMore) {
             loadMoreImages();
           }
         },
-        { threshold: 0.1, rootMargin: '400px' } // Increased margin for smoother preload
+        { threshold: 0.1, rootMargin: '400px' }
     );
 
     const currentRef = observerRef.current;
@@ -57,13 +76,11 @@ export default function GalleryGrid() {
     return () => {
       if (currentRef) observer.unobserve(currentRef);
     };
-  }, [loadMoreImages, isLoading, images.length]);
+  }, [loadMoreImages, isLoading, hasMore]);
 
   return (
       <div className="w-full min-h-screen bg-neutral-50 px-4 py-8 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-full">
-
-          {/* Optional Header */}
           <header className="mb-12 text-center">
             <h1 className="text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl">
               Photography
@@ -73,19 +90,24 @@ export default function GalleryGrid() {
             </p>
           </header>
 
-          {/* Masonry Layout using CSS Columns */}
+          {/* 4. LAYOUT: CSS Columns for seamless masonry look.
+            'space-y-6' adds gap between items vertically.
+            'gap-6' adds gap between columns horizontally.
+        */}
           <div className="columns-1 gap-6 sm:columns-2 lg:columns-3 xl:columns-4 space-y-6">
             <AnimatePresence mode="popLayout">
               {images.map((image, index) => (
-                  <GalleryImage key={image.id} image={image} index={index} />
+                  /* 5. CRITICAL: 'break-inside-avoid' prevents images from being cut in half across columns */
+                  <div key={image.id} className="break-inside-avoid">
+                    <GalleryImage image={image} index={index} />
+                  </div>
               ))}
             </AnimatePresence>
           </div>
 
-          {/* Loading State / Footer */}
+          {/* Loading / End State */}
           <div className="relative mt-12 py-12">
-            {/* Observer Target */}
-            <div ref={observerRef} className="absolute bottom-20 h-4 w-full" />
+            {hasMore && <div ref={observerRef} className="absolute bottom-20 h-4 w-full" />}
 
             {isLoading && (
                 <motion.div
@@ -95,14 +117,20 @@ export default function GalleryGrid() {
                 >
                   <Spinner size="lg" className="text-neutral-900" />
                   <span className="text-sm font-medium text-neutral-500 animate-pulse">
-                        Curating more shots...
-                    </span>
+                Curating more shots...
+              </span>
                 </motion.div>
             )}
 
-            {!isLoading && images.length > 0 && (
-                <div className="flex justify-center">
-                  <p className="text-xs text-neutral-300 uppercase tracking-widest">End of Gallery</p>
+            {/* 6. Message when limit is reached */}
+            {!hasMore && (
+                <div className="flex flex-col items-center justify-center pt-8 text-center animate-in fade-in duration-700">
+                  <p className="text-xs font-semibold text-neutral-400 uppercase tracking-widest mb-2">
+                    Gallery Complete
+                  </p>
+                  <p className="text-sm text-neutral-300">
+                    You've reached the end of the collection.
+                  </p>
                 </div>
             )}
           </div>

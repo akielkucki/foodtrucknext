@@ -15,12 +15,12 @@ export function generateGalleryImages(count: number, startId: number = 0): Galle
   return Array.from({ length: count }, (_, i) => {
     const imageId = startId + i;
     const ratio = ASPECT_RATIOS[imageId % ASPECT_RATIOS.length];
-
+    console.log(imageId)
     return {
       id: `gallery-${imageId}`,
       width: ratio.width,
       height: ratio.height,
-      url: `https://picsum.photos/id/${imageId % 1000}/${ratio.width}/${ratio.height}`,
+      url: `/gallery/${imageId}.jpg`,
       author: `Photo ${imageId}`,
     };
   });

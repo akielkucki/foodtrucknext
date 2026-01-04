@@ -18,7 +18,7 @@ export default function LoadingScreen() {
 
     // Check if user has visited before on component mount
     useEffect(() => {
-        const visited = localStorage.getItem('hasVisitedSite')
+        const visited = localStorage.getItem('hasVisited')
         if (visited === 'true') {
             setHasVisited(true)
             setVisible(false) // Skip loading screen if already visited

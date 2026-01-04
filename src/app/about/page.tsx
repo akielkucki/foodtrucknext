@@ -1,45 +1,57 @@
+'use client';
+
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import Link from "next/link";
+import { motion } from "framer-motion";
+import { CheckCircle2 } from "lucide-react";
 
 export default function AboutPage() {
   return (
-    <>
+    <div className="bg-slate-50 min-h-screen">
       <Navbar />
 
-      {/* Hero Section */}
-      <section className="relative w-full bg-white pt-8">
-        <div className="relative h-[400px] w-full overflow-hidden bg-[#EDEDED]">
-          <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#8A8A8A]/20 to-[#8A8A8A]/10">
-            <div className="text-center text-[#8A8A8A]">
-              <p className="text-sm">About us hero image</p>
-            </div>
-          </div>
+      {/* Modern Hero Section */}
+      <section className="relative w-full bg-slate-950 pt-32 pb-24 overflow-hidden">
+        {/* Abstract Tech Background */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_800px_at_50%_-100px,#D6452F,transparent)]" />
+        </div>
 
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent">
-            <div className="mx-auto flex h-full max-w-7xl items-center px-6 lg:px-8">
-              <div className="max-w-2xl">
-                <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
-                  About <span className="text-[#F5A623]">Us</span>
-                </h1>
-                <p className="mt-6 text-lg leading-8 text-white/90 sm:text-xl">
-                  Building dreams on wheels since 1999
-                </p>
-              </div>
+        <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="mb-6 inline-flex items-center rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm font-medium text-orange-400 backdrop-blur-sm">
+              <span className="mr-2 h-2 w-2 rounded-full bg-orange-400 animate-pulse"></span>
+              Our Story
             </div>
-          </div>
+            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl mb-6">
+              Building Dreams <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-600">on Wheels</span>
+            </h1>
+            <p className="mt-4 text-lg leading-8 text-slate-400 max-w-2xl mx-auto">
+              Since 1999, we've been transforming culinary visions into mobile reality.
+            </p>
+          </motion.div>
         </div>
       </section>
 
       {/* Our Story */}
-      <section className="w-full bg-white px-6 py-16 lg:px-8 lg:py-24">
+      <section className="w-full bg-slate-50 px-6 py-16 lg:px-8 lg:py-24">
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
-            <div>
-              <h2 className="mb-6 text-3xl font-bold text-[#2F2F2F] sm:text-4xl">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <h2 className="mb-6 text-3xl font-bold text-slate-900 sm:text-4xl">
                 Our Story
               </h2>
-              <div className="space-y-4 text-[#8A8A8A]">
+              <div className="space-y-4 text-slate-600">
                 <p>
                   Founded in 1999, we started with a simple mission: to help culinary entrepreneurs bring their
                   visions to life on wheels. What began as a small operation building basic food trucks has grown
@@ -56,29 +68,42 @@ export default function AboutPage() {
                   and exceptional customer service.
                 </p>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="flex items-center">
-              <div className="aspect-[4/3] w-full rounded-lg bg-[#EDEDED]">
-                <div className="flex h-full items-center justify-center text-[#8A8A8A]">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="flex items-center"
+            >
+              <div className="aspect-[4/3] w-full rounded-3xl bg-slate-200 shadow-sm ring-1 ring-slate-100">
+                <div className="flex h-full items-center justify-center text-slate-400">
                   Company image placeholder
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
       {/* Our Values */}
-      <section className="w-full bg-[#EDEDED] px-6 py-16 lg:px-8 lg:py-24">
+      <section className="w-full bg-white px-6 py-16 lg:px-8 lg:py-24">
         <div className="mx-auto max-w-7xl">
           <div className="mb-12 text-center">
-            <h2 className="text-3xl font-bold text-[#2F2F2F] sm:text-4xl">
-              Our Values
-            </h2>
-            <p className="mt-4 text-lg text-[#8A8A8A]">
-              The principles that guide everything we do
-            </p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">
+                Our Values
+              </h2>
+              <p className="mt-4 text-lg text-slate-600">
+                The principles that guide everything we do
+              </p>
+            </motion.div>
           </div>
 
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
@@ -119,31 +144,45 @@ export default function AboutPage() {
                   </svg>
                 )
               }
-            ].map((value) => (
-              <div key={value.title} className="rounded-lg bg-white p-6 text-center">
+            ].map((value, index) => (
+              <motion.div
+                key={value.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="rounded-3xl bg-slate-50 p-6 text-center shadow-sm ring-1 ring-slate-100"
+              >
                 <div className="mb-4 flex justify-center">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#D6452F] text-white">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-r from-orange-400 to-red-600 text-white">
                     {value.icon}
                   </div>
                 </div>
-                <h3 className="mb-2 text-xl font-semibold text-[#2F2F2F]">{value.title}</h3>
-                <p className="text-sm text-[#8A8A8A]">{value.description}</p>
-              </div>
+                <h3 className="mb-2 text-xl font-semibold text-slate-900">{value.title}</h3>
+                <p className="text-sm text-slate-600">{value.description}</p>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
       {/* By the Numbers */}
-      <section className="w-full bg-white px-6 py-16 lg:px-8 lg:py-24">
+      <section className="w-full bg-slate-50 px-6 py-16 lg:px-8 lg:py-24">
         <div className="mx-auto max-w-7xl">
           <div className="mb-12 text-center">
-            <h2 className="text-3xl font-bold text-[#2F2F2F] sm:text-4xl">
-              By the Numbers
-            </h2>
-            <p className="mt-4 text-lg text-[#8A8A8A]">
-              Our impact in the food truck industry
-            </p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">
+                By the Numbers
+              </h2>
+              <p className="mt-4 text-lg text-slate-600">
+                Our impact in the food truck industry
+              </p>
+            </motion.div>
           </div>
 
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
@@ -152,26 +191,40 @@ export default function AboutPage() {
               { number: "500+", label: "Trucks Built" },
               { number: "50+", label: "States Served" },
               { number: "98%", label: "Customer Satisfaction" }
-            ].map((stat) => (
-              <div key={stat.label} className="text-center">
-                <div className="mb-2 text-5xl font-bold text-[#D6452F]">{stat.number}</div>
-                <div className="text-lg font-medium text-[#2F2F2F]">{stat.label}</div>
-              </div>
+            ].map((stat, index) => (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="text-center"
+              >
+                <div className="mb-2 text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-600">{stat.number}</div>
+                <div className="text-lg font-medium text-slate-900">{stat.label}</div>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
       {/* Our Team */}
-      <section className="w-full bg-[#EDEDED] px-6 py-16 lg:px-8 lg:py-24">
+      <section className="w-full bg-white px-6 py-16 lg:px-8 lg:py-24">
         <div className="mx-auto max-w-7xl">
           <div className="mb-12 text-center">
-            <h2 className="text-3xl font-bold text-[#2F2F2F] sm:text-4xl">
-              Our Team
-            </h2>
-            <p className="mt-4 text-lg text-[#8A8A8A]">
-              Expert craftspeople dedicated to your success
-            </p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">
+                Our Team
+              </h2>
+              <p className="mt-4 text-lg text-slate-600">
+                Expert craftspeople dedicated to your success
+              </p>
+            </motion.div>
           </div>
 
           <div className="grid gap-8 md:grid-cols-3">
@@ -179,70 +232,99 @@ export default function AboutPage() {
               { name: "Design Team", description: "Creative minds who transform your vision into detailed plans" },
               { name: "Build Team", description: "Master craftspeople with decades of combined experience" },
               { name: "Support Team", description: "Dedicated specialists ensuring your ongoing success" }
-            ].map((team) => (
-              <div key={team.name} className="rounded-lg bg-white p-8 text-center">
-                <div className="mb-6 aspect-square w-full rounded-lg bg-[#8A8A8A]/20">
-                  <div className="flex h-full items-center justify-center text-[#8A8A8A]">
+            ].map((team, index) => (
+              <motion.div
+                key={team.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="rounded-3xl bg-slate-50 p-8 text-center shadow-sm ring-1 ring-slate-100"
+              >
+                <div className="mb-6 aspect-square w-full rounded-3xl bg-slate-200">
+                  <div className="flex h-full items-center justify-center text-slate-400">
                     Team photo
                   </div>
                 </div>
-                <h3 className="mb-2 text-xl font-semibold text-[#2F2F2F]">{team.name}</h3>
-                <p className="text-sm text-[#8A8A8A]">{team.description}</p>
-              </div>
+                <h3 className="mb-2 text-xl font-semibold text-slate-900">{team.name}</h3>
+                <p className="text-sm text-slate-600">{team.description}</p>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
       {/* Certifications & Partners */}
-      <section className="w-full bg-white px-6 py-16 lg:px-8 lg:py-24">
+      <section className="w-full bg-slate-50 px-6 py-16 lg:px-8 lg:py-24">
         <div className="mx-auto max-w-7xl">
           <div className="mb-12 text-center">
-            <h2 className="text-3xl font-bold text-[#2F2F2F] sm:text-4xl">
-              Certifications & Partnerships
-            </h2>
-            <p className="mt-4 text-lg text-[#8A8A8A]">
-              Working with industry-leading partners
-            </p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">
+                Certifications & Partnerships
+              </h2>
+              <p className="mt-4 text-lg text-slate-600">
+                Working with industry-leading partners
+              </p>
+            </motion.div>
           </div>
 
           <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
             {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
-              <div key={item} className="flex items-center justify-center rounded-lg bg-[#EDEDED] p-6">
-                <div className="text-center text-sm text-[#8A8A8A]">Partner Logo {item}</div>
-              </div>
+              <motion.div
+                key={item}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: item * 0.05 }}
+                className="flex items-center justify-center rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-100"
+              >
+                <div className="text-center text-sm text-slate-400">Partner Logo {item}</div>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="w-full bg-[#2F2F2F] px-6 py-16 lg:px-8 lg:py-24">
-        <div className="mx-auto max-w-4xl text-center">
-          <h2 className="text-3xl font-bold text-white sm:text-4xl">
-            Ready to Start Your Journey?
-          </h2>
-          <p className="mt-4 text-lg text-white/80">
-            Let's build something great together
-          </p>
-          <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center sm:gap-6">
-            <Link
-              href="/quote"
-              className="rounded-lg bg-[#D6452F] px-8 py-3.5 text-center text-base font-semibold text-white transition-all hover:bg-[#D6452F]/90"
-            >
-              Get a Quote
-            </Link>
-            <Link
-              href="/contact"
-              className="rounded-lg border-2 border-white bg-white/10 px-8 py-3.5 text-center text-base font-semibold text-white backdrop-blur-sm transition-all hover:bg-white/20"
-            >
-              Contact Us
-            </Link>
-          </div>
+      <section className="relative w-full overflow-hidden bg-slate-900 py-24 sm:py-32">
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-600 to-transparent"></div>
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl mb-6">
+              Ready to Start Your Journey?
+            </h2>
+            <p className="mx-auto max-w-2xl text-lg text-slate-400 mb-10">
+              Let's build something great together
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link
+                href="/quote"
+                className="group relative inline-flex items-center justify-center rounded-full bg-red-600 px-8 py-3 text-base font-semibold text-white transition-all hover:bg-red-700 hover:shadow-lg hover:shadow-red-900/20"
+              >
+                Get a Free Quote
+              </Link>
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center rounded-full px-8 py-3 text-base font-semibold text-white transition-colors hover:bg-white/10"
+              >
+                Contact Us
+              </Link>
+            </div>
+          </motion.div>
         </div>
       </section>
 
       <Footer />
-    </>
+    </div>
   );
 }

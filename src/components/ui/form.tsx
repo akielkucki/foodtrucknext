@@ -203,6 +203,11 @@ export default function ContactForm() {
                     )}
                 </button>
             </form>
+            <style jsx>{`
+                label {
+                    color: white;
+                }
+            `}</style>
         </div>
     );
 }

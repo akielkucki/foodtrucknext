@@ -1,47 +1,60 @@
+'use client';
+
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
+import { motion } from "framer-motion";
 
 export default function CustomBuildsPage() {
   return (
-    <>
+    <div className="bg-slate-50 min-h-screen">
       <Navbar />
 
-      {/* Hero Section */}
-      <section className="relative w-full bg-white pt-8">
-        <div className="relative h-[400px] w-full overflow-hidden bg-[#EDEDED]">
-          <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#8A8A8A]/20 to-[#8A8A8A]/10">
-            <div className="text-center text-[#8A8A8A]">
-              <p className="text-sm">Custom builds hero image</p>
-            </div>
-          </div>
+      {/* Modern Hero Section */}
+      <section className="relative w-full bg-slate-950 pt-32 pb-24 overflow-hidden">
+        {/* Abstract Tech Background */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_800px_at_50%_-100px,#D6452F,transparent)]" />
+        </div>
 
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent">
-            <div className="mx-auto flex h-full max-w-7xl items-center px-6 lg:px-8">
-              <div className="max-w-2xl">
-                <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
-                  Custom Food Truck <span className="text-[#F5A623]">Builds</span>
-                </h1>
-                <p className="mt-6 text-lg leading-8 text-white/90 sm:text-xl">
-                  Every food truck we build is a unique masterpiece designed around your vision and culinary needs.
-                </p>
-              </div>
+        <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="mb-6 inline-flex items-center rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm font-medium text-orange-400 backdrop-blur-sm">
+              <span className="mr-2 h-2 w-2 rounded-full bg-orange-400 animate-pulse"></span>
+              Custom Solutions
             </div>
-          </div>
+            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl mb-6">
+              Custom Food Truck <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-600">Builds</span>
+            </h1>
+            <p className="mt-4 text-lg leading-8 text-slate-400 max-w-2xl mx-auto">
+              Every food truck we build is a unique masterpiece designed around your vision and culinary needs.
+            </p>
+          </motion.div>
         </div>
       </section>
 
       {/* Our Process */}
-      <section className="w-full bg-white px-6 py-16 lg:px-8 lg:py-24">
+      <section className="w-full bg-slate-50 px-6 py-16 lg:px-8 lg:py-24">
         <div className="mx-auto max-w-7xl">
           <div className="mb-12 text-center">
-            <h2 className="text-3xl font-bold text-[#2F2F2F] sm:text-4xl">
-              Our Build Process
-            </h2>
-            <p className="mt-4 text-lg text-[#8A8A8A]">
-              From concept to completion in six strategic steps
-            </p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">
+                Our Build Process
+              </h2>
+              <p className="mt-4 text-lg text-slate-600">
+                From concept to completion in six strategic steps
+              </p>
+            </motion.div>
           </div>
 
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -76,81 +89,121 @@ export default function CustomBuildsPage() {
                 title: "Delivery",
                 description: "Final walkthrough and delivery of your completed, road-ready food truck."
               }
-            ].map((item) => (
-              <div key={item.step} className="relative border-l-4 border-[#D6452F] bg-[#EDEDED] p-6">
-                <div className="mb-2 text-4xl font-bold text-[#F5A623]">{item.step}</div>
-                <h3 className="mb-2 text-xl font-semibold text-[#2F2F2F]">{item.title}</h3>
-                <p className="text-[#8A8A8A]">{item.description}</p>
-              </div>
+            ].map((item, index) => (
+              <motion.div
+                key={item.step}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="relative rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-100"
+              >
+                <div className="mb-2 text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-600">{item.step}</div>
+                <h3 className="mb-2 text-xl font-semibold text-slate-900">{item.title}</h3>
+                <p className="text-slate-600">{item.description}</p>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
       {/* Featured Builds Gallery */}
-      <section className="w-full bg-[#EDEDED] px-6 py-16 lg:px-8 lg:py-24">
+      <section className="w-full bg-white px-6 py-16 lg:px-8 lg:py-24">
         <div className="mx-auto max-w-7xl">
           <div className="mb-12 text-center">
-            <h2 className="text-3xl font-bold text-[#2F2F2F] sm:text-4xl">
-              Featured Builds
-            </h2>
-            <p className="mt-4 text-lg text-[#8A8A8A]">
-              Explore our portfolio of custom food truck creations
-            </p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">
+                Featured Projects
+              </h2>
+              <p className="mt-4 text-lg text-slate-600">
+                Precision-engineered mobile kitchens built for performance
+              </p>
+            </motion.div>
           </div>
 
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {[1, 2, 3, 4, 5, 6].map((item) => (
-              <div key={item} className="group relative overflow-hidden rounded-lg bg-white shadow-lg transition-transform hover:scale-105">
-                <div className="aspect-[4/3] w-full bg-[#8A8A8A]/20">
-                  <div className="flex h-full items-center justify-center text-[#8A8A8A]">
-                    Build {item}
-                  </div>
+          <div className="grid gap-8 md:grid-cols-2">
+            {[
+              {
+                title: "20ft Food Truck",
+                image: "/project-1.jpg",
+                description: "This 20ft food truck is built for high-volume performance without compromise. Each unit is manufactured using precision-calibrated machinery and repeatable production processes that ensure exceptional build quality from frame to finish. Consistent welds, exact measurements, and carefully controlled assembly deliver a durable, professional-grade workspace designed to perform reliably in demanding environments. This truck reflects our commitment to precision efficiency, and long-term value."
+              },
+              {
+                title: "6x12 Food Trailer",
+                image: "/project-2.jpg",
+                description: "This 6x12 food trailer offers compact versatility with the same uncompromising standards as our larger builds. Using advanced fabrication equipment and precision tooling, every trailer is constructed with exacting accuracy and consistent quality control. The result is a clean, durable, and highly functional unit that maximizes space while maintaining structural integrity and professional craftsmanship. Small in size, but built with full-scale precision."
+              }
+            ].map((project, index) => (
+              <motion.div
+                key={project.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.2 }}
+                className="group relative overflow-hidden rounded-3xl bg-slate-50 shadow-sm ring-1 ring-slate-100"
+              >
+                <div className="aspect-[16/10] w-full relative overflow-hidden bg-slate-200">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
                 </div>
-                <div className="p-6">
-                  <h3 className="mb-2 text-xl font-semibold text-[#2F2F2F]">
-                    Build Project {item}
+                <div className="p-8">
+                  <h3 className="mb-4 text-2xl font-bold text-slate-900">
+                    {project.title}
                   </h3>
-                  <p className="mb-4 text-sm text-[#8A8A8A]">
-                    Custom designed food truck with specialized equipment and layout
+                  <p className="text-slate-600 leading-relaxed">
+                    {project.description}
                   </p>
-                  <button className="text-sm font-semibold text-[#D6452F] hover:text-[#F5A623]">
-                    View Details →
-                  </button>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="w-full bg-[#2F2F2F] px-6 py-16 lg:px-8 lg:py-24">
-        <div className="mx-auto max-w-4xl text-center">
-          <h2 className="text-3xl font-bold text-white sm:text-4xl">
-            Ready to Build Your Dream Food Truck?
-          </h2>
-          <p className="mt-4 text-lg text-white/80">
-            Let's discuss your project and bring your vision to life
-          </p>
-          <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center sm:gap-6">
-            <Link
-              href="/quote"
-              className="rounded-lg bg-[#D6452F] px-8 py-3.5 text-center text-base font-semibold text-white transition-all hover:bg-[#D6452F]/90"
-            >
-              Get a Quote
-            </Link>
-            <Link
-              href="/contact"
-              className="rounded-lg border-2 border-white bg-white/10 px-8 py-3.5 text-center text-base font-semibold text-white backdrop-blur-sm transition-all hover:bg-white/20"
-            >
-              Contact Us
-            </Link>
-          </div>
+      <section className="relative w-full overflow-hidden bg-slate-900 py-24 sm:py-32">
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-600 to-transparent"></div>
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl mb-6">
+              Ready to Build Your Dream Food Truck?
+            </h2>
+            <p className="mx-auto max-w-2xl text-lg text-slate-400 mb-10">
+              Let's discuss your project and bring your vision to life
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link
+                href="/quote"
+                className="group relative inline-flex items-center justify-center rounded-full bg-red-600 px-8 py-3 text-base font-semibold text-white transition-all hover:bg-red-700 hover:shadow-lg hover:shadow-red-900/20"
+              >
+                Get a Free Quote
+              </Link>
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center rounded-full px-8 py-3 text-base font-semibold text-white transition-colors hover:bg-white/10"
+              >
+                Contact Us
+              </Link>
+            </div>
+          </motion.div>
         </div>
       </section>
 
       <Footer />
-    </>
+    </div>
   );
 }
