@@ -9,7 +9,7 @@ export default function Hero() {
           {/* Background Image with Parallax-like feel */}
           <div className="absolute inset-0 h-full w-full">
             <Image
-                src="/heroalt.jpg" // Ensure this path is correct
+                src="/hero.webp" // Ensure this path is correct
                 alt="Custom Food Truck Build"
                 fill
                 priority
