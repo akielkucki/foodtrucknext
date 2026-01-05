@@ -122,69 +122,6 @@ export default function Services() {
             </p>
           </div>
 
-          <div className="mt-10 grid gap-8 lg:grid-cols-2">
-            {featuredProjects.map((project) => (
-              <article
-                key={project.id}
-                className="overflow-hidden rounded-xl bg-white shadow-sm"
-              >
-                {/* Before/After Images */}
-                <div className="grid grid-cols-2">
-                  <div className="relative aspect-[4/3] bg-[#8A8A8A]/10">
-                    {project.before ? (
-                      <Image
-                        src={project.before}
-                        alt={`${project.title} - Before`}
-                        fill
-                        className="object-cover"
-                      />
-                    ) : (
-                      <div className="flex h-full flex-col items-center justify-center text-[#8A8A8A]/50">
-                        <svg className="h-10 w-10" fill="none" viewBox="0 0 24 24" strokeWidth={1} stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
-                        </svg>
-                        <span className="mt-1 text-xs">Before</span>
-                      </div>
-                    )}
-                    <span className="absolute bottom-2 left-2 rounded bg-black/60 px-2 py-1 text-xs font-medium text-white">
-                      Before
-                    </span>
-                  </div>
-                  <div className="relative aspect-[4/3] bg-[#F5A623]/10">
-                    {project.after ? (
-                      <Image
-                        src={project.after}
-                        alt={`${project.title} - After`}
-                        fill
-                        className="object-cover"
-                      />
-                    ) : (
-                      <div className="flex h-full flex-col items-center justify-center text-[#F5A623]/50">
-                        <svg className="h-10 w-10" fill="none" viewBox="0 0 24 24" strokeWidth={1} stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
-                        </svg>
-                        <span className="mt-1 text-xs">After</span>
-                      </div>
-                    )}
-                    <span className="absolute bottom-2 right-2 rounded bg-[#D6452F] px-2 py-1 text-xs font-medium text-white">
-                      After
-                    </span>
-                  </div>
-                </div>
-
-                {/* Project Info */}
-                <div className="p-6">
-                  <span className="inline-block rounded-full bg-red-50 px-3 py-1 text-xs font-semibold text-red-600">
-                    {project.category}
-                  </span>
-                  <h4 className="mt-3 text-xl font-bold text-slate-900">
-                    {project.title}
-                  </h4>
-                  <p className="mt-2 text-slate-600">{project.description}</p>
-                </div>
-              </article>
-            ))}
-          </div>
         </div>
 
         {/* CTA */}

@@ -166,35 +166,6 @@ export default function About() {
           </div>
         </div>
 
-        {/* Team Section Placeholder */}
-        <div className="mt-20">
-          <div className="text-center">
-            <h3 className="text-2xl font-bold text-[#2F2F2F] sm:text-3xl">
-              Meet the Team
-            </h3>
-            <p className="mt-2 text-[#8A8A8A]">
-              The experts behind your food truck success
-            </p>
-          </div>
-
-          <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {[1, 2, 3, 4].map((member) => (
-              <div key={member} className="text-center">
-                <div className="mx-auto aspect-square w-full max-w-[200px] overflow-hidden rounded-full bg-[#EDEDED]">
-                  <div className="flex h-full items-center justify-center text-[#8A8A8A]/30">
-                    <svg className="h-16 w-16" fill="none" viewBox="0 0 24 24" strokeWidth={1} stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
-                    </svg>
-                  </div>
-                </div>
-                <h4 className="mt-4 font-semibold text-[#2F2F2F]">
-                  Team Member
-                </h4>
-                <p className="text-sm text-[#8A8A8A]">Position Title</p>
-              </div>
-            ))}
-          </div>
-        </div>
 
         {/* CTA */}
         <div className="mt-16 text-center">
