@@ -5,6 +5,7 @@ import Footer from "@/components/footer";
 import ContactForm from "@/components/ui/form";
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Clock, Facebook, Instagram, Youtube, Linkedin, ArrowRight } from "lucide-react";
+import { contactInfo, faqs } from "@/lib/utils";
 
 export default function ContactPage() {
   return (
@@ -61,28 +62,28 @@ export default function ContactPage() {
                       {
                         icon: Phone,
                         label: "Call Us",
-                        value: "(800) 555-0123",
-                        sub: "Mon-Fri 8am-6pm EST",
-                        href: "tel:+18005550123"
+                        value: contactInfo.phone.sales,
+                        sub: contactInfo.hours.weekdays,
+                        href: contactInfo.phone.salesHref
                       },
                       {
                         icon: Mail,
                         label: "Email Sales",
-                        value: "sales@foodtruckparts.com",
+                        value: contactInfo.email.sales,
                         sub: "24 hour response time",
-                        href: "mailto:sales@foodtruckparts.com"
+                        href: `mailto:${contactInfo.email.sales}`
                       },
                       {
                         icon: MapPin,
                         label: "Visit Our Facility",
-                        value: "123 Industrial Drive",
-                        sub: "Manufacturing City, ST 12345",
+                        value: contactInfo.address.street,
+                        sub: `${contactInfo.address.city}, ${contactInfo.address.state}`,
                         href: "#"
                       },
                       {
                         icon: Clock,
                         label: "Business Hours",
-                        value: "Mon - Fri: 8:00 AM - 6:00 PM",
+                        value: contactInfo.hours.weekdays,
                         sub: "Weekend appointments available",
                         href: null
                       },
@@ -154,7 +155,7 @@ export default function ContactPage() {
               {/* Floating Location Card on Map */}
               <div className="absolute bottom-6 left-6 bg-white p-4 rounded-xl shadow-lg border border-slate-100 max-w-xs hidden sm:block">
                 <h4 className="font-bold text-slate-900">Food Truck Parts HQ</h4>
-                <p className="text-sm text-slate-500 mt-1">123 Industrial Drive</p>
+                <p className="text-sm text-slate-500 mt-1">{contactInfo.address.full}</p>
                 <a href="#" className="mt-3 inline-flex items-center text-xs font-bold text-red-600 hover:underline">
                   Get Directions <ArrowRight className="h-3 w-3 ml-1" />
                 </a>
@@ -176,24 +177,7 @@ export default function ContactPage() {
             </div>
 
             <div className="grid gap-6 md:grid-cols-2">
-              {[
-                {
-                  question: "How long does a custom build take?",
-                  answer: "Most custom builds take 8-12 weeks from design approval. We provide a detailed timeline during the quoting process."
-                },
-                {
-                  question: "Do you ship nationwide?",
-                  answer: "Yes, we handle logistics for delivery to all 50 states. We also offer international shipping for parts orders."
-                },
-                {
-                  question: "Can I bring my own truck?",
-                  answer: "Absolutely. We specialize in retrofitting customer-owned vehicles as well as providing turn-key solutions with our own inventory."
-                },
-                {
-                  question: "Do you offer financing?",
-                  answer: "We partner with top industry lenders to offer competitive financing rates for builds over $20,000."
-                },
-              ].map((faq, index) => (
+              {faqs.slice(4, 8).map((faq, index) => (
                   <div key={index} className="rounded-2xl bg-white p-8 shadow-sm ring-1 ring-slate-100 transition-all hover:shadow-md">
                     <h3 className="mb-3 font-bold text-slate-900">{faq.question}</h3>
                     <p className="text-slate-600 leading-relaxed text-sm">{faq.answer}</p>

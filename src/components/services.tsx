@@ -111,18 +111,6 @@ export default function Services() {
           ))}
         </div>
 
-        {/* Featured Projects / Case Studies */}
-        <div className="mt-20">
-          <div className="text-center">
-            <h3 className="text-2xl font-bold text-slate-900 sm:text-3xl">
-              Featured Projects
-            </h3>
-            <p className="mt-2 text-slate-600">
-              See how we've helped food truck owners transform their businesses
-            </p>
-          </div>
-
-        </div>
 
         {/* CTA */}
         <div className="mt-16 text-center">

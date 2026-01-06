@@ -1,63 +1,58 @@
 // Shopify Storefront API client for Next.js (App Router)
-// Uses server-side fetch with GraphQL
+// Uses @shopify/storefront-api-client
 
-export type ShopifyResponse<T> = {
-    data?: T;
-    errors?: { message: string }[];
-};
+import { createStorefrontApiClient } from "@shopify/storefront-api-client";
 
-const API_VERSION = process.env.SHOPIFY_STOREFRONT_API_VERSION || "2024-10";
+const API_VERSION = "2025-04";
 
-function getShopifyConfig() {
-    // Support both naming conventions for flexibility
-    const domain = process.env.PUBLIC_STORE_DOMAIN || process.env.SHOPIFY_STORE_DOMAIN;
-    const token = process.env.PUBLIC_STOREFRONT_API_TOKEN || process.env.SHOPIFY_STOREFRONT_API_TOKEN;
+function getShopifyClient() {
+    const storeDomain = process.env.PUBLIC_STORE_DOMAIN;
+    const publicAccessToken = process.env.PUBLIC_STOREFRONT_API_TOKEN;
 
-    if (!domain) throw new Error("PUBLIC_STORE_DOMAIN is not set");
-    if (!token) throw new Error("PUBLIC_STOREFRONT_API_TOKEN is not set");
+    if (!storeDomain) throw new Error("PUBLIC_STORE_DOMAIN is not set");
+    if (!publicAccessToken) {
+        throw new Error("PUBLIC_STOREFRONT_API_TOKEN must be set");
+    }
 
-    const endpoint = `https://${domain}/api/${API_VERSION}/graphql.json`;
-    return { endpoint, token };
+    return createStorefrontApiClient({
+        storeDomain,
+        apiVersion: API_VERSION,
+        publicAccessToken,
+    });
+}
+
+// Singleton client instance
+let client: ReturnType<typeof createStorefrontApiClient> | null = null;
+
+function getClient() {
+    if (!client) {
+        client = getShopifyClient();
+    }
+    return client;
 }
 
 export async function fetchShopify<T>({
-                                          query,
-                                          variables,
-                                          cache = "force-cache",
-                                          revalidate,
-                                      }: {
+    query,
+    variables,
+}: {
     query: string;
     variables?: Record<string, unknown>;
     cache?: RequestCache;
     revalidate?: number | false;
 }): Promise<T> {
-    const { endpoint, token } = getShopifyConfig();
+    const shopifyClient = getClient();
 
-    const res = await fetch(endpoint, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "X-Shopify-Storefront-Access-Token": token,
-        },
-        body: JSON.stringify({ query, variables }),
-        cache,
-        ...(revalidate !== undefined ? { next: { revalidate } } : {}),
+    const { data, errors } = await shopifyClient.request(query, {
+        variables,
     });
 
-    if (!res.ok) {
-        const text = await res.text();
-        throw new Error(`Shopify fetch failed: ${res.status} ${res.statusText} - ${text}`);
+    if (errors) {
+        throw new Error(`Shopify GraphQL errors: ${errors.message}`);
     }
 
-    const json = (await res.json()) as ShopifyResponse<T>;
+    if (!data) throw new Error("Shopify response missing data");
 
-    if (json.errors?.length) {
-        throw new Error(`Shopify GraphQL errors: ${json.errors.map((e) => e.message).join("; ")}`);
-    }
-
-    if (!json.data) throw new Error("Shopify response missing data");
-
-    return json.data;
+    return data as T;
 }
 
 // ============================================================================
@@ -267,16 +262,16 @@ export const COLLECTION_PRODUCTS_QUERY = /* GraphQL */ `
             minVariantPrice { amount currencyCode }
             maxVariantPrice { amount currencyCode }
           }
-          compareAtPriceRange { 
-            minVariantPrice { amount currencyCode } 
+          compareAtPriceRange {
+            minVariantPrice { amount currencyCode }
           }
           featuredImage { id url altText width height }
         }
-        pageInfo { 
-          hasPreviousPage 
-          hasNextPage 
-          startCursor 
-          endCursor 
+        pageInfo {
+          hasPreviousPage
+          hasNextPage
+          startCursor
+          endCursor
         }
       }
     }
@@ -431,7 +426,6 @@ export async function getProducts(variables: ProductsQueryVariables = {}) {
     const data = await fetchShopify<ProductsData>({
         query: PRODUCTS_QUERY,
         variables: { first: 100, ...variables },
-        revalidate: 300,
     });
     return data.products;
 }
@@ -447,7 +441,6 @@ export async function getProduct(handle: string) {
     const data = await fetchShopify<ProductData>({
         query: PRODUCT_QUERY,
         variables: { handle },
-        revalidate: 300,
     });
     return data.product;
 }
@@ -460,7 +453,6 @@ export async function getCollections(first: number = 50) {
     const data = await fetchShopify<CollectionsData>({
         query: COLLECTIONS_QUERY,
         variables: { first },
-        revalidate: 300,
     });
     return data.collections.nodes;
 }
@@ -478,7 +470,6 @@ export async function getCollectionWithProducts(handle: string, first: number = 
     const data = await fetchShopify<CollectionProductsData>({
         query: COLLECTION_PRODUCTS_QUERY,
         variables: { handle, first, after },
-        revalidate: 300,
     });
     return data.collection;
 }
@@ -498,7 +489,6 @@ export async function createCart(lines?: { merchandiseId: string; quantity: numb
     const data = await fetchShopify<CartCreateData>({
         query: CREATE_CART_MUTATION,
         variables: { input: { lines: lines || [] } },
-        cache: 'no-store',
     });
 
     if (data.cartCreate.userErrors.length) {
@@ -516,7 +506,6 @@ export async function getCart(cartId: string) {
     const data = await fetchShopify<CartData>({
         query: GET_CART_QUERY,
         variables: { cartId },
-        cache: 'no-store',
     });
     return data.cart;
 }
@@ -532,7 +521,6 @@ export async function addToCart(cartId: string, lines: { merchandiseId: string; 
     const data = await fetchShopify<CartLinesAddData>({
         query: ADD_TO_CART_MUTATION,
         variables: { cartId, lines },
-        cache: 'no-store',
     });
 
     if (data.cartLinesAdd.userErrors.length) {
@@ -553,7 +541,6 @@ export async function updateCartLine(cartId: string, lines: { id: string; quanti
     const data = await fetchShopify<CartLinesUpdateData>({
         query: UPDATE_CART_MUTATION,
         variables: { cartId, lines },
-        cache: 'no-store',
     });
 
     if (data.cartLinesUpdate.userErrors.length) {
@@ -574,7 +561,6 @@ export async function removeFromCart(cartId: string, lineIds: string[]) {
     const data = await fetchShopify<CartLinesRemoveData>({
         query: REMOVE_FROM_CART_MUTATION,
         variables: { cartId, lineIds },
-        cache: 'no-store',
     });
 
     if (data.cartLinesRemove.userErrors.length) {

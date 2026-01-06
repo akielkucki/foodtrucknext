@@ -83,10 +83,10 @@ export default function GalleryGrid() {
         <div className="mx-auto max-w-full">
           <header className="mb-12 text-center">
             <h1 className="text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl">
-              Photography
+              Gallery
             </h1>
             <p className="mt-4 text-neutral-500">
-              A collection of moments frozen in time.
+              A collection of our best work below.
             </p>
           </header>
 
