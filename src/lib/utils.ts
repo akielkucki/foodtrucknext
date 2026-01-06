@@ -11,8 +11,8 @@ export const contactInfo = {
         salesHref: "tel:+12679686618",
     },
     email: {
-        sales: "sales@foodtruckparts.com",
-        support: "support@foodtruckparts.com",
+        sales: "royalvending786@gmail.com",
+        support: "royalvending786@gmail.com",
     },
     hours: {
         weekdays: "Mon-Fri: 8:30am - 5pm EST",
