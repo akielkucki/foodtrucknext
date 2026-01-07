@@ -52,11 +52,11 @@ export function CartPage() {
   if (error && !cart) {
     return (
       <div className="min-h-screen bg-gradient-to-b from-white to-slate-50 flex items-center justify-center px-4">
-        <div className="text-center max-w-md bg-white p-8 rounded-2xl shadow-lg border border-red-200">
-          <p className="text-red-600 font-semibold mb-4">{error}</p>
+        <div className="text-center max-w-md bg-white p-8 rounded-2xl shadow-lg border border-[var(--color-primary)]/20">
+          <p className="text-[var(--color-primary)] font-semibold mb-4">{error}</p>
           <button
             onClick={() => window.location.reload()}
-            className="text-red-600 hover:text-red-700 font-semibold transition-colors"
+            className="text-[var(--color-primary)] hover:text-[var(--color-primary-dark)] font-semibold transition-colors"
           >
             Try again
           </button>
@@ -110,7 +110,7 @@ export function CartPage() {
             <div className="mt-8 text-center lg:text-left">
               <a
                 href="/parts"
-                className="text-red-600 hover:text-red-700 font-semibold inline-flex items-center gap-2 transition-colors group"
+                className="text-[var(--color-primary)] hover:text-[var(--color-primary-dark)] font-semibold inline-flex items-center gap-2 transition-colors group"
               >
                 <svg className="w-5 h-5 transition-transform group-hover:-translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />

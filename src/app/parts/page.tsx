@@ -107,29 +107,29 @@ export default async function PartsPage({ searchParams }: { searchParams: Promis
   });
 
   return (
-      <div className="min-h-screen bg-slate-950">
+      <div className="min-h-screen bg-neutral-950">
         <Navbar />
 
         {/* Modern Hero Section */}
-        <section className="relative w-full overflow-hidden bg-slate-950">
+        <section className="relative w-full overflow-hidden bg-neutral-950">
           <div className="absolute inset-0 h-full w-full">
             {/* Optional: Add a real image here instead of bg color if available */}
             <div className="absolute inset-0 bg-[url('/heroalt.jpg')] bg-cover bg-center opacity-40"></div>
-            <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/70 to-slate-950/30" />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-neutral-950/90 via-neutral-950/70 to-neutral-950/30" />
+            <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-transparent to-transparent" />
           </div>
 
           <div className="relative mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
             <div className="max-w-2xl">
-              <div className="mb-6 inline-flex w-fit items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm font-medium text-[#F5A623] backdrop-blur-sm">
-                <span className="mr-2 h-2 w-2 rounded-full bg-[#F5A623] animate-pulse"></span>
+              <div className="mb-6 inline-flex w-fit items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm font-medium text-[var(--color-primary-light)] backdrop-blur-sm">
+                <span className="mr-2 h-2 w-2 rounded-full bg-[var(--color-primary)] animate-pulse"></span>
                 Official Parts & Components
               </div>
               <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
                 Upgrade Your <br/>
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F5A623] to-orange-600">Mobile Kitchen.</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-primary-light)] to-[var(--color-primary)]">Mobile Kitchen.</span>
               </h1>
-              <p className="mt-6 text-lg leading-8 text-slate-300">
+              <p className="mt-6 text-lg leading-8 text-neutral-300">
                 Premium equipment, replacement parts, and accessories engineered for durability and health code compliance.
               </p>
             </div>
@@ -137,13 +137,13 @@ export default async function PartsPage({ searchParams }: { searchParams: Promis
         </section>
 
         {/* Main Content Area */}
-        <section className="w-full px-6 py-16 lg:px-8 bg-slate-900">
+        <section className="w-full px-6 py-16 lg:px-8 bg-white">
           <div className="mx-auto max-w-7xl">
             <div className="grid grid-cols-1 gap-8 lg:grid-cols-4">
 
               {/* Sidebar (Filters) */}
               <div className="lg:col-span-1">
-                <div className="sticky top-24 rounded-2xl bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 p-6">
+                <div className="sticky top-24 rounded-2xl bg-neutral-50 border border-neutral-200 p-6">
                   <FilterControls
                       categories={categories}
                       priceRange={priceRange}
@@ -155,7 +155,7 @@ export default async function PartsPage({ searchParams }: { searchParams: Promis
               {/* Product Grid */}
               <div className="lg:col-span-3">
                 <div className="mb-8 flex items-center justify-between">
-                  <h2 className="text-xl font-bold text-white">
+                  <h2 className="text-xl font-bold text-neutral-900">
                     {filtered.length} Result{filtered.length !== 1 && 's'} Found
                   </h2>
                   {/* Sort control is handled inside FilterControls, but you could replicate simple sort text here if needed */}
@@ -168,13 +168,13 @@ export default async function PartsPage({ searchParams }: { searchParams: Promis
         </section>
 
         {/* Categories Grid (Visual Navigation) */}
-        <section className="w-full bg-slate-950 py-24 border-t border-slate-800">
+        <section className="w-full bg-neutral-950 py-24 border-t border-neutral-800">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="mb-16 text-center">
               <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
                 Browse by Category
               </h2>
-              <p className="mt-4 text-lg text-slate-400">
+              <p className="mt-4 text-lg text-neutral-400">
                 Find exactly what you need for your build
               </p>
             </div>
@@ -186,9 +186,9 @@ export default async function PartsPage({ searchParams }: { searchParams: Promis
               ].map((cat, i) => (
                   <div
                       key={cat}
-                      className="group relative flex flex-col items-center justify-center rounded-xl border border-slate-700/50 bg-slate-800/50 backdrop-blur-sm p-6 text-center transition-all hover:-translate-y-1 hover:border-orange-500/30 hover:bg-slate-800 hover:shadow-lg hover:shadow-orange-500/10"
+                      className="group relative flex flex-col items-center justify-center rounded-xl border border-neutral-700/50 bg-neutral-800/50 backdrop-blur-sm p-6 text-center transition-all hover:-translate-y-1 hover:border-[var(--color-primary)]/50 hover:bg-neutral-800 hover:shadow-lg hover:shadow-[var(--color-primary)]/20"
                   >
-                    <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-slate-700/50 text-slate-400 group-hover:bg-gradient-to-br group-hover:from-orange-500 group-hover:to-red-600 group-hover:text-white transition-colors">
+                    <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-neutral-700/50 text-neutral-400 group-hover:bg-gradient-to-br group-hover:from-[var(--color-primary-light)] group-hover:to-[var(--color-primary)] group-hover:text-white transition-colors">
                       {/* Generic icon for demonstration - ideally map specific icons */}
                       <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />

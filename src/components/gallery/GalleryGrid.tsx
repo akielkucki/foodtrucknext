@@ -79,13 +79,13 @@ export default function GalleryGrid() {
   }, [loadMoreImages, isLoading, hasMore]);
 
   return (
-      <div className="w-full min-h-screen bg-neutral-50 px-4 py-8 sm:px-6 lg:px-8">
+      <div className="w-full min-h-screen bg-slate-50 px-4 py-8 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-full">
           <header className="mb-12 text-center">
-            <h1 className="text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl">
+            <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
               Gallery
             </h1>
-            <p className="mt-4 text-neutral-500">
+            <p className="mt-4 text-slate-500">
               A collection of our best work below.
             </p>
           </header>
@@ -115,8 +115,8 @@ export default function GalleryGrid() {
                     animate={{ opacity: 1, y: 0 }}
                     className="flex flex-col items-center justify-center gap-3"
                 >
-                  <Spinner size="lg" className="text-neutral-900" />
-                  <span className="text-sm font-medium text-neutral-500 animate-pulse">
+                  <Spinner size="lg" className="text-slate-900" />
+                  <span className="text-sm font-medium text-slate-500 animate-pulse">
                 Curating more shots...
               </span>
                 </motion.div>
@@ -125,10 +125,10 @@ export default function GalleryGrid() {
             {/* 6. Message when limit is reached */}
             {!hasMore && (
                 <div className="flex flex-col items-center justify-center pt-8 text-center animate-in fade-in duration-700">
-                  <p className="text-xs font-semibold text-neutral-400 uppercase tracking-widest mb-2">
+                  <p className="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-2">
                     Gallery Complete
                   </p>
-                  <p className="text-sm text-neutral-300">
+                  <p className="text-sm text-slate-300">
                     You've reached the end of the collection.
                   </p>
                 </div>

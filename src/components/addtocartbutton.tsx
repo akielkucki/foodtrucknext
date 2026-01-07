@@ -60,7 +60,7 @@ export default function AddToCartButton({
       className={`flex-1 rounded-md px-4 py-2 text-sm font-semibold text-white transition-all disabled:cursor-not-allowed disabled:opacity-50 ${
         showSuccess
           ? "bg-green-600 hover:bg-green-700"
-          : "bg-[#2F2F2F] hover:bg-[#D6452F]"
+          : "bg-slate-800 hover:bg-[var(--color-primary)]"
       } ${className}`}
     >
       <span className="flex items-center justify-center gap-2">

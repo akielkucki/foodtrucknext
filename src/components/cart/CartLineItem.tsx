@@ -76,7 +76,7 @@ export function CartLineItem({ line, onUpdateQuantity, onRemove, isUpdating }: C
           <div className="flex-1">
             <Link
               href={`/products/${line.merchandise.product.handle}`}
-              className="font-bold text-slate-900 hover:text-red-600 transition-colors text-lg"
+              className="font-bold text-slate-900 hover:text-[var(--color-primary)] transition-colors text-lg"
             >
               {line.merchandise.product.title}
             </Link>
@@ -108,7 +108,7 @@ export function CartLineItem({ line, onUpdateQuantity, onRemove, isUpdating }: C
 
           {/* Line total */}
           <div className="text-right">
-            <p className="font-bold text-lg text-red-600">
+            <p className="font-bold text-lg text-[var(--color-primary)]">
               {formatMoney(line.cost.totalAmount)}
             </p>
           </div>
@@ -121,7 +121,7 @@ export function CartLineItem({ line, onUpdateQuantity, onRemove, isUpdating }: C
             <button
               onClick={() => handleQuantityChange(localQuantity - 1)}
               disabled={disabled || localQuantity <= 1}
-              className="w-10 h-10 rounded-lg border-2 border-slate-300 flex items-center justify-center hover:bg-red-50 hover:border-red-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+              className="w-10 h-10 rounded-lg border-2 border-slate-300 flex items-center justify-center hover:bg-[var(--color-primary-light)]/20 hover:border-[var(--color-primary)] disabled:opacity-50 disabled:cursor-not-allowed transition-all"
               aria-label="Decrease quantity"
             >
               <svg className="w-5 h-5 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -141,14 +141,14 @@ export function CartLineItem({ line, onUpdateQuantity, onRemove, isUpdating }: C
               }}
               onBlur={() => handleQuantityChange(localQuantity)}
               disabled={disabled}
-              className="w-20 h-10 text-center border-2 border-slate-300 rounded-lg font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-red-600 disabled:opacity-50"
+              className="w-20 h-10 text-center border-2 border-slate-300 rounded-lg font-semibold text-slate-900 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:border-[var(--color-primary)] disabled:opacity-50"
               aria-label="Quantity"
             />
 
             <button
               onClick={() => handleQuantityChange(localQuantity + 1)}
               disabled={disabled}
-              className="w-10 h-10 rounded-lg border-2 border-slate-300 flex items-center justify-center hover:bg-red-50 hover:border-red-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+              className="w-10 h-10 rounded-lg border-2 border-slate-300 flex items-center justify-center hover:bg-[var(--color-primary-light)]/20 hover:border-[var(--color-primary)] disabled:opacity-50 disabled:cursor-not-allowed transition-all"
               aria-label="Increase quantity"
             >
               <svg className="w-5 h-5 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -161,7 +161,7 @@ export function CartLineItem({ line, onUpdateQuantity, onRemove, isUpdating }: C
           <button
             onClick={handleRemove}
             disabled={disabled}
-            className="text-sm font-semibold text-red-600 hover:text-red-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center gap-1"
+            className="text-sm font-semibold text-[var(--color-primary)] hover:text-[var(--color-primary-dark)] disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center gap-1"
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />

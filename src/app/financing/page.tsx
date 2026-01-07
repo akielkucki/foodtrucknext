@@ -15,7 +15,7 @@ export default function FinancingPage() {
       <section className="relative w-full bg-slate-950 pt-32 pb-24 overflow-hidden">
         {/* Abstract Tech Background */}
         <div className="absolute inset-0 opacity-20">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_800px_at_50%_-100px,#D6452F,transparent)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_800px_at_50%_-100px,rgba(150,56,79,1),transparent)]" />
         </div>
 
         <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 text-center">
@@ -24,12 +24,12 @@ export default function FinancingPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <div className="mb-6 inline-flex items-center rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm font-medium text-orange-400 backdrop-blur-sm">
-              <span className="mr-2 h-2 w-2 rounded-full bg-orange-400 animate-pulse"></span>
+            <div className="mb-6 inline-flex items-center rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm font-medium text-[var(--color-primary-light)] backdrop-blur-sm">
+              <span className="mr-2 h-2 w-2 rounded-full bg-[var(--color-primary)] animate-pulse"></span>
               Flexible Options
             </div>
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl mb-6">
-              Financing <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-600">Solutions</span>
+              Financing <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-primary-light)] to-[var(--color-primary)]">Solutions</span>
             </h1>
             <p className="mt-4 text-lg leading-8 text-slate-400 max-w-2xl mx-auto">
               Turn your food truck dreams into reality with our flexible financing options designed for entrepreneurs.
@@ -101,7 +101,7 @@ export default function FinancingPage() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="rounded-3xl bg-white p-8 shadow-sm ring-1 ring-slate-100"
               >
-                <div className="mb-4 inline-flex items-center justify-center rounded-full bg-gradient-to-r from-orange-400 to-red-600 p-3 text-white">
+                <div className="mb-4 inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[var(--color-primary-light)] to-[var(--color-primary)] p-3 text-white">
                   {option.icon}
                 </div>
                 <h3 className="mb-3 text-xl font-semibold text-slate-900">{option.title}</h3>
@@ -109,7 +109,7 @@ export default function FinancingPage() {
                 <div className="space-y-3">
                   {option.features.map((feature) => (
                     <div key={feature} className="flex items-start gap-3">
-                      <CheckCircle2 className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
+                      <CheckCircle2 className="h-5 w-5 text-[var(--color-primary)] flex-shrink-0 mt-0.5" />
                       <span className="text-sm text-slate-700">{feature}</span>
                     </div>
                   ))}
@@ -170,7 +170,7 @@ export default function FinancingPage() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="text-center"
               >
-                <div className="mb-4 text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-600">
+                <div className="mb-4 text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-primary-light)] to-[var(--color-primary)]">
                   {item.step}
                 </div>
                 <h3 className="mb-2 text-xl font-semibold text-slate-900">{item.title}</h3>
@@ -247,7 +247,7 @@ export default function FinancingPage() {
                   ].map((benefit) => (
                     <div key={benefit.title} className="flex items-start gap-4">
                       <div className="flex-shrink-0">
-                        <CheckCircle2 className="h-6 w-6 text-green-500" />
+                        <CheckCircle2 className="h-6 w-6 text-[var(--color-primary)]" />
                       </div>
                       <div>
                         <h4 className="mb-1 font-semibold text-slate-900">{benefit.title}</h4>
@@ -281,7 +281,7 @@ export default function FinancingPage() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 href="/quote"
-                className="group relative inline-flex items-center justify-center rounded-full bg-red-600 px-8 py-3 text-base font-semibold text-white transition-all hover:bg-red-700 hover:shadow-lg hover:shadow-red-900/20"
+                className="group relative inline-flex items-center justify-center rounded-full bg-[var(--color-primary)] px-8 py-3 text-base font-semibold text-white transition-all hover:bg-[var(--color-primary-dark)] hover:shadow-lg hover:shadow-[color:rgba(150,56,79,0.2)]"
               >
                 Get a Free Quote
               </Link>

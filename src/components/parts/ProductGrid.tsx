@@ -10,7 +10,7 @@ import { ProductNodeListItem } from "@/lib/shopify";
 export default function ProductGrid({ products }: { products: ProductNodeListItem[] }) {
     if (products.length === 0) {
         return (
-            <div className="flex h-64 w-full flex-col items-center justify-center rounded-xl border border-dashed border-slate-600 bg-slate-800/50 text-slate-400">
+            <div className="flex h-64 w-full flex-col items-center justify-center rounded-xl border border-dashed border-neutral-300 bg-neutral-50 text-neutral-600">
                 <p className="text-lg font-medium">No products found</p>
                 <p className="text-sm">Try adjusting your price range or categories</p>
             </div>
@@ -31,10 +31,10 @@ export default function ProductGrid({ products }: { products: ProductNodeListIte
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.2 }}
                         key={p.id}
-                        className="group relative flex flex-col overflow-hidden rounded-xl border border-slate-700/50 bg-slate-800/80 backdrop-blur-sm transition-all hover:border-orange-500/30 hover:shadow-lg hover:shadow-orange-500/10"
+                        className="group relative flex flex-col overflow-hidden rounded-xl border border-neutral-200 bg-white transition-all hover:border-[var(--color-primary)]/50 hover:shadow-lg hover:shadow-[var(--color-primary)]/20"
                     >
                         {/* Image Container */}
-                        <div className="relative aspect-square w-full overflow-hidden bg-slate-700/50">
+                        <div className="relative aspect-square w-full overflow-hidden bg-neutral-100">
                             {p.featuredImage?.url ? (
                                 <Image
                                     src={p.featuredImage.url}
@@ -44,7 +44,7 @@ export default function ProductGrid({ products }: { products: ProductNodeListIte
                                     className="object-cover transition-transform duration-500 group-hover:scale-110"
                                 />
                             ) : (
-                                <div className="flex h-full w-full items-center justify-center text-slate-400">
+                                <div className="flex h-full w-full items-center justify-center text-neutral-400">
                                     No image
                                 </div>
                             )}
@@ -64,12 +64,12 @@ export default function ProductGrid({ products }: { products: ProductNodeListIte
 
                         {/* Content */}
                         <div className="flex flex-1 flex-col p-4">
-                            <div className="mb-2 text-xs font-bold uppercase tracking-wider text-slate-400">
+                            <div className="mb-2 text-xs font-bold uppercase tracking-wider text-neutral-500">
                                 {p.productType || "Part"}
                             </div>
 
-                            <Link href={`/products/${p.handle}`} className="group-hover:text-orange-400 transition-colors">
-                                <h3 className="line-clamp-2 text-lg font-bold text-white" title={p.title}>
+                            <Link href={`/products/${p.handle}`} className="group-hover:text-[var(--color-primary)] transition-colors">
+                                <h3 className="line-clamp-2 text-lg font-bold text-neutral-900" title={p.title}>
                                     {p.title}
                                 </h3>
                             </Link>
@@ -78,13 +78,13 @@ export default function ProductGrid({ products }: { products: ProductNodeListIte
                                 <ProductPrice
                                     amount={p.priceRange.minVariantPrice.amount}
                                     currencyCode={p.priceRange.minVariantPrice.currencyCode}
-                                    className="text-xl font-bold text-orange-400"
+                                    className="text-xl font-bold text-[var(--color-primary)]"
                                 />
                                 {p.compareAtPriceRange?.minVariantPrice && (
                                     <ProductPrice
                                         amount={p.compareAtPriceRange.minVariantPrice.amount}
                                         currencyCode={p.compareAtPriceRange.minVariantPrice.currencyCode}
-                                        className="text-sm font-medium text-slate-500 line-through"
+                                        className="text-sm font-medium text-neutral-500 line-through"
                                     />
                                 )}
                             </div>
@@ -97,7 +97,7 @@ export default function ProductGrid({ products }: { products: ProductNodeListIte
                                 />
                                 <Link
                                     href={`/products/${p.handle}`}
-                                    className="flex items-center justify-center rounded-lg border border-slate-600 bg-slate-700/50 px-4 text-sm font-semibold text-slate-200 transition-colors hover:bg-slate-600 hover:text-white"
+                                    className="flex items-center justify-center rounded-lg border border-neutral-300 bg-white px-4 text-sm font-semibold text-neutral-700 transition-colors hover:bg-neutral-50 hover:text-neutral-900"
                                 >
                                     Details
                                 </Link>

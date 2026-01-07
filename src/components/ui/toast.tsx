@@ -52,9 +52,9 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
               <div
                 className={`px-4 py-3 rounded-lg shadow-lg min-w-[300px] max-w-md ${
                   toast.type === 'success'
-                    ? 'bg-green-600 text-white'
+                    ? 'bg-[var(--color-primary)] text-white'
                     : toast.type === 'error'
-                    ? 'bg-[#D6452F] text-white'
+                    ? 'bg-red-600 text-white'
                     : 'bg-slate-800 text-white'
                 }`}
                 role="alert"

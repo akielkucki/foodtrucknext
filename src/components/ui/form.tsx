@@ -24,19 +24,45 @@ export default function ContactForm() {
 
     const helpOptions = ['Custom Build Quote', 'Parts & Service', 'General Inquiry'];
 
+    const [error, setError] = useState<string | null>(null);
+
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setIsSubmitting(true);
+        setError(null);
 
-        // Simulate network request
-        await new Promise(resolve => setTimeout(resolve, 1500));
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
 
-        console.log('Form submitted:', formData);
-        setIsSubmitting(false);
-        setIsSuccess(true);
+            const data = await response.json();
 
-        // Reset success message after 3 seconds
-        setTimeout(() => setIsSuccess(false), 3000);
+            if (!response.ok) {
+                throw new Error(data.details || data.error || 'Failed to send message');
+            }
+
+            console.log('Contact form submitted successfully:', data);
+            setIsSuccess(true);
+            setFormData({
+                name: '',
+                email: '',
+                helpType: 'Custom Build Quote',
+                message: '',
+            });
+
+            // Reset success message after 3 seconds
+            setTimeout(() => setIsSuccess(false), 3000);
+        } catch (err) {
+            setError('Failed to send message. Please try again or call us directly.');
+            console.error('Form submission error:', err);
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     const handleInputChange = (
@@ -174,6 +200,13 @@ export default function ContactForm() {
                         />
                     </div>
                 </div>
+
+                {/* Error Message */}
+                {error && (
+                    <div className="rounded-lg bg-red-50 border border-red-200 p-3 text-sm text-red-700">
+                        {error}
+                    </div>
+                )}
 
                 {/* Submit Button */}
                 <button

@@ -123,9 +123,9 @@ export default function Products() {
             <Link
               key={category.name}
               href={category.href}
-              className="group flex flex-col items-center rounded-xl bg-gradient-to-br from-white to-slate-50 border border-slate-200 p-6 text-center transition-all hover:bg-red-600 hover:border-red-600 hover:shadow-2xl hover:shadow-red-600/20"
+              className="group flex flex-col items-center rounded-xl bg-gradient-to-br from-white to-slate-50 border border-slate-200 p-6 text-center transition-all hover:bg-[var(--color-primary)] hover:border-[var(--color-primary)] hover:shadow-2xl hover:shadow-[color:rgba(150,56,79,0.2)]"
             >
-              <div className="mb-3 text-red-600 transition-colors group-hover:text-white">
+              <div className="mb-3 text-[var(--color-primary)] transition-colors group-hover:text-white">
                 {category.icon}
               </div>
               <h3 className="text-lg font-bold text-slate-900 transition-colors group-hover:text-white">
@@ -146,7 +146,7 @@ export default function Products() {
             </h3>
             <Link
               href="/parts"
-              className="text-sm font-semibold text-red-600 hover:text-red-700 transition-colors"
+              className="text-sm font-semibold text-[var(--color-primary)] hover:text-[var(--color-primary-dark)] transition-colors"
             >
               View all products →
             </Link>
@@ -156,7 +156,7 @@ export default function Products() {
             {featuredProducts.map((product) => (
               <article
                 key={product.id}
-                className="group overflow-hidden rounded-xl border border-slate-200 bg-white transition-all hover:border-red-200 hover:shadow-2xl hover:shadow-red-600/10"
+                className="group overflow-hidden rounded-xl border border-slate-200 bg-white transition-all hover:border-[var(--color-primary)] hover:shadow-2xl hover:shadow-[color:rgba(150,56,79,0.1)]"
               >
                 {/* Product Image */}
                 <div className="relative aspect-[4/3] overflow-hidden bg-[#EDEDED]">
@@ -175,26 +175,26 @@ export default function Products() {
                     </div>
                   )}
                   {/* Category Badge */}
-                  <span className="absolute left-3 top-3 rounded-full bg-white/90 px-3 py-1 text-xs font-medium text-[#2F2F2F] backdrop-blur-sm">
+                  <span className="absolute left-3 top-3 rounded-full bg-white/90 px-3 py-1 text-xs font-medium text-slate-900 backdrop-blur-sm">
                     {product.category}
                   </span>
                 </div>
 
                 {/* Product Info */}
                 <div className="p-5">
-                  <h4 className="text-lg font-bold text-slate-900 transition-colors group-hover:text-red-600">
+                  <h4 className="text-lg font-bold text-slate-900 transition-colors group-hover:text-[var(--color-primary)]">
                     {product.name}
                   </h4>
                   <p className="mt-2 line-clamp-2 text-sm text-slate-600">
                     {product.description}
                   </p>
                   <div className="mt-4 flex items-center justify-between">
-                    <span className="text-lg font-bold text-red-600">
+                    <span className="text-lg font-bold text-[var(--color-primary)]">
                       {product.price}
                     </span>
                     <Link
                       href={product.href}
-                      className="rounded-lg bg-slate-100 px-4 py-2 text-sm font-semibold text-slate-900 transition-all hover:bg-red-600 hover:text-white"
+                      className="rounded-lg bg-slate-100 px-4 py-2 text-sm font-semibold text-slate-900 transition-all hover:bg-[var(--color-primary)] hover:text-white"
                     >
                       More Details
                     </Link>
@@ -216,7 +216,7 @@ export default function Products() {
           </p>
           <Link
             href="/quote"
-            className="mt-8 inline-block rounded-lg bg-red-600 px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-red-600/30 transition-all hover:bg-red-700 hover:shadow-xl hover:shadow-red-600/40"
+            className="mt-8 inline-block rounded-lg bg-[var(--color-primary)] px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-[color:rgba(150,56,79,0.3)] transition-all hover:bg-[var(--color-primary-dark)] hover:shadow-xl hover:shadow-[color:rgba(150,56,79,0.4)]"
           >
             Request a Quote
           </Link>

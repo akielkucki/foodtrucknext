@@ -96,8 +96,8 @@ export default function QuotePage() {
       <section className="relative w-full bg-slate-950 pt-32 pb-48 overflow-hidden">
         {/* Abstract Tech Background */}
         <div className="absolute inset-0 opacity-20">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_800px_at_100%_0px,#D6452F,transparent)]" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_600px_at_0%_100%,#F5A623,transparent)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_800px_at_100%_0px,rgba(150,56,79,1),transparent)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_600px_at_0%_100%,rgba(150,56,79,1),transparent)]" />
         </div>
 
         {/* Grid pattern overlay */}
@@ -110,13 +110,13 @@ export default function QuotePage() {
             transition={{ duration: 0.5 }}
             className="max-w-2xl"
           >
-            <div className="mb-6 inline-flex items-center rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm font-medium text-orange-400 backdrop-blur-sm">
-              <span className="mr-2 h-2 w-2 rounded-full bg-green-500 animate-pulse"></span>
+            <div className="mb-6 inline-flex items-center rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm font-medium text-[var(--color-primary-light)] backdrop-blur-sm">
+              <span className="mr-2 h-2 w-2 rounded-full bg-[var(--color-primary)] animate-pulse"></span>
               Free Quote - No Obligation
             </div>
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl mb-6">
               Get Your Custom <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-600">Build Quote.</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-primary-light)] to-[var(--color-primary)]">Build Quote.</span>
             </h1>
             <p className="mt-4 text-lg leading-8 text-slate-400">
               Ready to bring your food truck vision to life? Tell us about your project
@@ -126,15 +126,15 @@ export default function QuotePage() {
             {/* Trust Indicators */}
             <div className="mt-8 flex flex-wrap gap-6 text-sm text-slate-400">
               <div className="flex items-center gap-2">
-                <CheckCircle className="h-5 w-5 text-green-500" />
+                <CheckCircle className="h-5 w-5 text-[var(--color-primary)]" />
                 <span>500+ Builds Completed</span>
               </div>
               <div className="flex items-center gap-2">
-                <CheckCircle className="h-5 w-5 text-green-500" />
+                <CheckCircle className="h-5 w-5 text-[var(--color-primary)]" />
                 <span>15+ Years Experience</span>
               </div>
               <div className="flex items-center gap-2">
-                <CheckCircle className="h-5 w-5 text-green-500" />
+                <CheckCircle className="h-5 w-5 text-[var(--color-primary)]" />
                 <span>Nationwide Service</span>
               </div>
             </div>
@@ -193,9 +193,9 @@ export default function QuotePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group relative rounded-2xl border border-slate-100 bg-slate-50 p-6 transition-all hover:border-orange-200 hover:shadow-lg hover:shadow-orange-500/5"
+                className="group relative rounded-2xl border border-slate-100 bg-slate-50 p-6 transition-all hover:border-[var(--color-primary)]/30 hover:shadow-lg hover:shadow-[var(--color-primary)]/5"
               >
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-orange-400 to-red-600 shadow-lg shadow-orange-500/20">
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[var(--color-primary-light)] to-[var(--color-primary)] shadow-lg shadow-[var(--color-primary)]/20">
                   <benefit.icon className="h-6 w-6 text-white" />
                 </div>
                 <h3 className="text-lg font-bold text-slate-900 mb-2">{benefit.title}</h3>
@@ -210,7 +210,7 @@ export default function QuotePage() {
       <section className="w-full bg-slate-950 px-6 py-24 lg:px-8 relative overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0 opacity-30">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_600px_at_50%_50%,#D6452F,transparent)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_600px_at_50%_50%,rgba(150,56,79,1),transparent)]" />
         </div>
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-[size:72px_72px]" />
 
@@ -242,15 +242,15 @@ export default function QuotePage() {
               >
                 {/* Connector Line */}
                 {index < processSteps.length - 1 && (
-                  <div className="hidden lg:block absolute top-8 left-[calc(50%+40px)] w-[calc(100%-80px)] h-0.5 bg-gradient-to-r from-orange-500/50 to-transparent" />
+                  <div className="hidden lg:block absolute top-8 left-[calc(50%+40px)] w-[calc(100%-80px)] h-0.5 bg-gradient-to-r from-[var(--color-primary)]/50 to-transparent" />
                 )}
 
                 <div className="text-center">
                   <div className="relative inline-flex">
                     <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 border border-white/10 backdrop-blur-sm">
-                      <step.icon className="h-8 w-8 text-orange-400" />
+                      <step.icon className="h-8 w-8 text-[var(--color-primary-light)]" />
                     </div>
-                    <span className="absolute -top-2 -right-2 flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-orange-400 to-red-600 text-xs font-bold text-white">
+                    <span className="absolute -top-2 -right-2 flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-[var(--color-primary-light)] to-[var(--color-primary)] text-xs font-bold text-white">
                       {step.step.slice(-1)}
                     </span>
                   </div>

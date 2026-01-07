@@ -1,57 +1,48 @@
-import * as React from "react"
-import { clsx, type ClassValue } from "clsx"
-import { twMerge } from "tailwind-merge"
+"use client";
 
-// --- Utility to merge classes safely ---
-// If you already have a 'lib/utils.ts' with a 'cn' function, you can import it instead.
-function cn(...inputs: ClassValue[]) {
-    return twMerge(clsx(inputs))
-}
+import * as React from "react";
+import { cn } from "@/lib/utils";
+import { motion, type HTMLMotionProps } from "framer-motion";
 
-// --- Button Types & Variants ---
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-    variant?: 'default' | 'outline' | 'ghost' | 'secondary' | 'link' | 'destructive';
-    size?: 'default' | 'sm' | 'lg' | 'icon';
+interface ButtonProps extends Omit<HTMLMotionProps<"button">, "ref"> {
+    variant?: "primary" | "secondary" | "outline" | "ghost" | "link";
+    size?: "default" | "sm" | "lg" | "icon";
+    asChild?: boolean;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-    ({ className, variant = "default", size = "default", ...props }, ref) => {
+    ({ className, variant = "primary", size = "default", ...props }, ref) => {
+        const baseStyles =
+            "inline-flex items-center justify-center font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary-dark)] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50";
 
-        // 1. Base styles (always applied)
-        const baseStyles = "inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-neutral-950 disabled:pointer-events-none disabled:opacity-50"
-
-        // 2. Variant styles
         const variants = {
-            default: "bg-[#F5A623] text-white shadow hover:bg-orange-600",
-            destructive: "bg-red-500 text-neutral-50 shadow-sm hover:bg-red-500/90",
-            outline: "border border-neutral-200 bg-transparent shadow-sm hover:bg-neutral-100 hover:text-neutral-900",
-            secondary: "bg-neutral-100 text-neutral-900 shadow-sm hover:bg-neutral-100/80",
-            ghost: "hover:bg-neutral-100 hover:text-neutral-900",
-            link: "text-neutral-900 underline-offset-4 hover:underline",
-        }
+            primary:
+                "bg-[var(--color-primary)] text-white hover:bg-[var(--color-primary-dark)] active:bg-[var(--color-primary-dark)]",
+            secondary:
+                "bg-slate-900 text-white hover:bg-black active:bg-slate-800",
+            outline:
+                "border-2 border-slate-900 bg-transparent text-slate-900 hover:bg-slate-900 hover:text-white",
+            ghost: "text-slate-900 hover:bg-slate-100 active:bg-slate-200",
+            link: "text-[var(--color-primary)] underline-offset-4 hover:underline",
+        };
 
-        // 3. Size styles
         const sizes = {
-            default: "h-9 px-4 py-2",
-            sm: "h-8 rounded-md px-3 text-xs",
-            lg: "h-10 rounded-full px-8", // Rounded full looks nice for large CTAs
-            icon: "h-9 w-9",
-        }
+            default: "h-11 px-6 text-sm rounded-lg",
+            sm: "h-9 px-4 text-sm rounded-md",
+            lg: "h-14 px-10 text-base rounded-lg",
+            icon: "h-11 w-11 rounded-lg",
+        };
 
         return (
-            <button
-                className={cn(
-                    baseStyles,
-                    variants[variant],
-                    sizes[size],
-                    className
-                )}
+            <motion.button
+                className={cn(baseStyles, variants[variant], sizes[size], className)}
                 ref={ref}
+                whileTap={{ scale: 0.98 }}
                 {...props}
             />
-        )
+        );
     }
-)
-Button.displayName = "Button"
+);
+Button.displayName = "Button";
 
-export { Button }
+export { Button };

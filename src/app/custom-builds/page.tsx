@@ -16,7 +16,7 @@ export default function CustomBuildsPage() {
       <section className="relative w-full bg-slate-950 pt-32 pb-24 overflow-hidden">
         {/* Abstract Tech Background */}
         <div className="absolute inset-0 opacity-20">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_800px_at_50%_-100px,#D6452F,transparent)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_800px_at_50%_-100px,rgba(150,56,79,1),transparent)]" />
         </div>
 
         <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 text-center">
@@ -25,12 +25,12 @@ export default function CustomBuildsPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <div className="mb-6 inline-flex items-center rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm font-medium text-orange-400 backdrop-blur-sm">
-              <span className="mr-2 h-2 w-2 rounded-full bg-orange-400 animate-pulse"></span>
+            <div className="mb-6 inline-flex items-center rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm font-medium text-[var(--color-primary-light)] backdrop-blur-sm">
+              <span className="mr-2 h-2 w-2 rounded-full bg-[var(--color-primary)] animate-pulse"></span>
               Custom Solutions
             </div>
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl mb-6">
-              Custom Food Truck <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-600">Builds</span>
+              Custom Food Truck <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-primary-light)] to-[var(--color-primary)]">Builds</span>
             </h1>
             <p className="mt-4 text-lg leading-8 text-slate-400 max-w-2xl mx-auto">
               Every food truck we build is a unique masterpiece designed around your vision and culinary needs.
@@ -99,7 +99,7 @@ export default function CustomBuildsPage() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="relative rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-100"
               >
-                <div className="mb-2 text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-600">{item.step}</div>
+                <div className="mb-2 text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-primary-light)] to-[var(--color-primary)]">{item.step}</div>
                 <h3 className="mb-2 text-xl font-semibold text-slate-900">{item.title}</h3>
                 <p className="text-slate-600">{item.description}</p>
               </motion.div>
@@ -178,7 +178,7 @@ export default function CustomBuildsPage() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 href="/quote"
-                className="group relative inline-flex items-center justify-center rounded-full bg-red-600 px-8 py-3 text-base font-semibold text-white transition-all hover:bg-red-700 hover:shadow-lg hover:shadow-red-900/20"
+                className="group relative inline-flex items-center justify-center rounded-full bg-[var(--color-primary)] px-8 py-3 text-base font-semibold text-white transition-all hover:bg-[var(--color-primary-dark)] hover:shadow-lg hover:shadow-[color:rgba(150,56,79,0.2)]"
               >
                 Get a Free Quote
               </Link>

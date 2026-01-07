@@ -9,7 +9,7 @@ export function Spinner({ className = '', size = 'md' }: { className?: string; s
 
   return (
     <div
-      className={`animate-spin rounded-full border-[#D6452F] border-t-transparent ${sizeClasses[size]} ${className}`}
+      className={`animate-spin rounded-full border-[var(--color-primary)] border-t-transparent ${sizeClasses[size]} ${className}`}
       role="status"
       aria-label="Loading"
     >

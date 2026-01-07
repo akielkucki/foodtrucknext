@@ -1,3 +1,11 @@
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+// Utility for merging Tailwind classes
+export function cn(...inputs: ClassValue[]) {
+    return twMerge(clsx(inputs));
+}
+
 // Contact Information
 export const contactInfo = {
     address: {
@@ -5,6 +13,18 @@ export const contactInfo = {
         city: "Philadelphia",
         state: "PA",
         full: "2777 Emerald Street, Philadelphia PA",
+    },
+    address2: {
+        street: "7023 Beaver Dam Rd",
+        city: "Levittown",
+        state: "PA",
+        full: "7023 Beaver Dam Rd, Levittown, PA"
+    },
+    address3: {
+        street: "7024 Bristol pike",
+        city: "Levittown",
+        state: "PA",
+        full: "7024 Bristol pike, Levittown, PA"
     },
     phone: {
         sales: "(267) 968-6618",

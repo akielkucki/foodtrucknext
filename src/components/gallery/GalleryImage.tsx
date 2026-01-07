@@ -59,7 +59,7 @@ export default function GalleryImage({ image, index }: GalleryImageProps) {
           className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/30 to-transparent flex items-end p-4"
         >
           <div className="text-white">
-            <p className="text-sm font-semibold">{image.author}</p>
+            <p className="text-sm font-semibold text-[var(--color-primary-light)]">{image.author}</p>
             <p className="text-xs text-slate-300">{image.width} × {image.height}</p>
           </div>
         </motion.div>

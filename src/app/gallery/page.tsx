@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function GalleryPage() {
     return (
-        <div className="min-h-screen bg-white font-sans selection:bg-orange-500/30">
+        <div className="min-h-screen bg-white font-sans selection:bg-[color:rgba(177,74,98,0.3)]">
             <Navbar />
 
             {/* Hero Section */}
@@ -28,16 +28,16 @@ export default function GalleryPage() {
                 </div>
 
                 {/* Glowing Orbs for Depth */}
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-orange-500/20 rounded-full blur-[100px] pointer-events-none" />
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[var(--color-primary)]/20 rounded-full blur-[100px] pointer-events-none" />
 
                 <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
                     <div className="flex flex-col items-center text-center">
 
                         {/* Pill Badge */}
-                        <div className="mb-8 inline-flex items-center rounded-full border border-orange-500/20 bg-orange-500/10 px-4 py-1.5 text-sm font-medium text-orange-400 backdrop-blur-md transition-colors hover:bg-orange-500/20">
+                        <div className="mb-8 inline-flex items-center rounded-full border border-[var(--color-primary)]/20 bg-[var(--color-primary)]/10 px-4 py-1.5 text-sm font-medium text-[var(--color-primary-light)] backdrop-blur-md transition-colors hover:bg-[var(--color-primary)]/20">
               <span className="relative flex h-2 w-2 mr-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--color-primary-light)] opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--color-primary)]"></span>
               </span>
                             Project Gallery
                         </div>
@@ -45,7 +45,7 @@ export default function GalleryPage() {
                         {/* Main Headline */}
                         <h1 className="max-w-4xl text-4xl font-bold tracking-tight text-white sm:text-6xl lg:text-7xl">
                             Precision Parts. <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#F5A623] to-orange-600">
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-primary-light)] to-[var(--color-primary)]">
                 Exceptional Builds.
               </span>
                         </h1>
@@ -83,11 +83,11 @@ export default function GalleryPage() {
                     <div className="mt-8 flex items-center justify-center gap-x-6">
                         <Button
                             size="lg"
-                            className="bg-[#F5A623] hover:bg-orange-600 text-white font-semibold rounded-full px-8"
+                            className="bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] text-white font-semibold rounded-full px-8"
                         >
                             Get a Quote
                         </Button>
-                        <a href="/contact" className="text-sm font-semibold leading-6 text-slate-900 flex items-center hover:text-orange-600 transition-colors">
+                        <a href="/contact" className="text-sm font-semibold leading-6 text-slate-900 flex items-center hover:text-[var(--color-primary)] transition-colors">
                             Contact Sales <ArrowRight className="ml-2 h-4 w-4" />
                         </a>
                     </div>

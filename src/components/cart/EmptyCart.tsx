@@ -6,9 +6,9 @@ export function EmptyCart() {
     <div className="min-h-screen bg-gradient-to-b from-white to-slate-50 flex flex-col items-center justify-center py-16 px-4">
       <div className="text-center max-w-md bg-white p-12 rounded-2xl shadow-lg border border-slate-200">
         {/* Shopping cart icon */}
-        <div className="w-32 h-32 mx-auto mb-6 bg-red-50 rounded-full flex items-center justify-center">
+        <div className="w-32 h-32 mx-auto mb-6 bg-[var(--color-primary-light)]/20 rounded-full flex items-center justify-center">
           <svg
-            className="w-16 h-16 text-red-600"
+            className="w-16 h-16 text-[var(--color-primary)]"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -29,7 +29,7 @@ export function EmptyCart() {
 
         <Link
           href="/parts"
-          className="inline-block bg-red-600 text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-red-700 transition-all shadow-lg shadow-red-600/30 hover:shadow-xl hover:shadow-red-600/40"
+          className="inline-block bg-[var(--color-primary)] text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-[var(--color-primary-dark)] transition-all shadow-lg shadow-[color:rgba(150,56,79,0.3)] hover:shadow-xl hover:shadow-[color:rgba(150,56,79,0.4)]"
         >
           Continue Shopping
         </Link>

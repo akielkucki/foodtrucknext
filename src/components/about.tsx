@@ -1,190 +1,87 @@
-import Link from "next/link";
+"use client";
+
 import Image from "next/image";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { Check, ArrowRight } from "lucide-react";
 
-const stats = [
-  { value: "25+", label: "Years in Business" },
-  { value: "500+", label: "Trucks Built" },
-  { value: "50+", label: "Custom Designs" },
-  { value: "98%", label: "Customer Satisfaction" },
-];
-
-const values = [
-  {
-    title: "Craftsmanship",
-    description: "Every truck we build is crafted with precision and attention to detail, using only premium materials and equipment.",
-    icon: (
-      <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
-      </svg>
-    ),
-  },
-  {
-    title: "Industry Expertise",
-    description: "Our team brings decades of combined experience in custom food truck fabrication and mobile kitchen design.",
-    icon: (
-      <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5" />
-      </svg>
-    ),
-  },
-  {
-    title: "Your Vision, Our Build",
-    description: "We work closely with you from concept to completion, ensuring your truck perfectly matches your business needs.",
-    icon: (
-      <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
-      </svg>
-    ),
-  },
-];
-
-const processSteps = [
-  {
-    step: "01",
-    title: "Design Consultation",
-    description: "Share your vision, menu, and business goals. We'll create a custom layout that maximizes efficiency and workflow.",
-  },
-  {
-    step: "02",
-    title: "Blueprint & Quote",
-    description: "Receive detailed plans, 3D renderings, and a comprehensive quote with timeline for your custom build.",
-  },
-  {
-    step: "03",
-    title: "Fabrication",
-    description: "Our expert team builds your truck with precision craftsmanship, keeping you updated at every milestone.",
-  },
-  {
-    step: "04",
-    title: "Delivery & Support",
-    description: "We deliver your completed truck and provide ongoing support, parts, and maintenance as you grow.",
-  },
+const features = [
+    "Custom designs tailored to your menu and workflow",
+    "Health department compliance guaranteed",
+    "Heavy-duty construction built to last",
+    "Full-service from concept to completion",
 ];
 
 export default function About() {
-  return (
-    <section className="bg-white py-16 lg:py-24">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        {/* Company Story */}
-        <div className="grid items-center gap-12 lg:grid-cols-2">
-          {/* Image / Facility Photo */}
-          <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-[#EDEDED]">
-            <div className="flex h-full flex-col items-center justify-center text-[#8A8A8A]/50">
-              <svg className="h-20 w-20" fill="none" viewBox="0 0 24 24" strokeWidth={1} stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z" />
-              </svg>
-              <span className="mt-2 text-sm">Workshop / Facility photo</span>
-            </div>
-          </div>
+    return (
+        <section className="w-full bg-slate-50 py-24 lg:py-32">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
+                    {/* Image */}
+                    <motion.div
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5 }}
+                        className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-slate-200"
+                    >
+                        <Image
+                            src="/hero.webp"
+                            alt="Our facility"
+                            fill
+                            className="object-cover"
+                        />
+                    </motion.div>
 
-          {/* Company History */}
-          <div>
-            <span className="text-sm font-bold uppercase tracking-wider text-red-600">
-              Our Story
-            </span>
-            <h2 className="mt-2 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-              Building Custom Food Trucks Since 1999
-            </h2>
-            <p className="mt-6 text-lg leading-8 text-slate-600">
-              What started as a passion for mobile culinary innovation has grown into one of the most trusted custom food truck builders in the industry. For over 25 years, we've been transforming visions into rolling restaurants.
-            </p>
-            <p className="mt-4 text-slate-600">
-              Our founder combined restaurant equipment expertise with custom fabrication skills to create something unique—a full-service shop dedicated to building dream food trucks from the ground up. Today, our team of skilled craftsmen and designers work together to create mobile kitchens that are as functional as they are impressive.
-            </p>
-            <p className="mt-4 text-slate-600">
-              From our 15,000 sq. ft. fabrication facility, we design and build custom trucks for entrepreneurs across the country. We also offer parts, service, and maintenance for those who need it. Whether you're launching your first truck or expanding your fleet, we bring your vision to life.
-            </p>
-          </div>
-        </div>
+                    {/* Content */}
+                    <motion.div
+                        initial={{ opacity: 0, x: 20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: 0.1 }}
+                    >
+                        <span className="text-sm font-semibold uppercase tracking-widest text-[var(--color-primary)]">
+                            About Us
+                        </span>
+                        <h2 className="mt-4 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
+                            Your Partner in Mobile Culinary Excellence
+                        </h2>
+                        <p className="mt-6 text-lg leading-relaxed text-slate-600">
+                            Since 1999, we've been transforming culinary visions into mobile reality.
+                            Our team of expert fabricators, engineers, and designers work together
+                            to create food trucks that are as efficient as they are beautiful.
+                        </p>
 
-        {/* Stats */}
-        <div className="mt-16 grid grid-cols-2 gap-6 lg:grid-cols-4">
-          {stats.map((stat) => (
-            <div
-              key={stat.label}
-              className="rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 border border-slate-200 p-6 text-center transition-all hover:shadow-lg hover:border-red-200"
-            >
-              <p className="text-3xl font-bold text-red-600 sm:text-4xl">
-                {stat.value}
-              </p>
-              <p className="mt-1 text-sm font-semibold text-slate-600">{stat.label}</p>
-            </div>
-          ))}
-        </div>
+                        <ul className="mt-8 space-y-4">
+                            {features.map((feature, index) => (
+                                <motion.li
+                                    key={index}
+                                    initial={{ opacity: 0, x: 10 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.3, delay: 0.2 + index * 0.1 }}
+                                    className="flex items-start gap-3"
+                                >
+                                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] text-white">
+                                        <Check className="h-4 w-4" />
+                                    </span>
+                                    <span className="text-slate-700">{feature}</span>
+                                </motion.li>
+                            ))}
+                        </ul>
 
-        {/* Why Choose Us / Values */}
-        <div className="mt-20">
-          <div className="text-center">
-            <h3 className="text-2xl font-bold text-slate-900 sm:text-3xl">
-              Why Choose Us
-            </h3>
-            <p className="mt-2 text-slate-600">
-              What sets us apart from the competition
-            </p>
-          </div>
-
-          <div className="mt-10 grid gap-8 sm:grid-cols-3">
-            {values.map((value) => (
-              <div key={value.title} className="text-center">
-                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-xl bg-red-50 text-red-600 shadow-lg shadow-red-600/10">
-                  {value.icon}
+                        <div className="mt-10">
+                            <Link
+                                href="/about"
+                                className="inline-flex items-center gap-2 text-base font-semibold text-[var(--color-primary)] hover:text-[var(--color-primary-dark)] transition-colors"
+                            >
+                                Learn more about us
+                                <ArrowRight className="h-5 w-5" />
+                            </Link>
+                        </div>
+                    </motion.div>
                 </div>
-                <h4 className="mt-4 text-lg font-bold text-slate-900">
-                  {value.title}
-                </h4>
-                <p className="mt-2 text-sm text-slate-600">
-                  {value.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Our Process */}
-        <div className="mt-20 rounded-2xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-8 sm:p-12 border border-slate-700 shadow-2xl">
-          <div className="text-center">
-            <h3 className="text-2xl font-bold text-white sm:text-3xl">
-              How We Work
-            </h3>
-            <p className="mt-2 text-slate-300">
-              Our simple process gets you what you need, fast
-            </p>
-          </div>
-
-          <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {processSteps.map((item) => (
-              <div key={item.step} className="relative">
-                <span className="text-5xl font-bold text-red-600/30">
-                  {item.step}
-                </span>
-                <h4 className="mt-2 text-lg font-bold text-white">
-                  {item.title}
-                </h4>
-                <p className="mt-2 text-sm text-slate-300">{item.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-
-        {/* CTA */}
-        <div className="mt-16 text-center">
-          <div className="flex flex-col justify-center gap-4 sm:flex-row">
-            <Link
-              href="/about"
-              className="rounded-lg bg-red-600 px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-red-600/30 transition-all hover:bg-red-700 hover:shadow-xl hover:shadow-red-600/40"
-            >
-              Learn More About Us
-            </Link>
-            <Link
-              href="/contact"
-              className="rounded-lg border-2 border-slate-900 px-8 py-3.5 text-base font-semibold text-slate-900 transition-all hover:bg-slate-900 hover:text-white"
-            >
-              Contact Us
-            </Link>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+            </div>
+        </section>
+    );
 }

@@ -44,6 +44,7 @@ export default function QuoteForm() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const projectTypes = [
     'Custom Food Truck Build',
@@ -76,16 +77,45 @@ export default function QuoteForm() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError(null);
 
-    // Simulate network request
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    try {
+      const response = await fetch('/api/quote', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
 
-    console.log('Quote request submitted:', formData);
-    setIsSubmitting(false);
-    setIsSuccess(true);
+      const data = await response.json();
 
-    // Reset success message after 3 seconds
-    setTimeout(() => setIsSuccess(false), 3000);
+      if (!response.ok) {
+        throw new Error(data.details || data.error || 'Failed to submit quote request');
+      }
+
+      console.log('Quote form submitted successfully:', data);
+      setIsSuccess(true);
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        company: '',
+        projectType: 'Custom Food Truck Build',
+        truckType: '',
+        budget: 'Select budget range',
+        timeline: 'Select timeline',
+        message: '',
+      });
+
+      // Reset success message after 3 seconds
+      setTimeout(() => setIsSuccess(false), 3000);
+    } catch (err) {
+      setError('Failed to submit your quote request. Please try again or call us directly.');
+      console.error('Quote form submission error:', err);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleInputChange = (
@@ -219,7 +249,7 @@ export default function QuoteForm() {
               type="button"
               onClick={() => toggleDropdown('projectType')}
               className={`group relative w-full cursor-default rounded-lg border bg-slate-50 py-3 pl-10 pr-10 text-left text-slate-900 focus:outline-none focus:ring-4 focus:ring-orange-500/10 transition-all duration-200 ${
-                openDropdown === 'projectType' ? 'border-orange-500 ring-4 ring-orange-500/10' : 'border-slate-200'
+                openDropdown === 'projectType' ? 'border-[var(--color-primary)] ring-4 ring-[color:rgba(177,74,98,0.1)]' : 'border-slate-200'
               }`}
             >
               <div className="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400 pointer-events-none">
@@ -397,6 +427,13 @@ export default function QuoteForm() {
             The more details you provide, the more accurate your quote will be.
           </p>
         </div>
+
+        {/* Error Message */}
+        {error && (
+          <div className="rounded-lg bg-red-50 border border-red-200 p-3 text-sm text-red-700">
+            {error}
+          </div>
+        )}
 
         {/* Submit Button */}
         <button
