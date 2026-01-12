@@ -33,6 +33,7 @@ export async function initializeDb() {
         )
     `);
 }
+await initializeDb();
 
 // Convert database row to CartBuild object
 function rowToCartBuild(row: Record<string, unknown>): CartBuild {
