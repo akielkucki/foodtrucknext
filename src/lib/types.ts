@@ -8,6 +8,21 @@ export type CartActionResult<T = void> = {
   error?: string;
 };
 
+// Custom Build types for admin panel
+export type CartBuildStatus = 'blueprint' | 'production' | 'delivered';
+
+export interface CartBuild {
+  id: string;
+  clientName: string;
+  model: string;
+  status: CartBuildStatus;
+  price: string;
+  images: string[];
+  description?: string;
+  lastUpdated: string;
+  createdAt: string;
+}
+
 // Enhanced CartContext type with full functionality
 export type CartContextType = {
   cart: import('./shopify').Cart | null;

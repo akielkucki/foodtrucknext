@@ -1,0 +1,65 @@
+'use client'
+
+import { signIn, getSession } from "next-auth/react"
+import { useState } from "react"
+import { useRouter } from "next/navigation"
+
+export default function SignIn() {
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [error, setError] = useState('')
+    const router = useRouter()
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault()
+        setError('')
+
+        const result = await signIn('credentials', {
+            email,
+            password,
+            redirect: false,
+        })
+
+        if (result?.error) {
+            setError('Invalid credentials')
+        } else {
+            router.push('/dashboard') // or wherever you want to redirect
+        }
+    }
+
+    return (
+        <div className="min-h-screen flex items-center justify-center">
+            <form onSubmit={handleSubmit} className="space-y-4 w-full max-w-md">
+                <div>
+                    <label htmlFor="email">Email</label>
+                    <input
+                        type="email"
+                        id="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                        className="w-full px-3 py-2 border rounded"
+                    />
+                </div>
+                <div>
+                    <label htmlFor="password">Password</label>
+                    <input
+                        type="password"
+                        id="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                        className="w-full px-3 py-2 border rounded"
+                    />
+                </div>
+                {error && <p className="text-red-500">{error}</p>}
+                <button
+                    type="submit"
+                    className="w-full bg-blue-500 text-white py-2 rounded"
+                >
+                    Sign In
+                </button>
+            </form>
+        </div>
+    )
+}

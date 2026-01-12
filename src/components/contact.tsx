@@ -9,21 +9,23 @@ import {
     MapPin,
     Phone,
     Mail,
-    ChevronDown,
-    MessageCircle,
-    FileText,
-    Clock
+    Plus,
+    Minus,
+    MessageSquare,
+    FileInput,
+    Wrench
 } from "lucide-react";
 
+// --- Animation Variants ---
 const fadeUp = {
-    hidden: { opacity: 0, y: 40 },
+    hidden: { opacity: 0, y: 30 },
     visible: (custom: number = 0) => ({
         opacity: 1,
         y: 0,
         transition: {
-            duration: 0.8,
+            duration: 0.6,
             delay: custom * 0.1,
-            ease: [0.16, 1, 0.3, 1] as const
+            ease: "circOut"
         }
     })
 };
@@ -33,20 +35,13 @@ const staggerContainer = {
     visible: {
         opacity: 1,
         transition: {
-            staggerChildren: 0.08,
-            delayChildren: 0.2
+            staggerChildren: 0.1,
+            delayChildren: 0.1
         }
     }
 };
 
-const scaleUp = {
-    hidden: { opacity: 0, scale: 0.95 },
-    visible: {
-        opacity: 1,
-        scale: 1,
-        transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const }
-    }
-};
+// --- Sub-Components ---
 
 interface AccordionItemProps {
     question: string;
@@ -58,78 +53,43 @@ interface AccordionItemProps {
 
 function AccordionItem({ question, answer, isOpen, onClick, index }: AccordionItemProps) {
     return (
-        <motion.div
-            variants={fadeUp}
-            custom={index}
-            className="group"
-        >
+        <motion.div variants={fadeUp} custom={index}>
             <button
                 onClick={onClick}
-                className="w-full text-left"
+                className={`w-full text-left group border border-neutral-800 transition-all duration-300 ${
+                    isOpen ? 'bg-neutral-900/50 border-[#9B3A4E]/30' : 'bg-[#0a0a0a] hover:border-neutral-700'
+                }`}
             >
-                <div className={`
-                    relative p-6 rounded-2xl transition-all duration-500
-                    ${isOpen
-                    ? 'bg-gradient-to-br from-[#722F37]/20 to-[#722F37]/5 border-[#722F37]/40'
-                    : 'bg-slate-900/40 hover:bg-slate-900/60 border-slate-800/50 hover:border-slate-700/50'
-                }
-                    border backdrop-blur-sm
-                `}>
-                    {/* Accent line */}
-                    <motion.div
-                        className="absolute left-0 top-6 bottom-6 w-1 rounded-full bg-gradient-to-b from-[#722F37] to-[#8B3A42]"
-                        initial={{ scaleY: 0 }}
-                        animate={{ scaleY: isOpen ? 1 : 0 }}
-                        transition={{ duration: 0.3 }}
-                    />
-
-                    <div className="flex items-start justify-between gap-4">
-                        <div className="flex-1">
-                            <div className="flex items-center gap-3 mb-1">
-                                <span className="text-xs font-mono text-[#722F37]/70 tracking-wider">
-                                    {String(index + 1).padStart(2, '0')}
-                                </span>
-                            </div>
-                            <h4 className={`
-                                text-lg font-semibold transition-colors duration-300
-                                ${isOpen ? 'text-white' : 'text-slate-200 group-hover:text-white'}
-                            `}>
-                                {question}
-                            </h4>
-                        </div>
-
-                        <motion.div
-                            animate={{ rotate: isOpen ? 180 : 0 }}
-                            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                            className={`
-                                w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0
-                                transition-colors duration-300
-                                ${isOpen
-                                ? 'bg-[#722F37]/30 text-[#d4787f]'
-                                : 'bg-slate-800/50 text-slate-400 group-hover:text-slate-300'
-                            }
-                            `}
-                        >
-                            <ChevronDown className="w-5 h-5" />
-                        </motion.div>
+                <div className="flex items-center justify-between p-6">
+                    <div className="flex items-center gap-4">
+                        <span className={`text-xs font-mono transition-colors ${isOpen ? 'text-[#9B3A4E]' : 'text-neutral-600'}`}>
+                            0{index + 1}
+                        </span>
+                        <h4 className={`text-sm font-medium transition-colors ${isOpen ? 'text-white' : 'text-neutral-400 group-hover:text-white'}`}>
+                            {question}
+                        </h4>
                     </div>
+                    <div className={`transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}>
+                        {isOpen ? <Minus className="w-4 h-4 text-[#9B3A4E]" /> : <Plus className="w-4 h-4 text-neutral-600" />}
+                    </div>
+                </div>
 
-                    <AnimatePresence>
-                        {isOpen && (
-                            <motion.div
-                                initial={{ height: 0, opacity: 0 }}
-                                animate={{ height: "auto", opacity: 1 }}
-                                exit={{ height: 0, opacity: 0 }}
-                                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                                className="overflow-hidden"
-                            >
-                                <p className="pt-4 text-slate-400 leading-relaxed pl-9">
+                <AnimatePresence>
+                    {isOpen && (
+                        <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            className="overflow-hidden"
+                        >
+                            <div className="px-6 pb-6 pl-14">
+                                <p className="text-xs text-neutral-500 leading-relaxed font-light border-l border-neutral-800 pl-4">
                                     {answer}
                                 </p>
-                            </motion.div>
-                        )}
-                    </AnimatePresence>
-                </div>
+                            </div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
             </button>
         </motion.div>
     );
@@ -141,71 +101,36 @@ export default function Contact() {
     const contactMethods = [
         {
             icon: MapPin,
-            label: "Visit Us",
+            label: "Warehouse",
             value: `${contactInfo?.address?.city || "Tampa"}, ${contactInfo?.address?.state || "FL"}`,
-            subtext: "Headquarters"
+            subtext: "Parts Pickup Available"
         },
         {
             icon: Phone,
-            label: "Call Us",
+            label: "Sales Line",
             value: contactInfo?.phone?.sales || "800-555-0199",
-            subtext: "Mon-Fri, 9am-6pm EST"
+            subtext: "0900 - 1800 EST"
         },
         {
             icon: Mail,
-            label: "Email Us",
-            value: contactInfo?.email?.sales || "sales@foodtruckbuilder.com",
-            subtext: "24hr response time"
+            label: "Support Email",
+            value: contactInfo?.email?.sales || "sales@foodtruckparts.com",
+            subtext: "Same Day Response"
         }
     ];
 
     return (
-        <section className="relative w-full bg-slate-950 py-32 lg:py-44 overflow-hidden">
-            {/* Complex layered background */}
-            <div className="absolute inset-0 pointer-events-none">
-                {/* Primary gradient orbs */}
-                <div className="absolute top-[-20%] left-[-10%] w-[800px] h-[800px] bg-[#722F37]/15 rounded-full blur-[180px]" />
-                <div className="absolute bottom-[-30%] right-[-15%] w-[700px] h-[700px] bg-[#722F37]/10 rounded-full blur-[160px]" />
-
-                {/* Diagonal accent lines */}
-                <svg className="absolute inset-0 w-full h-full opacity-[0.02]" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <pattern id="diagonals" width="100" height="100" patternUnits="userSpaceOnUse">
-                            <line x1="0" y1="100" x2="100" y2="0" stroke="white" strokeWidth="0.5" />
-                        </pattern>
-                    </defs>
-                    <rect width="100%" height="100%" fill="url(#diagonals)" />
-                </svg>
+        <section className="relative w-full bg-[#050505] py-32 lg:py-44 overflow-hidden border-t border-neutral-900">
+            {/* --- ATMOSPHERE --- */}
+            <div className="absolute inset-0 pointer-events-none z-0">
+                <div className="absolute top-[-20%] right-[-10%] w-[800px] h-[800px] bg-[#9B3A4E]/10 rounded-full blur-[180px] mix-blend-screen" />
+                <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150"></div>
+                <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:60px_60px]" />
             </div>
 
-            {/* Floating decorative elements */}
-            <motion.div
-                className="absolute top-32 right-[15%] w-24 h-24 border border-[#722F37]/20 rounded-full"
-                animate={{
-                    y: [0, -20, 0],
-                    rotate: [0, 180, 360]
-                }}
-                transition={{
-                    duration: 20,
-                    repeat: Infinity,
-                    ease: "linear"
-                }}
-            />
-            <motion.div
-                className="absolute bottom-40 left-[10%] w-16 h-16 bg-[#722F37]/10 rounded-2xl rotate-45"
-                animate={{
-                    y: [0, 15, 0],
-                    rotate: [45, 90, 45]
-                }}
-                transition={{
-                    duration: 15,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                }}
-            />
+            <div className="relative mx-auto max-w-7xl px-6 lg:px-8 z-10">
 
-            <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
-                {/* Hero Section */}
+                {/* --- HERO HEADER --- */}
                 <motion.div
                     initial="hidden"
                     whileInView="visible"
@@ -214,49 +139,44 @@ export default function Contact() {
                 >
                     <div className="grid lg:grid-cols-2 gap-16 items-end">
                         <div>
-                            <motion.div
-                                variants={fadeUp}
-                                custom={0}
-                            >
+                            <motion.div variants={fadeUp} custom={0}>
+                                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neutral-800 bg-neutral-900/50 backdrop-blur-md mb-6">
+                                    <Wrench className="w-3 h-3 text-[#9B3A4E]" />
+                                    <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-neutral-400">Custom Build Support</span>
+                                </div>
                             </motion.div>
 
                             <motion.h2
                                 variants={fadeUp}
                                 custom={1}
-                                className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.1]"
+                                className="text-5xl md:text-6xl lg:text-7xl font-light tracking-tight text-white leading-[1.1]"
                             >
-                                Let's Build
-                                <br />
-                                <span className="relative inline-block">
-                                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#722F37] via-[#9B4A52] to-[#722F37]">
-                                        Something
-                                    </span>
+                                Build Your <br />
+                                <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#9B3A4E] to-red-500">
+                                    Perfect Truck
                                 </span>
-                                <br />
-                                <span className="text-slate-500">Extraordinary</span>
                             </motion.h2>
                         </div>
 
                         <motion.div variants={fadeUp} custom={2}>
-                            <p className="text-xl text-slate-400 leading-relaxed mb-8">
-                                Whether you're starting with a napkin sketch or a detailed blueprint, our engineering team transforms your vision into a rolling reality.
+                            <p className="text-lg text-neutral-400 leading-relaxed font-light mb-8 border-l-2 border-[#9B3A4E]/30 pl-6">
+                                From commercial-grade kitchen equipment to custom trailer configurations, our team is ready to help you hit the road with confidence.
                             </p>
-                            <div className="flex items-center gap-4 text-sm text-slate-500">
+                            <div className="flex items-center gap-6 text-xs font-mono text-neutral-500">
                                 <div className="flex items-center gap-2">
-                                    <Clock className="w-4 h-4 text-[#722F37]" />
-                                    <span>24hr Response</span>
+                                    <div className="w-1.5 h-1.5 bg-[#9B3A4E] rounded-full animate-pulse" />
+                                    <span>PARTS_IN_STOCK</span>
                                 </div>
-                                <div className="w-1 h-1 rounded-full bg-slate-700" />
                                 <div className="flex items-center gap-2">
-                                    <MessageCircle className="w-4 h-4 text-[#722F37]" />
-                                    <span>Free Consultation</span>
+                                    <div className="w-1.5 h-1.5 bg-neutral-700 rounded-full" />
+                                    <span>EXPERT_SUPPORT</span>
                                 </div>
                             </div>
                         </motion.div>
                     </div>
                 </motion.div>
 
-                {/* Action Cards */}
+                {/* --- ACTION MODULES --- */}
                 <motion.div
                     initial="hidden"
                     whileInView="visible"
@@ -264,45 +184,32 @@ export default function Contact() {
                     variants={staggerContainer}
                     className="grid lg:grid-cols-3 gap-6 mb-32"
                 >
-                    {/* Get a Quote - Primary */}
-                    <motion.div variants={scaleUp} className="lg:col-span-2">
+                    {/* Primary: Get Quote */}
+                    <motion.div variants={fadeUp} className="lg:col-span-2">
                         <Link href="/quote" className="group block h-full">
-                            <div className="relative h-full min-h-[320px] p-10 rounded-[2rem] bg-gradient-to-br from-[#722F37] via-[#843841] to-[#5a252c] overflow-hidden">
-                                {/* Animated background pattern */}
-                                <div className="absolute inset-0 opacity-20">
-                                    <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2" />
-                                    <div className="absolute bottom-0 left-0 w-64 h-64 bg-black/20 rounded-full blur-2xl transform -translate-x-1/2 translate-y-1/2" />
-                                </div>
+                            <div className="relative h-full min-h-[320px] p-10 rounded-xl bg-neutral-900 border border-neutral-800 hover:border-[#9B3A4E]/50 transition-all duration-500 overflow-hidden">
 
-                                {/* Grid pattern overlay */}
-                                <div
-                                    className="absolute inset-0 opacity-10"
-                                    style={{
-                                        backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
-                                        backgroundSize: '32px 32px'
-                                    }}
-                                />
+                                {/* Background Glow */}
+                                <div className="absolute inset-0 bg-gradient-to-br from-[#9B3A4E]/20 via-transparent to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
 
-                                <div className="relative h-full flex flex-col justify-between">
+                                <div className="relative h-full flex flex-col justify-between z-10">
                                     <div>
-                                        <div className="w-16 h-16 rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500">
-                                            <FileText className="w-8 h-8 text-white" />
+                                        <div className="w-16 h-16 rounded-lg bg-[#9B3A4E]/10 border border-[#9B3A4E]/30 flex items-center justify-center mb-8 group-hover:bg-[#9B3A4E] group-hover:text-white transition-all duration-500 text-[#9B3A4E]">
+                                            <FileInput className="w-8 h-8" />
                                         </div>
-                                        <h3 className="text-3xl lg:text-4xl font-bold text-white mb-4">
-                                            Get a Free Quote
+                                        <h3 className="text-3xl font-light text-white mb-2">
+                                            Get Custom <span className="font-bold">Quote</span>
                                         </h3>
-                                        <p className="text-white/70 text-lg leading-relaxed max-w-md">
-                                            Share your vision and receive a detailed, no-obligation quote tailored to your exact specifications.
+                                        <p className="text-neutral-400 text-sm leading-relaxed max-w-md font-light">
+                                            Tell us about your food truck vision and receive a detailed parts and pricing breakdown.
                                         </p>
                                     </div>
 
-                                    <div className="flex items-center justify-between pt-8 border-t border-white/10">
-                                        <span className="text-white/50 text-sm">Takes ~5 minutes</span>
-                                        <div className="flex items-center gap-3 text-white font-semibold">
-                                            <span className="group-hover:mr-2 transition-all duration-300">Start Your Quote</span>
-                                            <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white group-hover:text-[#722F37] transition-all duration-300">
-                                                <ArrowRight className="w-5 h-5" />
-                                            </div>
+                                    <div className="flex items-center justify-between pt-8 border-t border-white/5">
+                                        <span className="text-neutral-500 text-[10px] uppercase tracking-widest font-mono">Est. Time: 5 Mins</span>
+                                        <div className="flex items-center gap-3 text-white text-xs font-bold uppercase tracking-widest">
+                                            <span className="group-hover:mr-2 transition-all duration-300">Start Quote Builder</span>
+                                            <ArrowRight className="w-4 h-4 text-[#9B3A4E]" />
                                         </div>
                                     </div>
                                 </div>
@@ -310,29 +217,26 @@ export default function Contact() {
                         </Link>
                     </motion.div>
 
-                    {/* Contact Card */}
-                    <motion.div variants={scaleUp}>
+                    {/* Secondary: Contact */}
+                    <motion.div variants={fadeUp}>
                         <Link href="/contact" className="group block h-full">
-                            <div className="relative h-full min-h-[320px] p-8 rounded-[2rem] bg-slate-900/60 border border-slate-800 hover:border-[#722F37]/40 transition-all duration-500 overflow-hidden">
-                                {/* Hover gradient */}
-                                <div className="absolute inset-0 bg-gradient-to-br from-[#722F37]/0 to-[#722F37]/0 group-hover:from-[#722F37]/5 group-hover:to-transparent transition-all duration-500" />
-
+                            <div className="relative h-full min-h-[320px] p-8 rounded-xl bg-[#0a0a0a] border border-neutral-800 hover:border-neutral-600 transition-all duration-500">
                                 <div className="relative h-full flex flex-col justify-between">
                                     <div>
-                                        <div className="w-14 h-14 rounded-2xl bg-[#722F37]/20 flex items-center justify-center mb-6 group-hover:bg-[#722F37]/30 transition-colors duration-300">
-                                            <MessageCircle className="w-7 h-7 text-[#d4787f]" />
+                                        <div className="w-12 h-12 rounded-lg bg-neutral-900 border border-neutral-800 flex items-center justify-center mb-8 group-hover:border-[#9B3A4E]/30 transition-colors text-neutral-400">
+                                            <MessageSquare className="w-6 h-6" />
                                         </div>
-                                        <h3 className="text-2xl font-bold text-white mb-3">
+                                        <h3 className="text-xl font-bold text-white mb-3">
                                             Have Questions?
                                         </h3>
-                                        <p className="text-slate-400 leading-relaxed">
-                                            Reach out directly and our team will respond within 24 hours.
+                                        <p className="text-neutral-500 text-sm leading-relaxed">
+                                            Speak with our food truck specialists. Get expert advice on parts and configurations.
                                         </p>
                                     </div>
 
-                                    <div className="flex items-center gap-3 text-white font-medium pt-6">
-                                        <span className="group-hover:text-[#d4787f] transition-colors duration-300">Contact Us</span>
-                                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                                    <div className="flex items-center gap-3 text-neutral-400 group-hover:text-white text-xs font-bold uppercase tracking-widest pt-6">
+                                        <span>Contact Expert</span>
+                                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                                     </div>
                                 </div>
                             </div>
@@ -340,36 +244,34 @@ export default function Contact() {
                     </motion.div>
                 </motion.div>
 
-                {/* Contact Methods */}
+                {/* --- CONTACT INFO --- */}
                 <motion.div
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true }}
                     variants={staggerContainer}
-                    className="grid md:grid-cols-3 gap-4 mb-32"
+                    className="grid md:grid-cols-3 gap-px bg-neutral-900 border border-neutral-800 mb-32 rounded-lg overflow-hidden"
                 >
                     {contactMethods.map((method, index) => (
                         <motion.div
                             key={method.label}
                             variants={fadeUp}
                             custom={index}
-                            className="group relative p-6 rounded-2xl bg-slate-900/40 border border-slate-800/50 hover:border-[#722F37]/30 transition-all duration-300"
+                            className="group relative p-8 bg-[#0a0a0a] hover:bg-neutral-900/50 transition-colors"
                         >
                             <div className="flex items-start gap-4">
-                                <div className="w-12 h-12 rounded-xl bg-[#722F37]/15 flex items-center justify-center group-hover:bg-[#722F37]/25 transition-colors duration-300">
-                                    <method.icon className="w-5 h-5 text-[#d4787f]" />
-                                </div>
-                                <div className="flex-1">
-                                    <p className="text-xs text-slate-500 mb-1 uppercase tracking-wider">{method.label}</p>
-                                    <p className="text-white font-semibold mb-1">{method.value}</p>
-                                    <p className="text-xs text-slate-600">{method.subtext}</p>
+                                <method.icon className="w-5 h-5 text-[#9B3A4E] mt-1" />
+                                <div>
+                                    <p className="text-[10px] text-neutral-500 mb-1 uppercase tracking-widest font-bold">{method.label}</p>
+                                    <p className="text-white font-mono text-sm mb-1">{method.value}</p>
+                                    <p className="text-[10px] text-neutral-600 font-mono">{method.subtext}</p>
                                 </div>
                             </div>
                         </motion.div>
                     ))}
                 </motion.div>
 
-                {/* FAQ Section */}
+                {/* --- FAQ SECTION --- */}
                 <motion.div
                     initial="hidden"
                     whileInView="visible"
@@ -378,30 +280,28 @@ export default function Contact() {
                     <div className="grid lg:grid-cols-[1fr,1.5fr] gap-16 items-start">
                         {/* FAQ Header */}
                         <motion.div variants={fadeUp} custom={0} className="lg:sticky lg:top-32">
-                            <span className="text-[#722F37] text-sm font-semibold tracking-wider uppercase mb-4 block">
-                                FAQ
+                            <span className="text-[#9B3A4E] font-mono text-xs mb-4 block">
+                                04 // SUPPORT
                             </span>
-                            <h3 className="text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
-                                Questions?
-                                <br />
-                                <span className="text-slate-500">We've Got Answers</span>
+                            <h3 className="text-4xl font-light text-white mb-6">
+                                Common <span className="font-bold">Questions</span>
                             </h3>
-                            <p className="text-slate-400 leading-relaxed mb-8">
-                                Everything you need to know about our custom build process. Can't find what you're looking for? Reach out to our team.
+                            <p className="text-neutral-400 leading-relaxed mb-8 text-sm font-light">
+                                Find answers to frequently asked questions about parts, installation, and food truck builds.
                             </p>
                             <Link
                                 href="/contact"
-                                className="inline-flex items-center gap-2 text-[#d4787f] hover:text-white transition-colors duration-300 font-medium"
+                                className="inline-flex items-center gap-2 text-[#9B3A4E] hover:text-white transition-colors duration-300 text-xs font-bold uppercase tracking-widest"
                             >
                                 <span>Ask a Question</span>
-                                <ArrowRight className="w-4 h-4" />
+                                <ArrowRight className="w-3 h-3" />
                             </Link>
                         </motion.div>
 
                         {/* FAQ Accordion */}
                         <motion.div
                             variants={staggerContainer}
-                            className="space-y-4"
+                            className="space-y-3"
                         >
                             {faqs.map((faq, index) => (
                                 <AccordionItem

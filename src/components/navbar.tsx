@@ -5,8 +5,14 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import { brandName } from "@/lib/shopify";
-import { HugeiconsIcon } from "@hugeicons/react";
-import { ShoppingCart02Icon, Menu01Icon, Cancel01Icon } from "@hugeicons/core-free-icons";
+import {
+    ShoppingCart,
+    Menu,
+    X,
+    Phone,
+    ChevronRight,
+    Zap
+} from "lucide-react"; // Using lucide-react for consistency with other pages
 import { CartContext } from "@/components/CartContext";
 import { cn } from "@/lib/utils";
 
@@ -22,7 +28,7 @@ const navigation = [
 ];
 
 interface NavbarProps {
-    variant?: "dark" | "light";
+    variant?: "dark" | "light"; // Keeping prop for compatibility, though dark is now default style
 }
 
 export default function Navbar({ variant = "dark" }: NavbarProps) {
@@ -33,8 +39,8 @@ export default function Navbar({ variant = "dark" }: NavbarProps) {
     const { scrollY } = useScroll();
 
     useMotionValueEvent(scrollY, "change", (latest) => {
-        if (latest > 50 && !isScrolled) setIsScrolled(true);
-        if (latest <= 50 && isScrolled) setIsScrolled(false);
+        if (latest > 20 && !isScrolled) setIsScrolled(true);
+        if (latest <= 20 && isScrolled) setIsScrolled(false);
     });
 
     useEffect(() => {
@@ -48,41 +54,43 @@ export default function Navbar({ variant = "dark" }: NavbarProps) {
         };
     }, [isOpen]);
 
-    const isDark = variant === "dark";
-
     return (
         <>
             <motion.header
                 className={cn(
-                    "fixed left-0 right-0 top-0 z-50 transition-all duration-300",
+                    "fixed left-0 right-0 top-0 z-50 transition-all duration-300 border-b",
                     isScrolled
-                        ? "bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm"
-                        : isDark
-                        ? "bg-transparent"
-                        : "bg-white"
+                        ? "bg-[#050505]/80 backdrop-blur-xl border-white/5 py-2"
+                        : "bg-transparent border-transparent py-4"
                 )}
                 initial={{ y: -100 }}
                 animate={{ y: 0 }}
-                transition={{ duration: 0.4 }}
+                transition={{ duration: 0.5, ease: "circOut" }}
             >
-                <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:h-20 lg:px-8">
+                <nav className="mx-auto flex h-14 max-w-7xl items-center justify-between px-6 lg:px-8">
                     {/* Logo */}
                     <Link
                         href="/"
-                        className={cn(
-                            "relative z-50 text-xl font-black tracking-tight",
-                            isScrolled || !isDark ? "text-slate-900" : "text-white"
-                        )}
+                        className="relative z-50 flex items-center gap-2 group"
                     >
-                        {brandName.split("_").map((item, i) => (
-                            <span key={i} className={i !== 0 ? "text-[var(--color-primary)] ml-0.5" : ""}>
-                                {item}
+                        {/* Technical Logo Mark */}
+                        <div className="h-8 w-8 bg-[#9B3A4E] rounded flex items-center justify-center text-white font-bold text-xs shadow-[0_0_15px_rgba(155,58,78,0.4)] group-hover:shadow-[0_0_25px_rgba(155,58,78,0.6)] transition-shadow duration-300">
+                            <span className="font-mono">F</span>T
+                        </div>
+
+                        <div className="flex flex-col">
+                             <span className="text-lg font-bold tracking-tight text-white leading-none">
+                                {brandName?.split("_")[0] || "FOOD"}
+                                 <span className="text-[#9B3A4E]">{brandName?.split("_")[1] || ""}</span>
                             </span>
-                        ))}
+                            <span className="text-[9px] uppercase tracking-[0.3em] text-neutral-500 font-medium">
+                                Customizations
+                            </span>
+                        </div>
                     </Link>
 
                     {/* Desktop Navigation */}
-                    <div className="hidden items-center gap-1 lg:flex">
+                    <div className="hidden items-center gap-1 lg:flex bg-neutral-900/50 rounded-full border border-white/5 p-1 px-2 backdrop-blur-sm">
                         {navigation.map((item) => {
                             const isActive = pathname === item.href;
                             return (
@@ -90,64 +98,49 @@ export default function Navbar({ variant = "dark" }: NavbarProps) {
                                     key={item.name}
                                     href={item.href}
                                     className={cn(
-                                        "relative px-4 py-2 text-sm font-medium transition-colors",
+                                        "relative px-4 py-1.5 text-xs font-medium uppercase tracking-wide transition-all rounded-full",
                                         isActive
-                                            ? isScrolled || !isDark
-                                                ? "text-[var(--color-primary)]"
-                                                : "text-white"
-                                            : isScrolled || !isDark
-                                            ? "text-slate-600 hover:text-slate-900"
-                                            : "text-white/80 hover:text-white"
+                                            ? "text-white bg-white/10"
+                                            : "text-neutral-400 hover:text-white hover:bg-white/5"
                                     )}
                                 >
-                                    {isActive && (
-                                        <motion.span
-                                            layoutId="activeNav"
-                                            className={cn(
-                                                "absolute inset-0 rounded-lg",
-                                                isScrolled || !isDark
-                                                    ? "bg-[var(--color-primary)]/10"
-                                                    : "bg-white/10"
-                                            )}
-                                            transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                                        />
-                                    )}
-                                    <span className="relative">{item.name}</span>
+                                    {item.name}
                                 </Link>
                             );
                         })}
                     </div>
 
                     {/* Desktop Actions */}
-                    <div className="hidden items-center gap-4 lg:flex">
+                    <div className="hidden items-center gap-6 lg:flex">
+                        {/* Cart */}
                         <Link
                             href="/cart"
-                            className={cn(
-                                "group relative flex items-center justify-center p-2 transition-colors",
-                                isScrolled || !isDark
-                                    ? "text-slate-600 hover:text-slate-900"
-                                    : "text-white/80 hover:text-white"
-                            )}
+                            className="group relative flex items-center justify-center text-neutral-400 hover:text-white transition-colors"
                         >
-                            <HugeiconsIcon icon={ShoppingCart02Icon} size={22} />
+                            <ShoppingCart className="w-5 h-5" />
                             <AnimatePresence>
                                 {(cart?.cart?.totalQuantity ?? 0) > 0 && (
                                     <motion.span
                                         initial={{ scale: 0 }}
                                         animate={{ scale: 1 }}
                                         exit={{ scale: 0 }}
-                                        className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-[var(--color-primary)] text-[10px] font-bold text-white"
+                                        className="absolute -right-2 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-[#9B3A4E] text-[9px] font-bold text-white shadow-lg shadow-red-900/50"
                                     >
                                         {cart?.cart?.totalQuantity}
                                     </motion.span>
                                 )}
                             </AnimatePresence>
                         </Link>
+
+                        {/* CTA Button */}
                         <Link
                             href="/quote"
-                            className="rounded-lg bg-[var(--color-primary)] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[var(--color-primary-dark)]"
+                            className="group relative overflow-hidden rounded bg-white px-5 py-2 text-xs font-bold uppercase tracking-widest text-black transition-transform hover:scale-105"
                         >
-                            Get a Quote
+                            <span className="relative z-10 flex items-center gap-2">
+                                Build Quote <Zap className="w-3 h-3 text-[#9B3A4E]" />
+                            </span>
+                            <div className="absolute inset-0 bg-neutral-200 opacity-0 group-hover:opacity-100 transition-opacity" />
                         </Link>
                     </div>
 
@@ -157,10 +150,8 @@ export default function Navbar({ variant = "dark" }: NavbarProps) {
                         className={cn(
                             "relative z-50 flex h-10 w-10 items-center justify-center rounded-lg transition-colors lg:hidden",
                             isOpen
-                                ? "bg-white/10 text-white"
-                                : isScrolled || !isDark
-                                ? "bg-slate-100 text-slate-900"
-                                : "bg-white/10 text-white"
+                                ? "bg-neutral-800 text-white"
+                                : "bg-neutral-900/50 text-white border border-white/10"
                         )}
                         aria-label={isOpen ? "Close menu" : "Open menu"}
                     >
@@ -172,7 +163,7 @@ export default function Navbar({ variant = "dark" }: NavbarProps) {
                                     animate={{ rotate: 0, opacity: 1 }}
                                     exit={{ rotate: 90, opacity: 0 }}
                                 >
-                                    <HugeiconsIcon icon={Cancel01Icon} size={20} />
+                                    <X className="w-5 h-5" />
                                 </motion.div>
                             ) : (
                                 <motion.div
@@ -181,7 +172,7 @@ export default function Navbar({ variant = "dark" }: NavbarProps) {
                                     animate={{ rotate: 0, opacity: 1 }}
                                     exit={{ rotate: -90, opacity: 0 }}
                                 >
-                                    <HugeiconsIcon icon={Menu01Icon} size={20} />
+                                    <Menu className="w-5 h-5" />
                                 </motion.div>
                             )}
                         </AnimatePresence>
@@ -189,18 +180,28 @@ export default function Navbar({ variant = "dark" }: NavbarProps) {
                 </nav>
             </motion.header>
 
-            {/* Mobile Menu */}
+            {/* Mobile Menu Overlay */}
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        transition={{ duration: 0.2 }}
-                        className="fixed inset-0 z-40 bg-slate-950 lg:hidden"
+                        transition={{ duration: 0.3 }}
+                        className="fixed inset-0 z-40 bg-[#050505]/95 backdrop-blur-xl lg:hidden border-t border-white/5"
                     >
                         <div className="flex h-full flex-col px-6 pb-8 pt-24 overflow-y-auto">
-                            <nav className="flex flex-col space-y-1">
+
+                            {/* System Status Indicator */}
+                            <div className="flex items-center gap-2 mb-8 px-2">
+                                <span className="relative flex h-2 w-2">
+                                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
+                                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                                </span>
+                                <span className="text-[10px] font-mono text-neutral-500 uppercase tracking-widest">System Online</span>
+                            </div>
+
+                            <nav className="flex flex-col space-y-2">
                                 {navigation.map((item, index) => (
                                     <motion.div
                                         key={item.name}
@@ -212,13 +213,17 @@ export default function Navbar({ variant = "dark" }: NavbarProps) {
                                             href={item.href}
                                             onClick={() => setIsOpen(false)}
                                             className={cn(
-                                                "block py-3 text-2xl font-bold transition-colors",
+                                                "group flex items-center justify-between py-4 text-xl font-light tracking-tight border-b border-neutral-800 transition-colors",
                                                 pathname === item.href
-                                                    ? "text-[var(--color-primary-light)]"
-                                                    : "text-slate-400 hover:text-white"
+                                                    ? "text-white"
+                                                    : "text-neutral-500 hover:text-white"
                                             )}
                                         >
                                             {item.name}
+                                            <ChevronRight className={cn(
+                                                "w-4 h-4 transition-all",
+                                                pathname === item.href ? "text-[#9B3A4E] opacity-100" : "opacity-0 group-hover:opacity-100 group-hover:translate-x-1"
+                                            )} />
                                         </Link>
                                     </motion.div>
                                 ))}
@@ -233,13 +238,13 @@ export default function Navbar({ variant = "dark" }: NavbarProps) {
                                     <Link
                                         href="/cart"
                                         onClick={() => setIsOpen(false)}
-                                        className="flex w-full items-center justify-between rounded-xl bg-slate-900 p-4 transition-colors hover:bg-slate-800"
+                                        className="flex w-full items-center justify-between rounded-lg bg-neutral-900 border border-neutral-800 p-4 transition-colors hover:border-[#9B3A4E]/50"
                                     >
-                                        <span className="flex items-center gap-3 text-lg font-semibold text-white">
-                                            <HugeiconsIcon icon={ShoppingCart02Icon} className="text-[var(--color-primary-light)]" size={24} />
-                                            View Cart
+                                        <span className="flex items-center gap-3 text-sm font-bold text-white uppercase tracking-wider">
+                                            <ShoppingCart className="text-[#9B3A4E] w-4 h-4" />
+                                            Active Cart
                                         </span>
-                                        <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-primary)] text-sm font-bold text-white">
+                                        <span className="flex h-6 w-6 items-center justify-center rounded bg-[#9B3A4E] text-xs font-mono text-white">
                                             {cart?.cart?.totalQuantity ?? 0}
                                         </span>
                                     </Link>
@@ -253,9 +258,9 @@ export default function Navbar({ variant = "dark" }: NavbarProps) {
                                     <Link
                                         href="/quote"
                                         onClick={() => setIsOpen(false)}
-                                        className="block w-full rounded-xl bg-[var(--color-primary)] p-4 text-center text-lg font-semibold text-white transition-colors hover:bg-[var(--color-primary-dark)]"
+                                        className="block w-full rounded-lg bg-white p-4 text-center text-sm font-bold uppercase tracking-widest text-black transition-transform active:scale-95"
                                     >
-                                        Get a Quote
+                                        Start Commission
                                     </Link>
                                 </motion.div>
 
@@ -263,14 +268,14 @@ export default function Navbar({ variant = "dark" }: NavbarProps) {
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                     transition={{ delay: 0.5 }}
-                                    className="pt-6 text-center text-sm text-slate-500"
+                                    className="pt-6 text-center"
                                 >
-                                    <p>Need help?</p>
                                     <a
                                         href="tel:+18005550123"
-                                        className="text-slate-400 hover:text-white transition-colors"
+                                        className="flex items-center justify-center gap-2 text-xs font-mono text-neutral-500 hover:text-[#9B3A4E] transition-colors"
                                     >
-                                        (800) 555-0123
+                                        <Phone className="w-3 h-3" />
+                                        <span>(800) 555-0123 // HQ LINE</span>
                                     </a>
                                 </motion.div>
                             </div>

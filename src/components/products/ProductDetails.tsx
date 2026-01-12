@@ -244,7 +244,7 @@ export default function ProductDetails({ product }: Props) {
 
         {/* Description */}
         {product.descriptionHtml && (
-          <div className="mt-10 border-t border-slate-800 pt-10">
+          <div className="mt-10 border-t border-slate-800 text-slate-200 pt-10">
             <h2 className="mb-4 text-lg font-bold text-white">Description</h2>
             <div
               className="prose prose-invert prose-slate max-w-none prose-p:text-slate-300 prose-li:text-slate-300 prose-strong:text-white"
