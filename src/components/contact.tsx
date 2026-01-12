@@ -25,7 +25,7 @@ const fadeUp = {
         transition: {
             duration: 0.6,
             delay: custom * 0.1,
-            ease: "circOut"
+            ease: "circOut" as const
         }
     })
 };
