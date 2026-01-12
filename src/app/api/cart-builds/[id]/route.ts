@@ -19,7 +19,7 @@ export async function GET(request: NextRequest, context: RouteContext) {
         }
 
         const { id } = await context.params;
-        const build = getBuildById(id);
+        const build = await getBuildById(id);
 
         if (!build) {
             return NextResponse.json(
@@ -64,7 +64,7 @@ export async function PUT(request: NextRequest, context: RouteContext) {
             );
         }
 
-        const updatedBuild = updateBuild(id, {
+        const updatedBuild = await updateBuild(id, {
             clientName: body.clientName,
             model: body.model,
             status: body.status,
@@ -105,7 +105,7 @@ export async function DELETE(request: NextRequest, context: RouteContext) {
         }
 
         const { id } = await context.params;
-        const deleted = deleteBuild(id);
+        const deleted = await deleteBuild(id);
 
         if (!deleted) {
             return NextResponse.json(

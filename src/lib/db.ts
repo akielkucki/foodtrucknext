@@ -1,23 +1,25 @@
-import Database from 'better-sqlite3';
-import path from 'path';
+import { createClient, Client } from '@libsql/client';
 import { CartBuild, CartBuildStatus } from './types';
 
-// Database file path - stored in project root
-const dbPath = path.join(process.cwd(), 'data', 'custom-builds.db');
+// Lazy-initialize Turso client to avoid build-time errors
+let db: Client | null = null;
 
-// Initialize database connection
-function getDb() {
-    const db = new Database(dbPath);
-    db.pragma('journal_mode = WAL');
+function getDb(): Client {
+    if (!db) {
+        if (!process.env.TURSO_DATABASE_URL) {
+            throw new Error('TURSO_DATABASE_URL environment variable is not set');
+        }
+        db = createClient({
+            url: process.env.TURSO_DATABASE_URL,
+            authToken: process.env.TURSO_AUTH_TOKEN,
+        });
+    }
     return db;
 }
 
 // Initialize the database schema
-export function initializeDb() {
-    const db = getDb();
-
-    // Create cart_builds table if it doesn't exist
-    db.exec(`
+export async function initializeDb() {
+    await getDb().execute(`
         CREATE TABLE IF NOT EXISTS cart_builds (
             id TEXT PRIMARY KEY,
             client_name TEXT NOT NULL,
@@ -30,65 +32,60 @@ export function initializeDb() {
             created_at TEXT NOT NULL
         )
     `);
-
-    db.close();
 }
 
 // Convert database row to CartBuild object
-function rowToCartBuild(row: any): CartBuild {
+function rowToCartBuild(row: Record<string, unknown>): CartBuild {
     return {
-        id: row.id,
-        clientName: row.client_name,
-        model: row.model,
+        id: row.id as string,
+        clientName: row.client_name as string,
+        model: row.model as string,
         status: row.status as CartBuildStatus,
-        price: row.price,
-        images: JSON.parse(row.images || '[]'),
-        description: row.description,
-        lastUpdated: row.last_updated,
-        createdAt: row.created_at,
+        price: row.price as string,
+        images: JSON.parse((row.images as string) || '[]'),
+        description: row.description as string | undefined,
+        lastUpdated: row.last_updated as string,
+        createdAt: row.created_at as string,
     };
 }
 
 // Get all cart builds
-export function getAllBuilds(): CartBuild[] {
-    const db = getDb();
-    const rows = db.prepare('SELECT * FROM cart_builds ORDER BY created_at DESC').all();
-    db.close();
-    return rows.map(rowToCartBuild);
+export async function getAllBuilds(): Promise<CartBuild[]> {
+    const result = await getDb().execute('SELECT * FROM cart_builds ORDER BY created_at DESC');
+    return result.rows.map(rowToCartBuild);
 }
 
 // Get a single build by ID
-export function getBuildById(id: string): CartBuild | null {
-    const db = getDb();
-    const row = db.prepare('SELECT * FROM cart_builds WHERE id = ?').get(id);
-    db.close();
-    return row ? rowToCartBuild(row) : null;
+export async function getBuildById(id: string): Promise<CartBuild | null> {
+    const result = await getDb().execute({
+        sql: 'SELECT * FROM cart_builds WHERE id = ?',
+        args: [id],
+    });
+    return result.rows.length > 0 ? rowToCartBuild(result.rows[0]) : null;
 }
 
 // Create a new build
-export function createBuild(build: Omit<CartBuild, 'id' | 'createdAt' | 'lastUpdated'>): CartBuild {
-    const db = getDb();
+export async function createBuild(build: Omit<CartBuild, 'id' | 'createdAt' | 'lastUpdated'>): Promise<CartBuild> {
     const id = generateId();
     const now = new Date().toISOString();
 
-    const stmt = db.prepare(`
-        INSERT INTO cart_builds (id, client_name, model, status, price, images, description, last_updated, created_at)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-    `);
-
-    stmt.run(
-        id,
-        build.clientName,
-        build.model,
-        build.status,
-        build.price,
-        JSON.stringify(build.images || []),
-        build.description || null,
-        now,
-        now
-    );
-
-    db.close();
+    await getDb().execute({
+        sql: `
+            INSERT INTO cart_builds (id, client_name, model, status, price, images, description, last_updated, created_at)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        `,
+        args: [
+            id,
+            build.clientName,
+            build.model,
+            build.status,
+            build.price,
+            JSON.stringify(build.images || []),
+            build.description || null,
+            now,
+            now,
+        ],
+    });
 
     return {
         id,
@@ -100,80 +97,66 @@ export function createBuild(build: Omit<CartBuild, 'id' | 'createdAt' | 'lastUpd
 }
 
 // Update an existing build
-export function updateBuild(id: string, updates: Partial<Omit<CartBuild, 'id' | 'createdAt'>>): CartBuild | null {
-    const db = getDb();
-    const existing = db.prepare('SELECT * FROM cart_builds WHERE id = ?').get(id);
+export async function updateBuild(id: string, updates: Partial<Omit<CartBuild, 'id' | 'createdAt'>>): Promise<CartBuild | null> {
+    const existing = await getBuildById(id);
 
     if (!existing) {
-        db.close();
         return null;
     }
 
     const now = new Date().toISOString();
-    const currentBuild = rowToCartBuild(existing);
 
     const updatedBuild = {
-        ...currentBuild,
+        ...existing,
         ...updates,
         lastUpdated: now,
     };
 
-    const stmt = db.prepare(`
-        UPDATE cart_builds
-        SET client_name = ?, model = ?, status = ?, price = ?, images = ?, description = ?, last_updated = ?
-        WHERE id = ?
-    `);
+    await getDb().execute({
+        sql: `
+            UPDATE cart_builds
+            SET client_name = ?, model = ?, status = ?, price = ?, images = ?, description = ?, last_updated = ?
+            WHERE id = ?
+        `,
+        args: [
+            updatedBuild.clientName,
+            updatedBuild.model,
+            updatedBuild.status,
+            updatedBuild.price,
+            JSON.stringify(updatedBuild.images),
+            updatedBuild.description || null,
+            now,
+            id,
+        ],
+    });
 
-    stmt.run(
-        updatedBuild.clientName,
-        updatedBuild.model,
-        updatedBuild.status,
-        updatedBuild.price,
-        JSON.stringify(updatedBuild.images),
-        updatedBuild.description || null,
-        now,
-        id
-    );
-
-    db.close();
     return updatedBuild;
 }
 
 // Delete a build
-export function deleteBuild(id: string): boolean {
-    const db = getDb();
-    const result = db.prepare('DELETE FROM cart_builds WHERE id = ?').run(id);
-    db.close();
-    return result.changes > 0;
+export async function deleteBuild(id: string): Promise<boolean> {
+    const result = await getDb().execute({
+        sql: 'DELETE FROM cart_builds WHERE id = ?',
+        args: [id],
+    });
+    return result.rowsAffected > 0;
 }
 
 // Search builds by client name or model
-export function searchBuilds(query: string): CartBuild[] {
-    const db = getDb();
+export async function searchBuilds(query: string): Promise<CartBuild[]> {
     const searchTerm = `%${query}%`;
-    const rows = db.prepare(`
-        SELECT * FROM cart_builds
-        WHERE client_name LIKE ? OR model LIKE ?
-        ORDER BY created_at DESC
-    `).all(searchTerm, searchTerm);
-    db.close();
-    return rows.map(rowToCartBuild);
+    const result = await getDb().execute({
+        sql: `
+            SELECT * FROM cart_builds
+            WHERE client_name LIKE ? OR model LIKE ?
+            ORDER BY created_at DESC
+        `,
+        args: [searchTerm, searchTerm],
+    });
+    return result.rows.map(rowToCartBuild);
 }
 
 // Helper to generate unique IDs
 function generateId(): string {
     return Math.random().toString(36).substring(2, 11) + Date.now().toString(36);
-}
-
-// Ensure database is initialized on module load
-try {
-    // Create data directory if it doesn't exist
-    const fs = require('fs');
-    const dataDir = path.join(process.cwd(), 'data');
-    if (!fs.existsSync(dataDir)) {
-        fs.mkdirSync(dataDir, { recursive: true });
-    }
-    initializeDb();
-} catch (error) {
-    console.error('Failed to initialize database:', error);
 }

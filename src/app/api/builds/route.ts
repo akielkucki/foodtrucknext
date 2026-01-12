@@ -4,7 +4,7 @@ import { getAllBuilds } from '@/lib/db';
 // GET /api/builds - Public endpoint to list all builds
 export async function GET(request: NextRequest) {
     try {
-        const builds = getAllBuilds();
+        const builds = await getAllBuilds();
 
         // Filter to only show delivered builds publicly (or all if you want)
         // const publicBuilds = builds.filter(b => b.status === 'delivered');

@@ -19,7 +19,7 @@ export async function GET(request: NextRequest) {
         const { searchParams } = new URL(request.url);
         const query = searchParams.get('q');
 
-        const builds = query ? searchBuilds(query) : getAllBuilds();
+        const builds = query ? await searchBuilds(query) : await getAllBuilds();
 
         return NextResponse.json({
             success: true,
@@ -65,7 +65,7 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        const newBuild = createBuild({
+        const newBuild = await createBuild({
             clientName: body.clientName,
             model: body.model,
             status: body.status || 'blueprint',
