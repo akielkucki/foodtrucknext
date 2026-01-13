@@ -120,39 +120,39 @@ export default function CustomBuildsPage() {
                 <div className="mx-auto max-w-7xl">
 
                     {/* Filter Bar - Floating Glass */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="sticky top-24 z-40 mb-12 flex justify-center"
-                    >
-                        <div className="flex p-1.5 gap-1 bg-neutral-900/80 backdrop-blur-xl border border-neutral-800 rounded-full shadow-2xl shadow-black/50">
-                            <button
-                                onClick={() => setFilter('all')}
-                                className={`px-5 py-2 rounded-full text-xs font-medium uppercase tracking-wider transition-all duration-300 ${
-                                    filter === 'all'
-                                        ? 'bg-white text-black shadow-lg'
-                                        : 'text-neutral-500 hover:text-white hover:bg-neutral-800'
-                                }`}
-                            >
-                                All Commissions
-                            </button>
-                            {(['delivered', 'production', 'blueprint'] as CartBuildStatus[]).map(status => (
-                                <button
-                                    key={status}
-                                    onClick={() => setFilter(status)}
-                                    className={`px-5 py-2 rounded-full text-xs font-medium uppercase tracking-wider transition-all duration-300 flex items-center gap-2 ${
-                                        filter === status
-                                            ? 'bg-neutral-800 text-white border border-neutral-700 shadow-inner'
-                                            : 'text-neutral-500 hover:text-white hover:bg-neutral-800'
-                                    }`}
-                                >
-                                    {status === 'production' && <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"/>}
-                                    {statusConfig[status].label}
-                                </button>
-                            ))}
-                        </div>
-                    </motion.div>
+                    {/*<motion.div*/}
+                    {/*    initial={{ opacity: 0, y: 20 }}*/}
+                    {/*    whileInView={{ opacity: 1, y: 0 }}*/}
+                    {/*    viewport={{ once: true }}*/}
+                    {/*    className="sticky top-24 z-40 mb-12 flex justify-center"*/}
+                    {/*>*/}
+                    {/*    <div className="flex p-1.5 gap-1 bg-neutral-900/80 backdrop-blur-xl border border-neutral-800 rounded-full shadow-2xl shadow-black/50">*/}
+                    {/*        <button*/}
+                    {/*            onClick={() => setFilter('all')}*/}
+                    {/*            className={`px-5 py-2 rounded-full text-xs font-medium uppercase tracking-wider transition-all duration-300 ${*/}
+                    {/*                filter === 'all'*/}
+                    {/*                    ? 'bg-white text-black shadow-lg'*/}
+                    {/*                    : 'text-neutral-500 hover:text-white hover:bg-neutral-800'*/}
+                    {/*            }`}*/}
+                    {/*        >*/}
+                    {/*            All Commissions*/}
+                    {/*        </button>*/}
+                    {/*        {(['delivered', 'production', 'blueprint'] as CartBuildStatus[]).map(status => (*/}
+                    {/*            <button*/}
+                    {/*                key={status}*/}
+                    {/*                onClick={() => setFilter(status)}*/}
+                    {/*                className={`px-5 py-2 rounded-full text-xs font-medium uppercase tracking-wider transition-all duration-300 flex items-center gap-2 ${*/}
+                    {/*                    filter === status*/}
+                    {/*                        ? 'bg-neutral-800 text-white border border-neutral-700 shadow-inner'*/}
+                    {/*                        : 'text-neutral-500 hover:text-white hover:bg-neutral-800'*/}
+                    {/*                }`}*/}
+                    {/*            >*/}
+                    {/*                {status === 'production' && <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"/>}*/}
+                    {/*                {statusConfig[status].label}*/}
+                    {/*            </button>*/}
+                    {/*        ))}*/}
+                    {/*    </div>*/}
+                    {/*</motion.div>*/}
 
                     {/* Grid */}
                     {isLoading ? (
@@ -161,7 +161,7 @@ export default function CustomBuildsPage() {
                             <span className="text-sm text-neutral-600 uppercase tracking-widest">Retrieving Specifications...</span>
                         </div>
                     ) : (
-                        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 py-4">
                             <AnimatePresence mode="popLayout">
                                 {filteredBuilds.map((build, index) => (
                                     <BuildCard
