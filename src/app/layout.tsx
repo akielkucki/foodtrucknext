@@ -18,10 +18,10 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Food Truck Parts - Custom Builds & Equipment",
-    template: "%s | Food Truck Parts",
+    default: "Royal Vending Cart - Custom Builds & Equipment",
+    template: "%s | Royal Vending Cart",
   },
-  description: "Premium food truck parts, custom builds, and equipment. Professional mobile kitchen solutions.",
+  description: "Premium Food Truck Supplies, custom builds, and equipment. Professional mobile kitchen solutions.",
 };
 
 export default function RootLayout({
