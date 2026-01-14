@@ -179,7 +179,7 @@ export default function CustomBuildsPage() {
                     {!isLoading && filteredBuilds.length === 0 && (
                         <div className="py-32 text-center">
                             <Search className="w-12 h-12 text-neutral-800 mx-auto mb-4" />
-                            <h3 className="text-xl text-neutral-600 font-light">No commissions found matching criteria.</h3>
+                            <h3 className="text-xl text-neutral-600 font-light">No builds found matching criteria.</h3>
                         </div>
                     )}
                 </div>
@@ -200,7 +200,7 @@ export default function CustomBuildsPage() {
             <section className="relative py-32 bg-[#050505] overflow-hidden border-t border-neutral-900">
                 <div className="mx-auto max-w-4xl px-6 text-center relative z-10">
                     <h2 className="text-4xl font-light text-white mb-8">
-                        Initiate Your <span className="text-[var(--color-primary)] font-semibold">Commission</span>
+                        Initiate Your <span className="text-[var(--color-primary)] font-semibold">Builds</span>
                     </h2>
                     <p className="text-neutral-400 mb-10 leading-relaxed max-w-xl mx-auto">
                         Secure your build slot. Our engineering team is ready to translate your culinary concept into mechanical reality.
@@ -210,7 +210,7 @@ export default function CustomBuildsPage() {
                             href="/quote"
                             className="group relative px-8 py-4 bg-[var(--color-primary)] text-white text-sm font-bold uppercase tracking-widest overflow-hidden transition-all hover:pr-12"
                         >
-                            <span className="relative z-10">Configure Build</span>
+                            <span className="relative z-10">Request Build</span>
                             <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
                             <ArrowUpRight className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 opacity-0 group-hover:opacity-100 transition-all duration-300" />
                         </Link>
@@ -286,7 +286,7 @@ function BuildCard({
                 <div className="flex justify-between items-end mb-4">
                     <div>
                         <p className="text-xs text-[var(--color-primary)] font-mono mb-1">
-                            COMMISSION #{build.id.substring(0, 4).toUpperCase()}
+                            BUILD #{build.id.substring(0, 4).toUpperCase()}
                         </p>
                         <h3 className="text-xl font-medium text-white group-hover:text-[var(--color-primary-light)] transition-colors">
                             {build.model}
