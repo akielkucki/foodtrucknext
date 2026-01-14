@@ -18,7 +18,7 @@ const services = [
         description:
             "From concept to completion, we engineer fully custom mobile kitchens tailored to specific culinary workflows.",
         icon: Truck,
-        href: "/custom-builds",
+        href: "/current-inventory",
     },
     {
         id: "02",

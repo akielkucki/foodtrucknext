@@ -20,7 +20,7 @@ interface FooterProps {
 
 const navigation = {
     builds: [
-        { name: "Custom Fabrication", href: "/custom-builds" },
+        { name: "Custom Fabrication", href: "/current-inventory" },
         { name: "Design Archive", href: "/gallery" },
         { name: "Engineering Process", href: "/process" },
         { name: "Build Estimator", href: "/quote" },

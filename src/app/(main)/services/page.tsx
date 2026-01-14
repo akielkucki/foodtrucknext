@@ -22,7 +22,7 @@ import {
 // Enhanced Service Data
 const services = [
     {
-        id: "custom-builds",
+        id: "current-inventory",
         title: "Custom Builds",
         icon: Truck,
         shortDesc: "Ground-up fabrication",
