@@ -53,21 +53,21 @@ export default function CustomBuildsPage() {
 
     const statusConfig = {
         blueprint: {
-            label: "Blueprint Phase",
+            label: "Coming Soon",
             icon: Clock,
             color: "text-neutral-400",
             bg: "bg-neutral-800/50",
             border: "border-neutral-700"
         },
         production: {
-            label: "In Assembly",
+            label: "In Production",
             icon: Wrench,
             color: "text-amber-400",
             bg: "bg-amber-900/20",
             border: "border-amber-500/30"
         },
         delivered: {
-            label: "Commission Complete",
+            label: "Available Now",
             icon: CheckCircle2,
             color: "text-emerald-400",
             bg: "bg-emerald-900/20",
@@ -98,18 +98,18 @@ export default function CustomBuildsPage() {
                               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--color-primary)] opacity-75"></span>
                               <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--color-primary)]"></span>
                             </span>
-                            <span className="text-xs font-medium uppercase tracking-widest text-neutral-400">Atelier Division</span>
+                            <span className="text-xs font-medium uppercase tracking-widest text-neutral-400">Current Inventory</span>
                         </div>
 
                         <h1 className="text-5xl md:text-7xl font-light tracking-tight text-white mb-6">
-                            Precision Engineered <br />
+                            Ready-to-Roll <br />
                             <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-white via-neutral-200 to-neutral-500">
-                                Culinary Machines
+                                Mobile Kitchens
                             </span>
                         </h1>
 
                         <p className="mt-6 text-lg text-neutral-400 max-w-2xl mx-auto font-light leading-relaxed">
-                            We don't just build food trucks. We architect high-performance mobile kitchens tailored to your specific operational workflows.
+                            Browse our collection of professionally crafted food carts and trucks. Each unit is built to our exacting standards and ready for your business.
                         </p>
                     </motion.div>
                 </div>
@@ -200,17 +200,17 @@ export default function CustomBuildsPage() {
             <section className="relative py-32 bg-[#050505] overflow-hidden border-t border-neutral-900">
                 <div className="mx-auto max-w-4xl px-6 text-center relative z-10">
                     <h2 className="text-4xl font-light text-white mb-8">
-                        Initiate Your <span className="text-[var(--color-primary)] font-semibold">Builds</span>
+                        Find Your Perfect <span className="text-[var(--color-primary)] font-semibold">Cart</span>
                     </h2>
                     <p className="text-neutral-400 mb-10 leading-relaxed max-w-xl mx-auto">
-                        Secure your build slot. Our engineering team is ready to translate your culinary concept into mechanical reality.
+                        Ready to start your food business? Browse our inventory or get in touch to discuss which cart is right for you.
                     </p>
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
                         <Link
                             href="/quote"
                             className="group relative px-8 py-4 bg-[var(--color-primary)] text-white text-sm font-bold uppercase tracking-widest overflow-hidden transition-all hover:pr-12"
                         >
-                            <span className="relative z-10">Request Build</span>
+                            <span className="relative z-10">Get a Quote</span>
                             <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
                             <ArrowUpRight className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 opacity-0 group-hover:opacity-100 transition-all duration-300" />
                         </Link>
@@ -218,7 +218,7 @@ export default function CustomBuildsPage() {
                             href="/contact"
                             className="px-8 py-4 bg-transparent border border-neutral-800 text-neutral-400 text-sm font-bold uppercase tracking-widest hover:text-white hover:border-white transition-colors"
                         >
-                            Contact Studio
+                            Contact Us
                         </Link>
                     </div>
                 </div>
@@ -297,11 +297,11 @@ function BuildCard({
                 {/* Specs Grid */}
                 <div className="grid grid-cols-2 border-t border-neutral-800 pt-4 gap-y-4">
                     <div>
-                        <p className="text-[10px] text-neutral-500 uppercase tracking-wider">Client</p>
+                        <p className="text-[10px] text-neutral-500 uppercase tracking-wider">Type</p>
                         <p className="text-sm text-neutral-300 font-light truncate pr-2">{build.clientName}</p>
                     </div>
                     <div className="text-right">
-                        <p className="text-[10px] text-neutral-500 uppercase tracking-wider">Valuation</p>
+                        <p className="text-[10px] text-neutral-500 uppercase tracking-wider">Price</p>
                         <p className="text-sm text-white font-mono">{Number(build.price).toLocaleString('en-US', { style: 'currency', currency: 'USD'})}</p>
                     </div>
                 </div>
@@ -310,7 +310,7 @@ function BuildCard({
             {/* Hover Reveal Button */}
             <div className="absolute bottom-0 left-0 w-full z-30 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
                 <div className="w-full py-3 bg-white text-black text-xs font-bold uppercase tracking-widest text-center">
-                    Inspect Specification
+                    View Details
                 </div>
             </div>
         </motion.div>
@@ -395,18 +395,18 @@ function BuildModal({
                             {config.label}
                         </div>
                         <h2 className="text-3xl font-light text-white mb-2">{build.model}</h2>
-                        <p className="text-neutral-500 text-sm">Commissioned by <span className="text-white font-medium">{build.clientName}</span></p>
+                        <p className="text-neutral-500 text-sm">Type: <span className="text-white font-medium">{build.clientName}</span></p>
                     </div>
 
                     {/* Technical Specs Data */}
                     <div className="space-y-6 mb-8 flex-grow">
                         <div className="grid grid-cols-2 gap-4 pb-6 border-b border-neutral-800">
                             <div>
-                                <p className="text-[10px] text-neutral-500 uppercase tracking-widest mb-1">Total Valuation</p>
+                                <p className="text-[10px] text-neutral-500 uppercase tracking-widest mb-1">Price</p>
                                 <p className="text-xl text-white font-mono">{Number(build.price).toLocaleString('en-US', { style: 'currency', currency: 'USD'})}</p>
                             </div>
                             <div>
-                                <p className="text-[10px] text-neutral-500 uppercase tracking-widest mb-1">Completion Est.</p>
+                                <p className="text-[10px] text-neutral-500 uppercase tracking-widest mb-1">Last Updated</p>
                                 <p className="text-xl text-white font-mono">{new Date(build.lastUpdated).toLocaleDateString()}</p>
                             </div>
                         </div>
@@ -417,23 +417,9 @@ function BuildModal({
                             </p>
                         ) : (
                             <p className="text-neutral-600 text-sm italic">
-                                No additional engineering notes available for this unit.
+                                No additional details available for this unit.
                             </p>
                         )}
-
-                        <div className="bg-neutral-900/50 p-4 border border-neutral-800">
-                            <h4 className="text-[10px] text-neutral-500 uppercase tracking-widest mb-3">System Metadata</h4>
-                            <div className="flex flex-col gap-2 text-xs font-mono text-neutral-400">
-                                <div className="flex justify-between">
-                                    <span>Build ID:</span>
-                                    <span className="text-white">{build.id.toUpperCase()}</span>
-                                </div>
-                                <div className="flex justify-between">
-                                    <span>Registered:</span>
-                                    <span className="text-white">{new Date(build.createdAt).toLocaleDateString()}</span>
-                                </div>
-                            </div>
-                        </div>
                     </div>
 
                     {/* Actions */}
@@ -442,13 +428,13 @@ function BuildModal({
                             href="/quote"
                             className="flex items-center justify-center w-full py-4 bg-white hover:bg-neutral-200 text-black text-sm font-bold uppercase tracking-widest transition-colors"
                         >
-                            Request This Model
+                            Inquire About This Cart
                         </Link>
                         <Link
                             href="/contact"
                             className="flex items-center justify-center w-full py-4 bg-transparent border border-neutral-800 hover:border-neutral-600 text-white text-sm font-bold uppercase tracking-widest transition-colors"
                         >
-                            Download Blueprint
+                            Contact Us
                         </Link>
                     </div>
                 </div>
