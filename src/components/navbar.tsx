@@ -75,7 +75,7 @@ export default function Navbar({ variant = "dark" }: NavbarProps) {
                     >
                         {/* Technical Logo Mark */}
                         <div className="h-8 w-8 bg-[#9B3A4E] rounded flex items-center justify-center text-white font-bold text-xs shadow-[0_0_15px_rgba(155,58,78,0.4)] group-hover:shadow-[0_0_25px_rgba(155,58,78,0.6)] transition-shadow duration-300">
-                            <span className="font-mono">F</span>T
+                            <span className="font-mono">R</span>VC
                         </div>
 
                         <div className="flex flex-col">
