@@ -13,11 +13,7 @@ import {
     CheckCircle2,
     ArrowUpRight,
     Loader2,
-    Sparkles,
     Wrench,
-    Calendar,
-    DollarSign,
-    ChevronRight,
     X,
     ImageIcon,
     Search
@@ -26,7 +22,7 @@ import {
 export default function CustomBuildsPage() {
     const [builds, setBuilds] = useState<CartBuild[]>([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [filter, setFilter] = useState<CartBuildStatus | 'all'>('all');
+    const [filter, _] = useState<CartBuildStatus | 'all'>('all');
     const [selectedBuild, setSelectedBuild] = useState<CartBuild | null>(null);
 
     useEffect(() => {
@@ -325,7 +321,7 @@ function BuildModal({
     statusConfig: any;
     onClose: () => void;
 }) {
-    const config = statusConfig[build.status];
+    const _ = statusConfig[build.status];
     const [currentImage, setCurrentImage] = useState(0);
 
     return (
