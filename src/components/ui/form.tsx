@@ -60,13 +60,13 @@ export default function ContactForm() {
 
                 {/* Header */}
                 <div className="mb-8 border-l-2 border-[#9B3A4E] pl-4">
-                    <h3 className="text-xl font-light text-white">Direct Transmission</h3>
-                    <p className="text-xs text-neutral-500 font-mono mt-1">SECURE MESSAGE CHANNEL // OPEN</p>
+                    <h3 className="text-xl font-light text-white">Inquiry Details</h3>
+                    <p className="text-xs text-neutral-500 font-mono mt-1">Tell us about your project</p>
                 </div>
 
                 {/* Name Field */}
                 <div className="group">
-                    <label htmlFor="name" className={labelClasses}>Operative Identity</label>
+                    <label htmlFor="name" className={labelClasses}>Your Name</label>
                     <div className="relative">
                         <div className="absolute inset-y-0 left-0 flex items-center text-neutral-600 group-focus-within:text-[#9B3A4E] transition-colors">
                             <User className="h-4 w-4" />
@@ -86,7 +86,7 @@ export default function ContactForm() {
 
                 {/* Email Field */}
                 <div className="group">
-                    <label htmlFor="email" className={labelClasses}>Digital Contact</label>
+                    <label htmlFor="email" className={labelClasses}>Your Email</label>
                     <div className="relative">
                         <div className="absolute inset-y-0 left-0 flex items-center text-neutral-600 group-focus-within:text-[#9B3A4E] transition-colors">
                             <Mail className="h-4 w-4" />
@@ -106,7 +106,7 @@ export default function ContactForm() {
 
                 {/* Custom Dropdown */}
                 <div className="relative group">
-                    <label className={labelClasses}>Inquiry Classification</label>
+                    <label className={labelClasses}>This is about...</label>
                     <button
                         type="button"
                         onClick={() => setIsOpen(!isOpen)}
@@ -145,7 +145,7 @@ export default function ContactForm() {
 
                 {/* Message Field */}
                 <div className="group">
-                    <label htmlFor="message" className={labelClasses}>Briefing Data</label>
+                    <label htmlFor="message" className={labelClasses}>Tell us what we can do for you</label>
                     <div className="relative">
                         <div className="absolute top-4 left-0 text-neutral-600 group-focus-within:text-[#9B3A4E] transition-colors">
                             <MessageSquare className="h-4 w-4" />
@@ -157,7 +157,7 @@ export default function ContactForm() {
                             required
                             value={formData.message}
                             onChange={handleInputChange}
-                            placeholder="ENTER PROJECT PARAMETERS..."
+                            placeholder="ENTER PROJECT DETAILS..."
                             className={`${inputClasses} resize-none`}
                         />
                     </div>
@@ -181,7 +181,7 @@ export default function ContactForm() {
                     {isSubmitting ? (
                         <div className="flex items-center gap-2">
                             <Loader2 className="h-4 w-4 animate-spin" />
-                            <span>Transmitting</span>
+                            <span>Sending...</span>
                         </div>
                     ) : isSuccess ? (
                         <div className="flex items-center gap-2">
@@ -190,7 +190,7 @@ export default function ContactForm() {
                         </div>
                     ) : (
                         <div className="flex items-center gap-2">
-                            <span>Initialize Contact</span>
+                            <span>Contact Us</span>
                             <Send className="h-3 w-3 group-hover:translate-x-1 transition-transform" />
                         </div>
                     )}

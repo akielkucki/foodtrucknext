@@ -26,19 +26,19 @@ const contactItems = [
         icon: Phone,
         label: "Voice Line",
         value: contactInfo.phone.sales,
-        sub: "Monitored 09:00 - 18:00 EST",
+        sub: "Available 09:00 - 5:00PM EST",
         href: contactInfo.phone.salesHref,
     },
     {
         icon: Mail,
-        label: "Digital Comm",
+        label: "Email",
         value: contactInfo.email.sales,
-        sub: "Avg. Response: < 45m",
+        sub: "",
         href: `mailto:${contactInfo.email.sales}`,
     },
     {
         icon: MapPin,
-        label: "Fabrication Hangar",
+        label: "Addresses",
         addresses: [
             contactInfo.address.full,
             contactInfo.address2.full,
@@ -76,14 +76,14 @@ export default function ContactPage() {
                               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                             </span>
                             <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400">
-                                Engineering Team // Online
+                                Reach out today
                             </span>
                         </div>
 
                         <h1 className="text-5xl font-light tracking-tight text-white sm:text-7xl mb-8 leading-tight">
-                            Initiate <br />
+                            We want to<br />
                             <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#9B3A4E] to-red-500">
-                                Collaboration.
+                                hear from you.
                             </span>
                         </h1>
                         <p className="text-xl text-neutral-400 max-w-2xl font-light border-l border-[#9B3A4E] pl-6">
@@ -105,7 +105,7 @@ export default function ContactPage() {
                                 <div className="p-6 border-b border-neutral-800 bg-[#0a0a0a]">
                                     <h2 className="text-lg font-medium text-white flex items-center gap-2">
                                         <Signal className="w-4 h-4 text-[#9B3A4E]" />
-                                        Communication Uplinks
+                                        Our Information
                                     </h2>
                                 </div>
                                 <div className="divide-y divide-neutral-800">
@@ -182,7 +182,7 @@ export default function ContactPage() {
                         {/* Map Placeholder Content */}
                         <div className="absolute inset-0 flex flex-col items-center justify-center text-neutral-600">
                             <Globe2 className="h-16 w-16 mb-4 text-[#9B3A4E]/20" />
-                            <span className="text-xs uppercase tracking-[0.3em] text-neutral-500">Satellite Imagery // Offline</span>
+                            <span className="text-xs uppercase tracking-[0.3em] text-neutral-500">Previews</span>
                             <div className="mt-8 flex gap-1">
                                 <span className="w-1 h-1 bg-red-500 rounded-full animate-pulse" />
                                 <span className="w-1 h-1 bg-neutral-700 rounded-full" />
@@ -216,7 +216,7 @@ export default function ContactPage() {
             <section className="w-full py-24 border-t border-neutral-900 bg-[#050505]">
                 <div className="mx-auto max-w-4xl px-6 lg:px-8">
                     <div className="text-center mb-12">
-                        <h2 className="text-2xl font-light text-white">Standard Protocols</h2>
+                        <h2 className="text-2xl font-light text-white">FAQs</h2>
                         <div className="h-0.5 w-12 bg-[#9B3A4E] mx-auto mt-4" />
                     </div>
 

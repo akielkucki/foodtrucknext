@@ -419,15 +419,10 @@ function BuildModal({
 
                     {/* Actions */}
                     <div className="mt-auto space-y-3 pt-6 border-t border-neutral-800">
-                        <Link
-                            href="/quote"
-                            className="flex items-center justify-center w-full py-4 bg-white hover:bg-neutral-200 text-black text-sm font-bold uppercase tracking-widest transition-colors"
-                        >
-                            Inquire About This Cart
-                        </Link>
+
                         <Link
                             href="/contact"
-                            className="flex items-center justify-center w-full py-4 bg-transparent border border-neutral-800 hover:border-neutral-600 text-white text-sm font-bold uppercase tracking-widest transition-colors"
+                            className="flex items-center justify-center w-full py-4 bg-white text-black border border-neutral-800 hover:border-neutral-600 hover:bg-gray-300 text-sm font-bold uppercase tracking-widest transition-colors"
                         >
                             Contact Us
                         </Link>
