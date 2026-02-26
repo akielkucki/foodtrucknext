@@ -67,7 +67,7 @@ export default function CustomBuildsPage() {
             border: "border-amber-500/30"
         },
         delivered: {
-            label: "Available Now",
+            label: "View Now",
             icon: CheckCircle2,
             color: "text-emerald-400",
             bg: "bg-emerald-900/20",
@@ -275,19 +275,18 @@ function BuildCard({
                 {/* Dark Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-90" />
 
-                {/* Floating Badge */}
-                <div className={`absolute top-4 right-4 backdrop-blur-md px-3 py-1 border ${config.border} ${config.bg} ${config.color} text-[10px] font-bold uppercase tracking-widest`}>
-                    {config.label}
-                </div>
+                {/*<div className={`absolute top-4 right-4 backdrop-blur-md px-3 py-1 border ${config.border} ${config.bg} ${config.color} text-[10px] font-bold uppercase tracking-widest`}>*/}
+                {/*    {config.label}*/}
+                {/*</div>*/}
             </div>
 
             {/* Info Section */}
             <div className="p-6 relative -mt-12 z-10">
                 <div className="flex justify-between items-end mb-4">
                     <div>
-                        <p className="text-xs text-[var(--color-primary)] font-mono mb-1">
-                            BUILD #{build.id.substring(0, 4).toUpperCase()}
-                        </p>
+                        {/*<p className="text-xs text-[var(--color-primary)] font-mono mb-1">*/}
+                        {/*    BUILD #{build.id.substring(0, 4).toUpperCase()}*/}
+                        {/*</p>*/}
                         <h3 className="text-xl font-medium text-white group-hover:text-[var(--color-primary-light)] transition-colors">
                             {build.model}
                         </h3>
@@ -390,10 +389,10 @@ function BuildModal({
 
                     {/* Header */}
                     <div className="mb-8">
-                        <div className={`inline-flex items-center gap-2 px-3 py-1 mb-4 border ${config.border} ${config.bg} ${config.color} text-[10px] font-bold uppercase tracking-widest`}>
-                            {config.icon && <config.icon className="w-3 h-3" />}
-                            {config.label}
-                        </div>
+                        {/*<div className={`inline-flex items-center gap-2 px-3 py-1 mb-4 border ${config.border} ${config.bg} ${config.color} text-[10px] font-bold uppercase tracking-widest`}>*/}
+                        {/*    {config.icon && <config.icon className="w-3 h-3" />}*/}
+                        {/*    {config.label}*/}
+                        {/*</div>*/}
                         <h2 className="text-3xl font-light text-white mb-2">{build.model}</h2>
                         <p className="text-neutral-500 text-sm">Type: <span className="text-white font-medium">{build.clientName}</span></p>
                     </div>
@@ -406,8 +405,8 @@ function BuildModal({
                                 <p className="text-xl text-white font-mono">{Number(build.price).toLocaleString('en-US', { style: 'currency', currency: 'USD'})}</p>
                             </div>
                             <div>
-                                <p className="text-[10px] text-neutral-500 uppercase tracking-widest mb-1">Last Updated</p>
-                                <p className="text-xl text-white font-mono">{new Date(build.lastUpdated).toLocaleDateString()}</p>
+                                <p className="text-[10px] text-neutral-500 uppercase tracking-widest mb-1">Date Listed</p>
+                                <p className="text-xl text-white font-mono">{new Date(build.createdAt).toLocaleDateString()}</p>
                             </div>
                         </div>
 
