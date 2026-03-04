@@ -312,7 +312,6 @@ export default function CartBuildsPage() {
                                                     <td className="py-5 align-middle">
                                                         <StatusBadge status={build.status} />
                                                     </td>
-                                                    <td className="py-5 font-mono text-neutral-400 align-middle">{build.price}</td>
                                                     <td className="py-5 pr-4 text-right align-middle">
                                                         <div className="flex justify-end gap-2 opacity-60 group-hover:opacity-100 transition-opacity">
                                                             <button onClick={() => handleEdit(build)} className="p-2 hover:bg-neutral-800 rounded-lg text-neutral-400 hover:text-white transition-colors">

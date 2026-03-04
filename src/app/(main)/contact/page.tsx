@@ -180,25 +180,21 @@ export default function ContactPage() {
                     <div className="relative rounded-2xl overflow-hidden border border-neutral-800 bg-[#080808] h-[400px] group">
 
                         {/* Map Placeholder Content */}
-                        <div className="absolute inset-0 flex flex-col items-center justify-center text-neutral-600">
-                            <Globe2 className="h-16 w-16 mb-4 text-[#9B3A4E]/20" />
-                            <span className="text-xs uppercase tracking-[0.3em] text-neutral-500">Previews</span>
-                            <div className="mt-8 flex gap-1">
-                                <span className="w-1 h-1 bg-red-500 rounded-full animate-pulse" />
-                                <span className="w-1 h-1 bg-neutral-700 rounded-full" />
-                                <span className="w-1 h-1 bg-neutral-700 rounded-full" />
-                            </div>
-                        </div>
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3411.1242696016675!2d-75.1212146!3d39.9888579!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c6c825df63873f%3A0x9279a5728794b293!2s2777%20Emerald%20St%2C%20Philadelphia%2C%20PA%2019134!5e1!3m2!1sen!2sus!4v1772125598552!5m2!1sen!2sus"
+                            width="1920" height="450" style={
+                            {border:0}
+                        } allowFullScreen={true} loading="lazy"
+                            referrerPolicy="no-referrer-when-downgrade"></iframe>
 
-                        {/* Grid Overlay */}
-                        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:100px_100px]" />
 
                         {/* Floating Location Card */}
-                        <div className="absolute bottom-8 left-8 bg-neutral-900/90 backdrop-blur-md p-6 rounded-xl border border-neutral-700 shadow-2xl max-w-xs z-10">
+                        <div
+                            className="absolute bottom-8 left-8 bg-neutral-900/90 backdrop-blur-md p-6 rounded-xl border border-neutral-700 shadow-2xl max-w-xs z-10">
                             <div className="flex items-center gap-3 mb-2">
                                 <Map className="w-4 h-4 text-[#9B3A4E]" />
                                 <h4 className="text-sm font-bold text-white uppercase tracking-wider">
-                                    Sector HQ
+                                    Our Office
                                 </h4>
                             </div>
                             <p className="text-xs text-neutral-400 leading-relaxed">

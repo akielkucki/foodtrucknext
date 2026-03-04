@@ -295,10 +295,7 @@ function BuildCard({
                         <p className="text-[10px] text-neutral-500 uppercase tracking-wider">Type</p>
                         <p className="text-sm text-neutral-300 font-light truncate pr-2">{build.clientName}</p>
                     </div>
-                    <div className="text-right">
-                        <p className="text-[10px] text-neutral-500 uppercase tracking-wider">Price</p>
-                        <p className="text-sm text-white font-mono">{Number(build.price).toLocaleString('en-US', { style: 'currency', currency: 'USD'})}</p>
-                    </div>
+
                 </div>
             </div>
 
@@ -397,8 +394,7 @@ function BuildModal({
                     <div className="space-y-6 mb-8 flex-grow">
                         <div className="grid grid-cols-2 gap-4 pb-6 border-b border-neutral-800">
                             <div>
-                                <p className="text-[10px] text-neutral-500 uppercase tracking-widest mb-1">Price</p>
-                                <p className="text-xl text-white font-mono">{Number(build.price).toLocaleString('en-US', { style: 'currency', currency: 'USD'})}</p>
+
                             </div>
                             <div>
                                 <p className="text-[10px] text-neutral-500 uppercase tracking-widest mb-1">Date Listed</p>
