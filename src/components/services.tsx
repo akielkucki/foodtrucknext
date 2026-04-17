@@ -48,7 +48,7 @@ const services = [
 
 export default function Services() {
     return (
-        <section className="w-full bg-[#050505] py-24 lg:py-32 border-t border-neutral-900">
+        <section className="w-full bg-[#0a0d14] py-24 lg:py-32 border-t border-neutral-900">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
 
                 {/* Header Section */}
@@ -93,7 +93,7 @@ export default function Services() {
                         >
                             <Link
                                 href={service.href}
-                                className="group relative flex h-full flex-col bg-[#0a0a0a] border border-neutral-800 p-8 transition-all duration-300 hover:border-[#9B3A4E]/30 overflow-hidden"
+                                className="group relative flex h-full flex-col bg-[#11151d] border border-neutral-800 p-8 transition-all duration-300 hover:border-[#9B3A4E]/30 overflow-hidden"
                             >
                                 {/* Top Active Line */}
                                 <div className="absolute top-0 left-0 w-full h-0.5 bg-[#9B3A4E] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />

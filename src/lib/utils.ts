@@ -6,6 +6,15 @@ export function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
 }
 
+// Food trucks are quoted per-build, not sold at a listed price.
+// Returns true when a Shopify productType should hide its price in the UI.
+const FOOD_TRUCK_TYPE_KEYWORDS = ["truck", "trailer", "cart", "van", "mobile kitchen"];
+export function isFoodTruckProductType(productType?: string | null): boolean {
+    if (!productType) return false;
+    const t = productType.toLowerCase();
+    return FOOD_TRUCK_TYPE_KEYWORDS.some((kw) => t.includes(kw));
+}
+
 // Contact Information
 export const contactInfo = {
     address: {

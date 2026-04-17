@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import type { ProductNode } from "@/lib/shopify";
 import ProductPrice from "@/components/ProductPrice";
 import AddToCartButton from "@/components/addtocartbutton";
+import { isFoodTruckProductType } from "@/lib/utils";
 
 type Props = {
   product: ProductNode;
@@ -44,6 +45,7 @@ export default function ProductDetails({ product }: Props) {
   };
 
   const hasMultipleVariants = product.variants.nodes.length > 1;
+  const hidePrice = isFoodTruckProductType(product.productType);
 
   return (
     <div className="grid gap-12 lg:grid-cols-2">
@@ -146,21 +148,30 @@ export default function ProductDetails({ product }: Props) {
           <p className="mt-2 text-sm text-slate-400">by {product.vendor}</p>
         )}
 
-        {/* Price */}
-        <div className="mt-6 flex items-baseline gap-3">
-          <ProductPrice
-            amount={selectedVariant?.price.amount || product.priceRange.minVariantPrice.amount}
-            currencyCode={selectedVariant?.price.currencyCode || product.priceRange.minVariantPrice.currencyCode}
-            className="text-3xl font-bold text-orange-400"
-          />
-          {selectedVariant?.compareAtPrice && (
+        {/* Price (hidden for food trucks — quote-driven) */}
+        {hidePrice ? (
+          <div className="mt-6">
+            <span className="text-2xl font-bold text-orange-400">Quote on Request</span>
+            <p className="mt-1 text-sm text-slate-400">
+              Every build is spec'd to your needs — contact us for pricing.
+            </p>
+          </div>
+        ) : (
+          <div className="mt-6 flex items-baseline gap-3">
             <ProductPrice
-              amount={selectedVariant.compareAtPrice.amount}
-              currencyCode={selectedVariant.compareAtPrice.currencyCode}
-              className="text-xl text-slate-500 line-through"
+              amount={selectedVariant?.price.amount || product.priceRange.minVariantPrice.amount}
+              currencyCode={selectedVariant?.price.currencyCode || product.priceRange.minVariantPrice.currencyCode}
+              className="text-3xl font-bold text-orange-400"
             />
-          )}
-        </div>
+            {selectedVariant?.compareAtPrice && (
+              <ProductPrice
+                amount={selectedVariant.compareAtPrice.amount}
+                currencyCode={selectedVariant.compareAtPrice.currencyCode}
+                className="text-xl text-slate-500 line-through"
+              />
+            )}
+          </div>
+        )}
 
         {/* Availability */}
         <div className="mt-4 flex items-center gap-2">
@@ -205,8 +216,8 @@ export default function ProductDetails({ product }: Props) {
           </div>
         )}
 
-        {/* Quantity Selector */}
-        <div className="mt-8">
+        {/* Quantity Selector (hidden for food trucks) */}
+        <div className={`mt-8 ${hidePrice ? "hidden" : ""}`}>
           <label className="mb-3 block text-sm font-medium text-white">
             Quantity
           </label>
@@ -232,14 +243,23 @@ export default function ProductDetails({ product }: Props) {
           </div>
         </div>
 
-        {/* Add to Cart */}
+        {/* Add to Cart / Quote CTA */}
         <div className="mt-8 flex gap-4">
-          <AddToCartButton
-            variantId={selectedVariant?.id || product.variants.nodes[0]?.id || ""}
-            quantity={quantity}
-            disabled={!product.availableForSale || !selectedVariant?.availableForSale}
-            className="flex-1 py-4 text-base"
-          />
+          {hidePrice ? (
+            <Link
+              href="/quote"
+              className="flex flex-1 items-center justify-center rounded-lg bg-orange-500 py-4 text-base font-bold uppercase tracking-wider text-white transition-colors hover:bg-orange-400"
+            >
+              Request a Quote
+            </Link>
+          ) : (
+            <AddToCartButton
+              variantId={selectedVariant?.id || product.variants.nodes[0]?.id || ""}
+              quantity={quantity}
+              disabled={!product.availableForSale || !selectedVariant?.availableForSale}
+              className="flex-1 py-4 text-base"
+            />
+          )}
         </div>
 
         {/* Description */}

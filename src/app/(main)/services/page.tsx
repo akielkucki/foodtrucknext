@@ -8,76 +8,108 @@ import { motion } from "framer-motion";
 import {
     ArrowRight,
     CheckCircle2,
-    Hammer,
-    Truck,
-    Wrench,
-    ClipboardList,
+    Flame,
+    Coffee,
+    Pizza,
+    IceCream,
+    Beef,
+    UtensilsCrossed,
     ChevronRight,
     Settings,
     LayoutTemplate,
     Power,
-    RefreshCcw
 } from "lucide-react";
 
-// Enhanced Service Data
+// Truck product catalogue — each section on this page represents a different
+// type of unit we build for clients.
 const services = [
     {
-        id: "current-inventory",
-        title: "Custom Builds",
-        icon: Truck,
-        shortDesc: "Ground-up fabrication",
+        id: "bbq-smoker",
+        title: "BBQ & Smoker Trucks",
+        icon: Flame,
+        shortDesc: "Offset smokers & grills",
         fullDesc:
-            "We don't just assemble trucks; we engineer mobile culinary environments. From chassis selection to final inspection, every inch is optimized for workflow and weight distribution.",
+            "Purpose-built smokehouse rigs with reinforced chassis to carry offset smokers, insulated fireboxes, and high-capacity grills. Engineered for low-and-slow output and all-day event service.",
         features: [
-            "3D CAD Design & Workflow Optimization",
-            "Heavy-Duty Electrical & Plumbing Systems",
-            "Custom Stainless Steel Fabrication",
-            "Health Department Compliance Guarantee",
+            "Insulated offset smoker cabinets",
+            "Heat-shielded serving windows",
+            "NSF-certified prep surfaces",
+            "Extended-run propane & wood storage",
         ],
         diagramTag: ""
     },
     {
-        id: "renovations",
-        title: "Renovations",
-        icon: RefreshCcw,
-        shortDesc: "Modernize your fleet",
+        id: "coffee-espresso",
+        title: "Coffee & Espresso Trailers",
+        icon: Coffee,
+        shortDesc: "High-volume mobile cafes",
         fullDesc:
-            "Breathe new life into aging units. We specialize in retrofitting older trucks with modern equipment, LED lighting, and ergonomic layout changes to increase output speed.",
+            "Compact, high-efficiency coffee units built around commercial-grade espresso platforms. Lithium power systems and custom filtration keep pulls consistent from morning rush through afternoon events.",
         features: [
-            "Kitchen Layout Re-engineering",
-            "Equipment Upgrades & Swaps",
-            "Exterior Wraps & Cosmetic Refreshes",
-            "Generator & Power System Upgrades",
+            "Dual-group espresso plumbing",
+            "On-board water filtration & softening",
+            "Lithium battery + inverter systems",
+            "Cold-brew & nitro keg integration",
         ],
         diagramTag: ""
     },
     {
-        id: "repairs",
-        title: "Repairs & Maintenance",
-        icon: Wrench,
-        shortDesc: "Keep running smoothly",
+        id: "taco-latin",
+        title: "Taco & Latin Trucks",
+        icon: UtensilsCrossed,
+        shortDesc: "Plancha, fryer & steam line",
         fullDesc:
-            "Downtime is lost revenue. Our rapid-response team handles everything from broken refrigeration to generator failures, ensuring you get back to serving customers fast.",
+            "Full stainless commercial kitchens built around high-output plancha stations, dedicated fryer banks, and speed-rail cold lines. Designed for the tightest service windows in the business.",
         features: [
-            "Emergency Equipment Repair",
-            "Preventive Maintenance Plans",
-            "Propane System Leak Testing",
-            "Chassis & Engine Coordination",
+            "36\" plancha + char-broiler combos",
+            "Dedicated salsa & crema cold wells",
+            "High-CFM hood with fire suppression",
+            "Custom signage & neon integration",
         ],
         diagramTag: ""
     },
     {
-        id: "consulting",
-        title: "Consulting",
-        icon: ClipboardList,
-        shortDesc: "Business planning",
+        id: "pizza",
+        title: "Wood-Fired Pizza Trucks",
+        icon: Pizza,
+        shortDesc: "900°F deck ovens on wheels",
         fullDesc:
-            "Avoid costly mistakes before you build. Our team provides expert guidance on permitting, menu-to-equipment matching, and operational logistics.",
+            "Reinforced-floor builds engineered to carry stone-deck and wood-fired ovens. Ventilation, heat-shielding, and weight distribution are all tuned to keep the oven hot and the crew safe.",
         features: [
-            "Business Plan Development",
-            "Menu Optimization Consulting",
-            "Health Permit Expediting",
-            "Operational Workflow Analysis",
+            "Wood-fired or gas deck ovens",
+            "Structural floor reinforcement",
+            "Dedicated dough retarder & prep",
+            "High-temp exhaust & heat shielding",
+        ],
+        diagramTag: ""
+    },
+    {
+        id: "dessert-ice-cream",
+        title: "Dessert & Ice Cream Carts",
+        icon: IceCream,
+        shortDesc: "Freezer-forward serving units",
+        fullDesc:
+            "Vintage aesthetics meeting modern refrigeration. Soft-serve machines, dipping cabinets, and custom pastel wraps — built to stop traffic and hold -10°F on the hottest day of the year.",
+        features: [
+            "Soft-serve & dipping cabinet combos",
+            "Oversized condenser for summer load",
+            "Custom wraps & period-correct details",
+            "Quiet inverter power for parks & events",
+        ],
+        diagramTag: ""
+    },
+    {
+        id: "burger-grill",
+        title: "Burger & Grill Trucks",
+        icon: Beef,
+        shortDesc: "Flat-top & fryer workflows",
+        fullDesc:
+            "High-throughput burger rigs built around dual flat-tops, twin-basket fryers, and speed-rail dressing stations. Every inch of counter is laid out around the fastest path from patty to window.",
+        features: [
+            "Dual 36\" flat-top griddles",
+            "Twin-basket fryer bank",
+            "Refrigerated make-table & speed rail",
+            "Point-of-sale & order screen mounts",
         ],
         diagramTag: ""
     },
@@ -122,7 +154,7 @@ export default function ServicesPage() {
     };
 
     return (
-        <div className="min-h-screen bg-[#050505] text-neutral-200 font-sans selection:bg-[#9B3A4E] selection:text-white">
+        <div className="min-h-screen bg-[#0a0d14] text-neutral-200 font-sans selection:bg-[#9B3A4E] selection:text-white">
             <Navbar />
 
             {/* --- HERO SECTION --- */}
@@ -146,14 +178,26 @@ export default function ServicesPage() {
                         </div>
 
                         <h1 className="text-5xl md:text-7xl font-light tracking-tight text-white mb-6">
-                            Technical <br />
+                            Our Truck <br />
                             <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#9B3A4E] to-red-500">
-                                Solutions
+                                Catalog
                             </span>
                         </h1>
                         <p className="mt-6 text-lg text-neutral-400 max-w-2xl mx-auto font-light leading-relaxed">
-                            From concept to curb, we provide the technical expertise and craftsmanship required to build high-performance mobile kitchens.
+                            Every section below is a different build we ship — pick the style that fits your concept, or tell us what you're serving and we'll engineer around it.
                         </p>
+
+                        {/* Headline stat */}
+                        <div className="mt-12 flex items-center justify-center gap-8 text-left">
+                            <div className="flex items-baseline gap-3">
+                                <span className="text-5xl md:text-6xl font-black font-mono text-white tracking-tighter">
+                                    1,500+
+                                </span>
+                                <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.25em] text-[#9B3A4E] leading-tight max-w-[8rem]">
+                                    Units<br />Deployed
+                                </span>
+                            </div>
+                        </div>
                     </motion.div>
                 </div>
             </section>
@@ -168,7 +212,7 @@ export default function ServicesPage() {
                             <div className="sticky top-32 space-y-8">
 
                                 {/* Desktop Menu */}
-                                <nav className="hidden lg:block bg-[#0a0a0a] border border-neutral-800 rounded-xl p-2 shadow-2xl">
+                                <nav className="hidden lg:block bg-[#11151d] border border-neutral-800 rounded-xl p-2 shadow-2xl">
                                     <div className="px-4 py-3 border-b border-neutral-800 mb-2">
                                         <h3 className="text-[10px] font-bold text-neutral-500 uppercase tracking-[0.2em]">
                                             System Directory
@@ -201,7 +245,7 @@ export default function ServicesPage() {
                                 </nav>
 
                                 {/* Sidebar Contact Card */}
-                                <div className="rounded-xl bg-gradient-to-br from-neutral-900 to-[#0a0a0a] border border-neutral-800 p-6 relative overflow-hidden group hidden lg:block">
+                                <div className="rounded-xl bg-gradient-to-br from-neutral-900 to-[#11151d] border border-neutral-800 p-6 relative overflow-hidden group hidden lg:block">
                                     <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
                                         <Power className="w-24 h-24 text-white" />
                                     </div>
@@ -221,7 +265,7 @@ export default function ServicesPage() {
                             </div>
 
                             {/* Mobile Menu (Sticky Horizontal) */}
-                            <div className="lg:hidden -mx-6 px-6 pb-4 overflow-x-auto flex gap-3 no-scrollbar sticky top-[64px] z-50 bg-[#050505]/95 backdrop-blur-xl border-b border-neutral-800 pt-4">
+                            <div className="lg:hidden -mx-6 px-6 pb-4 overflow-x-auto flex gap-3 no-scrollbar sticky top-[64px] z-50 bg-[#0a0d14]/95 backdrop-blur-xl border-b border-neutral-800 pt-4">
                                 {services.map((service) => (
                                     <button
                                         key={service.id}
@@ -251,7 +295,7 @@ export default function ServicesPage() {
                                         whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: true, margin: "-100px" }}
                                         transition={{ duration: 0.5 }}
-                                        className="relative rounded-2xl bg-[#0a0a0a] p-8 sm:p-10 border border-neutral-800 overflow-hidden group hover:border-[#9B3A4E]/30 transition-colors duration-500"
+                                        className="relative rounded-2xl bg-[#11151d] p-8 sm:p-10 border border-neutral-800 overflow-hidden group hover:border-[#9B3A4E]/30 transition-colors duration-500"
                                     >
                                         {/* Ambient Glow */}
                                         <div className="absolute top-0 right-0 w-64 h-64 bg-[#9B3A4E]/5 blur-[80px] rounded-full pointer-events-none" />
@@ -319,7 +363,7 @@ export default function ServicesPage() {
             </div>
 
             {/* --- CTA SECTION --- */}
-            <section className="relative py-32 bg-[#050505] overflow-hidden border-t border-neutral-900">
+            <section className="relative py-32 bg-[#0a0d14] overflow-hidden border-t border-neutral-900">
                 <div className="mx-auto max-w-4xl px-6 text-center relative z-10">
                     <h2 className="text-4xl font-light text-white mb-8">
                         Ready to <span className="text-[#9B3A4E] font-semibold">Initiate?</span>

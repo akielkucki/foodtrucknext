@@ -52,7 +52,7 @@ const socialIcons = [Facebook, Instagram, Youtube, Linkedin];
 
 export default function ContactPage() {
     return (
-        <div className="min-h-screen bg-[#050505] text-neutral-200">
+        <div className="min-h-screen bg-[#0a0d14] text-neutral-200">
             <Navbar />
 
             {/* --- HERO SECTION --- */}
@@ -102,7 +102,7 @@ export default function ContactPage() {
                         <div className="lg:col-span-5 space-y-8">
                             {/* Contact Grid */}
                             <div className="bg-neutral-900/30 backdrop-blur-sm border border-neutral-800 rounded-2xl overflow-hidden">
-                                <div className="p-6 border-b border-neutral-800 bg-[#0a0a0a]">
+                                <div className="p-6 border-b border-neutral-800 bg-[#11151d]">
                                     <h2 className="text-lg font-medium text-white flex items-center gap-2">
                                         <Signal className="w-4 h-4 text-[#9B3A4E]" />
                                         Our Information
@@ -159,7 +159,7 @@ export default function ContactPage() {
 
                         {/* Right Side: Form Module */}
                         <div className="lg:col-span-7">
-                            <div className="relative bg-[#0a0a0a] border border-neutral-800 p-8 sm:p-12 rounded-2xl shadow-2xl">
+                            <div className="relative bg-[#11151d] border border-neutral-800 p-8 sm:p-12 rounded-2xl shadow-2xl">
                                 {/* Decorative "screw" corners */}
                                 <div className="absolute top-4 left-4 w-2 h-2 rounded-full border border-neutral-700 bg-neutral-900" />
                                 <div className="absolute top-4 right-4 w-2 h-2 rounded-full border border-neutral-700 bg-neutral-900" />
@@ -209,7 +209,7 @@ export default function ContactPage() {
             </section>
 
             {/* --- FAQ PROTOCOLS --- */}
-            <section className="w-full py-24 border-t border-neutral-900 bg-[#050505]">
+            <section className="w-full py-24 border-t border-neutral-900 bg-[#0a0d14]">
                 <div className="mx-auto max-w-4xl px-6 lg:px-8">
                     <div className="text-center mb-12">
                         <h2 className="text-2xl font-light text-white">FAQs</h2>

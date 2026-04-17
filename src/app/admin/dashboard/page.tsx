@@ -15,7 +15,7 @@ export default async function DashboardPage() {
 
   return (
 
-      <div className="min-h-screen bg-[#0a0a0a] text-neutral-200 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-neutral-900 via-[#0a0a0a] to-[#0a0a0a]">
+      <div className="min-h-screen bg-[#11151d] text-neutral-200 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-neutral-900 via-[#11151d] to-[#11151d]">
 
         <main className="max-w-7xl mx-auto px-6 py-12 ">
           {/* Welcome Banner - Sculpted metallic look */}
@@ -132,7 +132,7 @@ export default async function DashboardPage() {
             <summary className="flex items-center cursor-pointer text-sm font-medium text-neutral-500 hover:text-amber-500 transition-colors focus:outline-none list-none">
               <span className="mr-2">▶</span> View System Telemetrics (Debug)
             </summary>
-            <div className="mt-6 p-6 bg-[#050505] border border-neutral-800 rounded-xl overflow-auto shadow-inner">
+            <div className="mt-6 p-6 bg-[#0a0d14] border border-neutral-800 rounded-xl overflow-auto shadow-inner">
             <pre className="text-xs font-mono text-amber-300/70 leading-relaxed">
               {JSON.stringify(session, null, 2)}
             </pre>

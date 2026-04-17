@@ -57,7 +57,7 @@ function AccordionItem({ question, answer, isOpen, onClick, index }: AccordionIt
             <button
                 onClick={onClick}
                 className={`w-full text-left group border border-neutral-800 transition-all duration-300 ${
-                    isOpen ? 'bg-neutral-900/50 border-[#9B3A4E]/30' : 'bg-[#0a0a0a] hover:border-neutral-700'
+                    isOpen ? 'bg-neutral-900/50 border-[#9B3A4E]/30' : 'bg-[#11151d] hover:border-neutral-700'
                 }`}
             >
                 <div className="flex items-center justify-between p-6">
@@ -120,7 +120,7 @@ export default function Contact() {
     ];
 
     return (
-        <section className="relative w-full bg-[#050505] py-32 lg:py-44 overflow-hidden border-t border-neutral-900">
+        <section className="relative w-full bg-[#0a0d14] py-32 lg:py-44 overflow-hidden border-t border-neutral-900">
             {/* --- ATMOSPHERE --- */}
             <div className="absolute inset-0 pointer-events-none z-0">
                 <div className="absolute top-[-20%] right-[-10%] w-[800px] h-[800px] bg-[#9B3A4E]/10 rounded-full blur-[180px] mix-blend-screen" />
@@ -220,7 +220,7 @@ export default function Contact() {
                     {/* Secondary: Contact */}
                     <motion.div variants={fadeUp}>
                         <Link href="/contact" className="group block h-full">
-                            <div className="relative h-full min-h-[320px] p-8 rounded-xl bg-[#0a0a0a] border border-neutral-800 hover:border-neutral-600 transition-all duration-500">
+                            <div className="relative h-full min-h-[320px] p-8 rounded-xl bg-[#11151d] border border-neutral-800 hover:border-neutral-600 transition-all duration-500">
                                 <div className="relative h-full flex flex-col justify-between">
                                     <div>
                                         <div className="w-12 h-12 rounded-lg bg-neutral-900 border border-neutral-800 flex items-center justify-center mb-8 group-hover:border-[#9B3A4E]/30 transition-colors text-neutral-400">
@@ -257,7 +257,7 @@ export default function Contact() {
                             key={method.label}
                             variants={fadeUp}
                             custom={index}
-                            className="group relative p-8 bg-[#0a0a0a] hover:bg-neutral-900/50 transition-colors"
+                            className="group relative p-8 bg-[#11151d] hover:bg-neutral-900/50 transition-colors"
                         >
                             <div className="flex items-start gap-4">
                                 <method.icon className="w-5 h-5 text-[#9B3A4E] mt-1" />

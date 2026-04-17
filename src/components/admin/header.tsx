@@ -9,7 +9,7 @@ function AdminHeader() {
     }
 
     return (
-        <header className="fixed top-0 w-full z-50 border-b border-neutral-800 bg-[#0a0a0a]/80 backdrop-blur-xl supports-[backdrop-filter]:bg-[#0a0a0a]/60">
+        <header className="fixed top-0 w-full z-50 border-b border-neutral-800 bg-[#11151d]/80 backdrop-blur-xl supports-[backdrop-filter]:bg-[#11151d]/60">
             <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
 
                 {/* Brand / Logo Section */}

@@ -2,6 +2,7 @@
 
 import { useState, useContext, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import { brandName } from "@/lib/shopify";
@@ -60,7 +61,7 @@ export default function Navbar({ variant = "dark" }: NavbarProps) {
                 className={cn(
                     "fixed left-0 right-0 top-0 z-50 transition-all duration-300 border-b",
                     isScrolled
-                        ? "bg-[#050505]/80 backdrop-blur-xl border-white/5 py-2"
+                        ? "bg-[#0a0d14]/80 backdrop-blur-xl border-white/5 py-2"
                         : "bg-transparent border-transparent py-4"
                 )}
                 initial={{ y: -100 }}
@@ -73,9 +74,16 @@ export default function Navbar({ variant = "dark" }: NavbarProps) {
                         href="/"
                         className="relative z-50 flex items-center gap-2 group"
                     >
-                        {/* Technical Logo Mark */}
-                        <div className="h-8 w-8 bg-[#9B3A4E] rounded flex items-center justify-center text-white font-bold text-xs shadow-[0_0_15px_rgba(155,58,78,0.4)] group-hover:shadow-[0_0_25px_rgba(155,58,78,0.6)] transition-shadow duration-300">
-                            <span className="font-mono">R</span>VC
+                        {/* Logo (placeholder — replace /logo.svg in /public with the final artwork) */}
+                        <div className="relative h-9 w-9 rounded overflow-hidden shadow-[0_0_15px_rgba(155,58,78,0.4)] group-hover:shadow-[0_0_25px_rgba(155,58,78,0.6)] transition-shadow duration-300">
+                            <Image
+                                src="/logo.svg"
+                                alt="Royal Vending Cart"
+                                fill
+                                sizes="36px"
+                                priority
+                                className="object-contain"
+                            />
                         </div>
 
                         <div className="flex flex-col">
@@ -188,7 +196,7 @@ export default function Navbar({ variant = "dark" }: NavbarProps) {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.3 }}
-                        className="fixed inset-0 z-40 bg-[#050505]/95 backdrop-blur-xl lg:hidden border-t border-white/5"
+                        className="fixed inset-0 z-40 bg-[#0a0d14]/95 backdrop-blur-xl lg:hidden border-t border-white/5"
                     >
                         <div className="flex h-full flex-col px-6 pb-8 pt-24 overflow-y-auto">
 

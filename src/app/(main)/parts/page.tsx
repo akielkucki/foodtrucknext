@@ -128,7 +128,7 @@ export default async function PartsPage({ searchParams }: { searchParams: Promis
   };
 
   return (
-      <div className="min-h-screen bg-[#050505] text-neutral-200 font-sans selection:bg-[#9B3A4E] selection:text-white">
+      <div className="min-h-screen bg-[#0a0d14] text-neutral-200 font-sans selection:bg-[#9B3A4E] selection:text-white">
         <Navbar />
 
         {/* --- HERO SECTION --- */}
@@ -164,7 +164,7 @@ export default async function PartsPage({ searchParams }: { searchParams: Promis
 
               {/* Sidebar (Filters) */}
               <div className="lg:col-span-1">
-                <div className="sticky top-24 rounded-xl bg-[#0a0a0a] border border-neutral-800 p-6 shadow-2xl">
+                <div className="sticky top-24 rounded-xl bg-[#11151d] border border-neutral-800 p-6 shadow-2xl">
                   <div className="mb-6 pb-4 border-b border-neutral-800 flex items-center gap-2 text-[#9B3A4E]">
                     <Settings className="w-4 h-4" />
                     <h3 className="text-xs font-bold uppercase tracking-widest">Configuration</h3>
@@ -218,7 +218,7 @@ export default async function PartsPage({ searchParams }: { searchParams: Promis
                 return (
                     <div
                         key={cat}
-                        className="group relative flex flex-col items-center justify-center rounded-xl border border-neutral-800 bg-[#0a0a0a] p-8 text-center transition-all duration-300 hover:border-[#9B3A4E]/50 hover:bg-neutral-900/80 cursor-pointer overflow-hidden"
+                        className="group relative flex flex-col items-center justify-center rounded-xl border border-neutral-800 bg-[#11151d] p-8 text-center transition-all duration-300 hover:border-[#9B3A4E]/50 hover:bg-neutral-900/80 cursor-pointer overflow-hidden"
                     >
                       <div className="absolute inset-0 bg-gradient-to-br from-[#9B3A4E]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
 

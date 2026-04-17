@@ -10,7 +10,7 @@ import { motion } from "framer-motion";
 
 export default function GalleryPage() {
     return (
-        <div className="min-h-screen bg-[#050505] text-neutral-200 font-sans selection:bg-[#9B3A4E] selection:text-white">
+        <div className="min-h-screen bg-[#0a0d14] text-neutral-200 font-sans selection:bg-[#9B3A4E] selection:text-white">
             <Navbar />
 
             {/* --- HERO SECTION --- */}
@@ -48,7 +48,7 @@ export default function GalleryPage() {
             </section>
 
             {/* --- FILTER CONTROL BAR (Visual) --- */}
-            <section className="sticky top-20 z-40 w-full border-b border-neutral-900 bg-[#050505]/80 backdrop-blur-xl">
+            <section className="sticky top-20 z-40 w-full border-b border-neutral-900 bg-[#0a0d14]/80 backdrop-blur-xl">
                 <div className="mx-auto max-w-7xl px-6 lg:px-8 py-4">
                     <div className="flex flex-col md:flex-row items-center justify-between gap-4">
 
@@ -99,7 +99,7 @@ export default function GalleryPage() {
             </section>
 
             {/* --- CTA SECTION --- */}
-            <section className="relative py-32 bg-[#050505] overflow-hidden border-t border-neutral-900">
+            <section className="relative py-32 bg-[#0a0d14] overflow-hidden border-t border-neutral-900">
                 <div className="mx-auto max-w-4xl px-6 text-center relative z-10">
                     <h2 className="text-4xl font-light text-white mb-8">
                         Inspired by the <span className="text-[#9B3A4E] font-semibold">Builds?</span>

@@ -1,13 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { brandName, brandNameLegal } from "@/lib/shopify";
 import { cn, contactInfo } from "@/lib/utils";
 import {
     Facebook,
     Instagram,
-    Youtube,
-    Linkedin,
     MapPin,
     Phone,
     Mail,
@@ -45,16 +44,15 @@ const navigation = {
     ],
 };
 
+// TODO: replace href="#" with the real profile URLs once the client provides them.
 const socialLinks = [
     { name: "Facebook", href: "#", icon: Facebook },
     { name: "Instagram", href: "#", icon: Instagram },
-    { name: "YouTube", href: "#", icon: Youtube },
-    { name: "LinkedIn", href: "#", icon: Linkedin },
 ];
 
 export default function Footer({ variant = "dark" }: FooterProps) {
     return (
-        <footer className="bg-[#0a0a0a] border-t border-neutral-900 text-neutral-400 font-sans">
+        <footer className="bg-[#11151d] border-t border-neutral-900 text-neutral-400 font-sans">
 
 
             {/* Main Footer Content */}
@@ -65,8 +63,14 @@ export default function Footer({ variant = "dark" }: FooterProps) {
                     <div className="lg:col-span-2 space-y-8">
                         <div>
                             <Link href="/" className="group flex items-center gap-2 mb-4">
-                                <div className="h-6 w-6 bg-[#9B3A4E] rounded flex items-center justify-center text-white font-bold text-[10px]">
-                                    FT
+                                <div className="relative h-7 w-7 rounded overflow-hidden">
+                                    <Image
+                                        src="/logo.svg"
+                                        alt="Royal Vending Cart"
+                                        fill
+                                        sizes="28px"
+                                        className="object-contain"
+                                    />
                                 </div>
                                 <span className="text-lg font-bold tracking-tight text-white">
                                     {brandName?.split("_")[0] || "FOOD"}
@@ -183,7 +187,7 @@ export default function Footer({ variant = "dark" }: FooterProps) {
             </div>
 
             {/* Bottom Bar */}
-            <div className="border-t border-neutral-900 bg-[#050505]">
+            <div className="border-t border-neutral-900 bg-[#0a0d14]">
                 <div className="mx-auto max-w-7xl px-6 py-6 lg:px-8">
                     <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-4">
                         {/* Copyright */}

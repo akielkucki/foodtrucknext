@@ -14,7 +14,7 @@ const features = [
 
 export default function About() {
     return (
-        <section className="w-full bg-[#050505] py-24 lg:py-32 border-t border-neutral-900 relative overflow-hidden">
+        <section className="w-full bg-[#0a0d14] py-24 lg:py-32 border-t border-neutral-900 relative overflow-hidden">
             {/* Background Texture */}
             <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none" />
 
@@ -33,7 +33,7 @@ export default function About() {
                         <div className="absolute -inset-4 border border-neutral-800 rounded-xl opacity-50 group-hover:border-[#9B3A4E]/30 transition-colors duration-500" />
 
                         {/* Main Image Container */}
-                        <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-[#0a0a0a] border border-neutral-800">
+                        <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-[#11151d] border border-neutral-800">
                             <Image
                                 src="/hero.webp"
                                 alt="Manufacturing Facility"
@@ -107,7 +107,7 @@ export default function About() {
                                     whileInView={{ opacity: 1, x: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ duration: 0.3, delay: 0.3 + index * 0.1 }}
-                                    className="flex items-center gap-4 p-4 rounded-lg border border-neutral-800 bg-[#0a0a0a] hover:border-[#9B3A4E]/30 transition-colors group"
+                                    className="flex items-center gap-4 p-4 rounded-lg border border-neutral-800 bg-[#11151d] hover:border-[#9B3A4E]/30 transition-colors group"
                                 >
                                     <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded bg-neutral-900 border border-neutral-700 text-[#9B3A4E] group-hover:bg-[#9B3A4E] group-hover:text-white group-hover:border-[#9B3A4E] transition-all">
                                         <Check className="h-3 w-3" />

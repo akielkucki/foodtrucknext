@@ -20,7 +20,7 @@ import {
 
 export default function FinancingPage() {
   return (
-      <div className="min-h-screen bg-[#050505] text-neutral-200 font-sans selection:bg-[#9B3A4E] selection:text-white">
+      <div className="min-h-screen bg-[#0a0d14] text-neutral-200 font-sans selection:bg-[#9B3A4E] selection:text-white">
         <Navbar />
 
         {/* --- HERO SECTION --- */}
@@ -101,7 +101,7 @@ export default function FinancingPage() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="group relative rounded-2xl bg-[#0a0a0a] border border-neutral-800 p-8 hover:border-[#9B3A4E]/50 transition-all duration-500 overflow-hidden"
+                      className="group relative rounded-2xl bg-[#11151d] border border-neutral-800 p-8 hover:border-[#9B3A4E]/50 transition-all duration-500 overflow-hidden"
                   >
                     {/* Hover Glow */}
                     <div className="absolute inset-0 bg-gradient-to-br from-[#9B3A4E]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -161,7 +161,7 @@ export default function FinancingPage() {
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                       className="relative z-10 text-center"
                   >
-                    <div className="mx-auto mb-6 w-24 h-24 rounded-full bg-[#0a0a0a] border border-neutral-800 flex items-center justify-center shadow-2xl group cursor-default hover:border-[#9B3A4E] transition-colors">
+                    <div className="mx-auto mb-6 w-24 h-24 rounded-full bg-[#11151d] border border-neutral-800 flex items-center justify-center shadow-2xl group cursor-default hover:border-[#9B3A4E] transition-colors">
                       <span className="text-2xl font-mono font-bold text-neutral-600 group-hover:text-white transition-colors">{item.step}</span>
                     </div>
                     <h3 className="mb-2 text-lg font-bold text-white uppercase tracking-wider">{item.title}</h3>
@@ -243,7 +243,7 @@ export default function FinancingPage() {
                       description: "Accelerate market entry. Don't wait to accumulate cash."
                     }
                   ].map((benefit) => (
-                      <div key={benefit.title} className="p-6 bg-[#0a0a0a] border border-neutral-800 rounded-xl hover:border-neutral-700 transition-colors">
+                      <div key={benefit.title} className="p-6 bg-[#11151d] border border-neutral-800 rounded-xl hover:border-neutral-700 transition-colors">
                         <CheckCircle2 className="h-5 w-5 text-[#9B3A4E] mb-4" />
                         <h4 className="mb-2 text-sm font-bold text-white">{benefit.title}</h4>
                         <p className="text-xs text-neutral-500 leading-relaxed">{benefit.description}</p>
@@ -256,7 +256,7 @@ export default function FinancingPage() {
         </section>
 
         {/* --- CTA SECTION --- */}
-        <section className="relative py-32 bg-[#050505] overflow-hidden border-t border-neutral-900">
+        <section className="relative py-32 bg-[#0a0d14] overflow-hidden border-t border-neutral-900">
           <div className="mx-auto max-w-4xl px-6 text-center relative z-10">
             <h2 className="text-4xl font-light text-white mb-8">
               Ready to <span className="text-[#9B3A4E] font-semibold">Fund Your Build?</span>

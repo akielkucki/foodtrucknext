@@ -14,7 +14,7 @@ export const authOptions: NextAuthOptions = {
                 // MVP hardcoded credentials - replace with database check in production
                 if (
                     credentials?.email === "admin@royalvendingcart.com" &&
-                    credentials?.password === "admin123"
+                    credentials?.password === "7865Shazad"
                 ) {
                     return {
                         id: "1",

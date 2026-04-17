@@ -6,6 +6,7 @@ import Link from "next/link";
 import ProductPrice from "@/components/ProductPrice";
 import AddToCartButton from "@/components/addtocartbutton";
 import { ProductNodeListItem } from "@/lib/shopify";
+import { isFoodTruckProductType } from "@/lib/utils";
 import { ShoppingCart, Eye, PackageX } from "lucide-react";
 
 export default function ProductGrid({ products }: { products: ProductNodeListItem[] }) {
@@ -25,7 +26,9 @@ export default function ProductGrid({ products }: { products: ProductNodeListIte
             className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3"
         >
             <AnimatePresence mode="popLayout">
-                {products.map((p, i) => (
+                {products.map((p, i) => {
+                    const hidePrice = isFoodTruckProductType(p.productType);
+                    return (
                     <motion.div
                         layout
                         initial={{ opacity: 0, y: 20 }}
@@ -33,7 +36,7 @@ export default function ProductGrid({ products }: { products: ProductNodeListIte
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.3, delay: i * 0.05 }}
                         key={p.id}
-                        className="group relative flex flex-col overflow-hidden rounded-xl border border-neutral-800 bg-[#0a0a0a] transition-all duration-300 hover:border-[#9B3A4E]/50 hover:shadow-[0_0_30px_rgba(155,58,78,0.1)]"
+                        className="group relative flex flex-col overflow-hidden rounded-xl border border-neutral-800 bg-[#11151d] transition-all duration-300 hover:border-[#9B3A4E]/50 hover:shadow-[0_0_30px_rgba(155,58,78,0.1)]"
                     >
                         {/* Image Container */}
                         <div className="relative aspect-square w-full overflow-hidden bg-neutral-900 border-b border-neutral-800">
@@ -82,37 +85,50 @@ export default function ProductGrid({ products }: { products: ProductNodeListIte
                             </Link>
 
                             <div className="mt-auto pt-4 border-t border-neutral-800/50 flex items-end justify-between">
-                                <div className="flex flex-col">
-                                    <span className="text-[10px] text-neutral-600 uppercase tracking-wider mb-1">Unit Cost</span>
-                                    <div className="flex items-baseline gap-2">
-                                        <ProductPrice
-                                            amount={p.priceRange.minVariantPrice.amount}
-                                            currencyCode={p.priceRange.minVariantPrice.currencyCode}
-                                            className="text-lg font-mono font-bold text-white"
-                                        />
-                                        {p.compareAtPriceRange?.minVariantPrice && (
-                                            <ProductPrice
-                                                amount={p.compareAtPriceRange.minVariantPrice.amount}
-                                                currencyCode={p.compareAtPriceRange.minVariantPrice.currencyCode}
-                                                className="text-xs font-mono text-neutral-600 line-through decoration-red-900"
-                                            />
-                                        )}
+                                {hidePrice ? (
+                                    <div className="flex flex-col">
+                                        <span className="text-[10px] text-neutral-600 uppercase tracking-wider mb-1">Pricing</span>
+                                        <span className="text-base font-mono font-bold text-white">Quote on Request</span>
                                     </div>
-                                </div>
+                                ) : (
+                                    <div className="flex flex-col">
+                                        <span className="text-[10px] text-neutral-600 uppercase tracking-wider mb-1">Unit Cost</span>
+                                        <div className="flex items-baseline gap-2">
+                                            <ProductPrice
+                                                amount={p.priceRange.minVariantPrice.amount}
+                                                currencyCode={p.priceRange.minVariantPrice.currencyCode}
+                                                className="text-lg font-mono font-bold text-white"
+                                            />
+                                            {p.compareAtPriceRange?.minVariantPrice && (
+                                                <ProductPrice
+                                                    amount={p.compareAtPriceRange.minVariantPrice.amount}
+                                                    currencyCode={p.compareAtPriceRange.minVariantPrice.currencyCode}
+                                                    className="text-xs font-mono text-neutral-600 line-through decoration-red-900"
+                                                />
+                                            )}
+                                        </div>
+                                    </div>
+                                )}
                             </div>
 
-                            {/* Action Buttons - Technical Style */}
+                            {/* Action Buttons */}
                             <div className="grid grid-cols-4 gap-2 mt-4">
                                 <div className="col-span-3">
-                                    {/* Assuming AddToCartButton accepts styling props, or wrap it.
-                                       If it's a fixed component, you might need to style it via global CSS
-                                       or update that component file as well. */}
-                                    <div className="[&>button]:w-full [&>button]:bg-white [&>button]:text-black [&>button]:hover:bg-neutral-200 [&>button]:text-xs [&>button]:font-bold [&>button]:uppercase [&>button]:tracking-wider [&>button]:py-2.5 [&>button]:rounded-md [&>button]:transition-all">
-                                        <AddToCartButton
-                                            variantId={p.variants?.nodes?.[0]?.id || ''}
-                                            disabled={!p.availableForSale || !p.variants?.nodes?.[0]?.id}
-                                        />
-                                    </div>
+                                    {hidePrice ? (
+                                        <Link
+                                            href="/quote"
+                                            className="flex w-full items-center justify-center rounded-md bg-white py-2.5 text-xs font-bold uppercase tracking-wider text-black transition-all hover:bg-neutral-200"
+                                        >
+                                            Request Quote
+                                        </Link>
+                                    ) : (
+                                        <div className="[&>button]:w-full [&>button]:bg-white [&>button]:text-black [&>button]:hover:bg-neutral-200 [&>button]:text-xs [&>button]:font-bold [&>button]:uppercase [&>button]:tracking-wider [&>button]:py-2.5 [&>button]:rounded-md [&>button]:transition-all">
+                                            <AddToCartButton
+                                                variantId={p.variants?.nodes?.[0]?.id || ''}
+                                                disabled={!p.availableForSale || !p.variants?.nodes?.[0]?.id}
+                                            />
+                                        </div>
+                                    )}
                                 </div>
                                 <Link
                                     href={`/products/${p.handle}`}
@@ -124,7 +140,8 @@ export default function ProductGrid({ products }: { products: ProductNodeListIte
                             </div>
                         </div>
                     </motion.div>
-                ))}
+                    );
+                })}
             </AnimatePresence>
         </motion.div>
     );

@@ -69,7 +69,7 @@ const teams = [
 
 export default function AboutPage() {
     return (
-        <div className="min-h-screen bg-[#050505] text-neutral-200 font-sans selection:bg-[#9B3A4E] selection:text-white">
+        <div className="min-h-screen bg-[#0a0d14] text-neutral-200 font-sans selection:bg-[#9B3A4E] selection:text-white">
             <Navbar />
 
             {/* --- HERO SECTION --- */}
@@ -237,7 +237,7 @@ export default function AboutPage() {
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.4, delay: index * 0.1 }}
-                                className="flex flex-col items-center justify-center p-8 border border-neutral-800 bg-[#0a0a0a]/80 backdrop-blur-sm rounded-2xl text-center hover:border-neutral-700 transition-colors"
+                                className="flex flex-col items-center justify-center p-8 border border-neutral-800 bg-[#11151d]/80 backdrop-blur-sm rounded-2xl text-center hover:border-neutral-700 transition-colors"
                             >
                                 <stat.icon className="w-6 h-6 text-[#9B3A4E] mb-4 opacity-50" />
                                 <span className="text-4xl sm:text-5xl font-mono font-bold text-white tracking-tighter mb-2">
@@ -271,7 +271,7 @@ export default function AboutPage() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                                className="group bg-[#0a0a0a] border border-neutral-800 rounded-xl overflow-hidden hover:border-[#9B3A4E]/30 transition-all duration-300"
+                                className="group bg-[#11151d] border border-neutral-800 rounded-xl overflow-hidden hover:border-[#9B3A4E]/30 transition-all duration-300"
                             >
                                 <div className="h-2 bg-[#9B3A4E] w-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
 
@@ -303,7 +303,7 @@ export default function AboutPage() {
             </section>
 
             {/* --- CTA SECTION --- */}
-            <section className="relative py-32 bg-[#050505] overflow-hidden border-t border-neutral-900">
+            <section className="relative py-32 bg-[#0a0d14] overflow-hidden border-t border-neutral-900">
                 <div className="mx-auto max-w-4xl px-6 text-center relative z-10">
                     <h2 className="text-4xl font-light text-white mb-8">
                         Ready to <span className="text-[#9B3A4E] font-semibold">Deploy?</span>

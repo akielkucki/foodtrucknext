@@ -44,11 +44,13 @@ export default function GalleryImage({ image, index }: GalleryImageProps) {
           alt={image.author}
           width={image.width}
           height={image.height}
+          sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+          priority={index < 8}
+          loading={index < 8 ? undefined : "lazy"}
           className={`w-full h-auto transition-opacity duration-500 ${
             isLoaded ? 'opacity-100' : 'opacity-0'
           }`}
           onLoad={() => setIsLoaded(true)}
-          loading="lazy"
         />
 
         {/* Overlay on hover */}

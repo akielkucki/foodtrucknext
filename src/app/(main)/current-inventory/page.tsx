@@ -2,6 +2,7 @@
 
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
@@ -72,7 +73,7 @@ export default function CustomBuildsPage() {
     };
 
     return (
-        <div className="bg-[#050505] min-h-screen text-neutral-200 font-sans selection:bg-[var(--color-primary)] selection:text-white">
+        <div className="bg-[#0a0d14] min-h-screen text-neutral-200 font-sans selection:bg-[var(--color-primary)] selection:text-white">
             <Navbar />
 
             {/* --- HERO SECTION --- */}
@@ -193,7 +194,7 @@ export default function CustomBuildsPage() {
             </AnimatePresence>
 
             {/* --- FOOTER CTA --- */}
-            <section className="relative py-32 bg-[#050505] overflow-hidden border-t border-neutral-900">
+            <section className="relative py-32 bg-[#0a0d14] overflow-hidden border-t border-neutral-900">
                 <div className="mx-auto max-w-4xl px-6 text-center relative z-10">
                     <h2 className="text-4xl font-light text-white mb-8">
                         Find Your Perfect <span className="text-[var(--color-primary)] font-semibold">Cart</span>
@@ -249,7 +250,7 @@ function BuildCard({
             exit={{ opacity: 0, scale: 0.9 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
             onClick={onClick}
-            className="group relative flex flex-col bg-[#0a0a0a] border border-neutral-800 cursor-pointer hover:border-[var(--color-primary)]/50 transition-colors duration-500 overflow-hidden"
+            className="group relative flex flex-col bg-[#11151d] border border-neutral-800 cursor-pointer hover:border-[var(--color-primary)]/50 transition-colors duration-500 overflow-hidden"
         >
             {/* Status Line */}
             <div className={`absolute top-0 left-0 w-full h-0.5 ${config.bg.replace('/20', '')} transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-700 z-20`} />
@@ -257,10 +258,14 @@ function BuildCard({
             {/* Image Container */}
             <div className="relative aspect-[16/10] overflow-hidden bg-neutral-900">
                 {hasImage ? (
-                    <img
+                    <Image
                         src={build.images[0]}
                         alt={build.model}
-                        className="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-105 opacity-80 group-hover:opacity-100"
+                        fill
+                        sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                        priority={index < 3}
+                        unoptimized={build.images[0].startsWith("data:")}
+                        className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-105 opacity-80 group-hover:opacity-100"
                     />
                 ) : (
                     <div className="w-full h-full flex items-center justify-center opacity-20">
@@ -269,7 +274,7 @@ function BuildCard({
                 )}
 
                 {/* Dark Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-90" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#11151d] via-transparent to-transparent opacity-90" />
 
                 {/*<div className={`absolute top-4 right-4 backdrop-blur-md px-3 py-1 border ${config.border} ${config.bg} ${config.color} text-[10px] font-bold uppercase tracking-widest`}>*/}
                 {/*    {config.label}*/}
@@ -334,7 +339,7 @@ function BuildModal({
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: 20 }}
                 transition={{ duration: 0.3 }}
-                className="relative w-full max-w-6xl h-[85vh] bg-[#0a0a0a] border border-neutral-800 flex flex-col md:flex-row shadow-2xl overflow-hidden"
+                className="relative w-full max-w-6xl h-[85vh] bg-[#11151d] border border-neutral-800 flex flex-col md:flex-row shadow-2xl overflow-hidden"
                 onClick={e => e.stopPropagation()}
             >
                 {/* Close Button */}
@@ -349,10 +354,14 @@ function BuildModal({
                 <div className="w-full md:w-3/5 h-1/2 md:h-full relative bg-neutral-900 group">
                     {build.images && build.images.length > 0 ? (
                         <>
-                            <img
+                            <Image
                                 src={build.images[currentImage]}
                                 alt="Detail View"
-                                className="w-full h-full object-cover"
+                                fill
+                                sizes="(min-width: 768px) 60vw, 100vw"
+                                priority
+                                unoptimized={build.images[currentImage].startsWith("data:")}
+                                className="object-contain"
                             />
                             {/* Navigation Overlay */}
                             <div className="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black/80 to-transparent flex gap-3 overflow-x-auto">
@@ -364,7 +373,14 @@ function BuildModal({
                                             currentImage === idx ? 'border-[var(--color-primary)] opacity-100' : 'border-transparent opacity-50 hover:opacity-80'
                                         }`}
                                     >
-                                        <img src={img} className="w-full h-full object-cover" alt="" />
+                                        <Image
+                                            src={img}
+                                            alt=""
+                                            fill
+                                            sizes="96px"
+                                            unoptimized={img.startsWith("data:")}
+                                            className="object-cover"
+                                        />
                                     </button>
                                 ))}
                             </div>
@@ -378,7 +394,7 @@ function BuildModal({
                 </div>
 
                 {/* RIGHT: Specs (40% width) */}
-                <div className="w-full md:w-2/5 h-1/2 md:h-full overflow-y-auto border-l border-neutral-800 bg-[#0a0a0a] p-8 md:p-10 flex flex-col">
+                <div className="w-full md:w-2/5 h-1/2 md:h-full overflow-y-auto border-l border-neutral-800 bg-[#11151d] p-8 md:p-10 flex flex-col">
 
                     {/* Header */}
                     <div className="mb-8">

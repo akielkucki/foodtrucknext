@@ -216,7 +216,7 @@ export default function CartBuildsPage() {
     };
 
     return (
-        <div className="min-h-screen bg-[#0a0a0a] text-neutral-200 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-neutral-900 via-[#0a0a0a] to-[#0a0a0a] p-8">
+        <div className="min-h-screen bg-[#11151d] text-neutral-200 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-neutral-900 via-[#11151d] to-[#11151d] p-8">
 
             <div className="max-w-7xl mx-auto mt-20">
                 {/* Header Section */}

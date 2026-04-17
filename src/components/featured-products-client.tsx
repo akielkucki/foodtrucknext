@@ -19,7 +19,7 @@ export default function FeaturedProductsClient({
     products: FeaturedProduct[];
 }) {
     return (
-        <section className="relative w-full bg-[#050505] py-24 lg:py-32 border-t border-neutral-900 overflow-hidden">
+        <section className="relative w-full bg-[#0a0d14] py-24 lg:py-32 border-t border-neutral-900 overflow-hidden">
             {/* Background Grid Texture */}
             <div className="absolute inset-0 z-0">
                 <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px]" />
@@ -75,7 +75,7 @@ export default function FeaturedProductsClient({
                         >
                             <Link
                                 href={`/products/${product.handle}`}
-                                className="group relative block overflow-hidden rounded-xl border border-neutral-800 bg-[#0a0a0a] transition-all duration-500 hover:border-[#9B3A4E]/50 hover:shadow-[0_0_30px_rgba(155,58,78,0.15)]"
+                                className="group relative block overflow-hidden rounded-xl border border-neutral-800 bg-[#11151d] transition-all duration-500 hover:border-[#9B3A4E]/50 hover:shadow-[0_0_30px_rgba(155,58,78,0.15)]"
                             >
                                 {/* Image Container */}
                                 <div className="aspect-square w-full relative overflow-hidden bg-neutral-900 border-b border-neutral-800">
@@ -87,7 +87,7 @@ export default function FeaturedProductsClient({
                                     />
 
                                     {/* Overlay Gradient */}
-                                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-60" />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-[#11151d] via-transparent to-transparent opacity-60" />
 
                                     {/* Quick Action Overlay */}
                                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/40 backdrop-blur-[2px]">
@@ -99,7 +99,7 @@ export default function FeaturedProductsClient({
 
                                     {/* Type Tag */}
                                     {product.productType && (
-                                        <div className="absolute top-3 left-3 bg-[#0a0a0a]/90 backdrop-blur-sm border border-neutral-800 px-2 py-1 rounded">
+                                        <div className="absolute top-3 left-3 bg-[#11151d]/90 backdrop-blur-sm border border-neutral-800 px-2 py-1 rounded">
                                             <span className="text-[9px] font-bold uppercase tracking-wider text-neutral-400">
                                                 {product.productType}
                                             </span>
