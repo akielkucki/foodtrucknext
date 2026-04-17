@@ -423,11 +423,18 @@ export type ProductsData = {
 };
 
 export async function getProducts(variables: ProductsQueryVariables = {}) {
-    const data = await fetchShopify<ProductsData>({
-        query: PRODUCTS_QUERY,
-        variables: { first: 100, ...variables },
-    });
-    return data.products;
+    try {
+        const data = await fetchShopify<ProductsData>({
+            query: PRODUCTS_QUERY,
+            variables: { first: 100, ...variables },
+        });
+        return data.products;
+    } catch (error) {
+        // Shopify can 402 (Payment Required) if the store is paused/unpaid.
+        // Degrade gracefully so builds and renders don't crash.
+        console.error("getProducts: Shopify fetch failed, returning empty result", error);
+        return { nodes: [], pageInfo: { hasNextPage: false, hasPreviousPage: false, startCursor: null, endCursor: null } };
+    }
 }
 
 // Alias for backward compatibility
@@ -438,11 +445,16 @@ export type ProductData = {
 };
 
 export async function getProduct(handle: string) {
-    const data = await fetchShopify<ProductData>({
-        query: PRODUCT_QUERY,
-        variables: { handle },
-    });
-    return data.product;
+    try {
+        const data = await fetchShopify<ProductData>({
+            query: PRODUCT_QUERY,
+            variables: { handle },
+        });
+        return data.product;
+    } catch (error) {
+        console.error(`getProduct(${handle}): Shopify fetch failed, returning null`, error);
+        return null;
+    }
 }
 
 export type CollectionsData = {
