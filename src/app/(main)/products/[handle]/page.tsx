@@ -26,10 +26,17 @@ export async function generateMetadata({ params }: Props) {
 }
 
 export async function generateStaticParams() {
-  const products = await getProducts({ first: 100 });
-  return products.nodes.map((product) => ({
-    handle: product.handle,
-  }));
+  try {
+    const products = await getProducts({ first: 100 });
+    return products.nodes.map((product) => ({
+      handle: product.handle,
+    }));
+  } catch (error) {
+    // Shopify can 402 (Payment Required) if the store is paused/unpaid.
+    // Fall back to no prerendered params so the build doesn't fail.
+    console.error("generateStaticParams: Shopify fetch failed, falling back to []", error);
+    return [];
+  }
 }
 
 export default async function ProductPage({ params }: Props) {
